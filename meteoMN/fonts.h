@@ -1,11 +1,3 @@
-/*
- * fonts.h
- *
- * Created: 06.09.2020 16:30:30
- *  Author: Daniel
- */ 
-
-
 #ifndef FONTS_H_
 #define FONTS_H_
 
