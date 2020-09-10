@@ -246,12 +246,12 @@ int add_minute(int number)
 
 int subtract_hour(int number) 
 { 
-	return subtract_number(number,24); 
+	return subtract_number(number,23);
 }
 
 int subtract_minute(int number) 
 { 
-	return subtract_number(number,60);
+	return subtract_number(number,59);
 }
 
 int add_number(int number, int max) 
@@ -263,7 +263,7 @@ int add_number(int number, int max)
 		 number = 0;
 	}
 	
-	return number; 		
+	return number;
 }
 
 int subtract_number(int number, int max)
@@ -340,9 +340,9 @@ void display_clock_set()
 	ssd1306tx_stringxy(ssd1306xled_font8x16data, 56, 0, "C");
 	ssd1306tx_stringxy(ssd1306xled_font8x16data, 64, 0, "K");
 
-	draw_number(0,2,selected_hour);
+	if(selected_menu == MENU_CLOCK_SET_HOUR) draw_number(0,2,selected_hour);
 	ssd1306tx_stringxy(ssd1306xled_font8x16data, 48, 3, ":");
-	draw_number(60,2,selected_minute);
+	if(selected_menu == MENU_CLOCK_SET_MINUTE) draw_number(60,2,selected_minute);
 }
 
 void display_clock() 
@@ -415,7 +415,7 @@ int main(void)
 			else if(BUTTON_4_PRESSED) switch_menu(MENU_HUMIDITY);
 		}
 		else if(selected_menu == MENU_CLOCK_SET_HOUR)
-		{
+		{				
 			if(BUTTON_1_PRESSED)
 			{
 				selected_hour = add_hour(selected_hour);
