@@ -1,5 +1,4 @@
 #include <avr/io.h>
-#include "avr/interrupt.h"
 #include <util/delay.h>
 #include <util/twi.h>
 #include <avr/pgmspace.h>
@@ -7,8 +6,8 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
+#include "avr/interrupt.h"
 #include "I2C.h"
-//#include "images.h"
 #include "stdint.h"
 #include "fonts.h"
 
@@ -58,10 +57,8 @@ volatile uint8_t selected_hour = 12;
 volatile uint8_t selected_minute = 0;
 
 bool clockChangedFlag = 0;
-bool inClockSet = 0;
-bool inTimerSet = 0;
 
-volatile uint8_t selected_menu = 1;
+volatile uint8_t selected_menu = MENU_CLOCK;
 
 const uint8_t ssd1306_init_sequence [] PROGMEM = {
 	
@@ -232,19 +229,19 @@ char* numberToCharArray(int number)
 	else if(number == 9) return number9;
 }
 
-int add_hour(int number) {
-	return add_number(number,23);
-}
-
-int add_minute(int number) {
-	return add_number(number,59);
-}
-
+int add_hour(int number) { return add_number(number,23); }
+int add_minute(int number) { return add_number(number,59); }
+int subtract_hour(int number) { return subtract_number(number,24); }
+int subtract_minute(int number) { return subtract_number(number,60); }
 int add_number(int number, int max) {
 	number++;
-	if(number > max)
-		number = 0;
+	if(number > max) number = 0;
 	return number; 		
+}
+int subtract_number(int number, int max){
+	number--;
+	if(number < 0) number = max;
+	return number;
 }
 
 void draw_number(int xstart, int ystart, int number){
@@ -273,7 +270,6 @@ void display_temperature(){
 }
 
 void display_timer_set() {
-	inTimerSet = 1;
 		ssd1306tx_stringxy(ssd1306xled_font8x16data, 0, 0, "S");
 		ssd1306tx_stringxy(ssd1306xled_font8x16data, 8, 0, "E");
 		ssd1306tx_stringxy(ssd1306xled_font8x16data, 16, 0, "T");
@@ -283,8 +279,6 @@ void display_timer_set() {
 		ssd1306tx_stringxy(ssd1306xled_font8x16data, 48, 0, "M");
 		ssd1306tx_stringxy(ssd1306xled_font8x16data, 56, 0, "E");
 		ssd1306tx_stringxy(ssd1306xled_font8x16data, 64, 0, "R");
-		
-		
 }
 
 void display_timer() {
@@ -294,7 +288,6 @@ void display_timer() {
 }
 
 void display_clock_set() {
-	inClockSet = 1;
 	ssd1306tx_stringxy(ssd1306xled_font8x16data, 0, 0, "S");
 	ssd1306tx_stringxy(ssd1306xled_font8x16data, 8, 0, "E");
 	ssd1306tx_stringxy(ssd1306xled_font8x16data, 16, 0, "T");
@@ -353,6 +346,7 @@ void display_init(){
 	ssd1306_start_command();
 	I2C_write(0xA6);
 	ssd1306_stop();
+	ssd1306_clear_display();
 }
 
 int main(void)
@@ -363,7 +357,7 @@ int main(void)
 
 	while (1)
 	{
-		if(!inClockSet && !inTimerSet)
+		if(selected_menu != MENU_CLOCK_SET && selected_menu != MENU_TIMER_SET)
 		{
 			if(BUTTON4_PRESSED && selected_menu == MENU_CLOCK) switch_menu(MENU_CLOCK_SET);
 			else if(BUTTON4_PRESSED) switch_menu(MENU_CLOCK);
@@ -372,23 +366,27 @@ int main(void)
 			else if(BUTTON2_PRESSED) switch_menu(MENU_TEMPEREATURE);
 			else if(BUTTON1_PRESSED) switch_menu(MENU_HUMIDITY);
 		}
-		else if(inClockSet)
+		else if(selected_menu == MENU_CLOCK_SET)
 		{
-			if(BUTTON1_PRESSED) { 
-				inClockSet = 0;
-				switch_menu(MENU_CLOCK);
-			};
+	
 			if(BUTTON4_PRESSED){
 				selected_hour = add_hour(selected_hour);
 				_delay_ms(200);
 			}
-				
+			if(BUTTON3_PRESSED){
+				selected_hour = subtract_hour(selected_hour);	
+				_delay_ms(200);
+			}
+			if(BUTTON1_PRESSED) {
+				switch_menu(MENU_CLOCK);
+					_delay_ms(200);
+			};
 		}
-		else if (inTimerSet)
+		else if (selected_menu = MENU_TIMER_SET)
 		{
 			if(BUTTON1_PRESSED) { 
-				inTimerSet = 0; 
 				switch_menu(MENU_TIMER);
+				_delay_ms(200);
 			}
 		}
 			
