@@ -15,19 +15,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   5 .debug_aranges 00000160  00000000  00000000  0000138c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000020ae  00000000  00000000  000014ec  2**0
+  6 .debug_info   000020ac  00000000  00000000  000014ec  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000009de  00000000  00000000  0000359a  2**0
+  7 .debug_abbrev 000009cf  00000000  00000000  00003598  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000c62  00000000  00000000  00003f78  2**0
+  8 .debug_line   00000c62  00000000  00000000  00003f67  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000003d0  00000000  00000000  00004bdc  2**2
+  9 .debug_frame  000003d0  00000000  00000000  00004bcc  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000710  00000000  00000000  00004fac  2**0
+ 10 .debug_str    00000710  00000000  00000000  00004f9c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    0000115b  00000000  00000000  000056bc  2**0
+ 11 .debug_loc    0000115b  00000000  00000000  000056ac  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000170  00000000  00000000  00006817  2**0
+ 12 .debug_ranges 00000170  00000000  00000000  00006807  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -1172,11 +1172,11 @@ void port_init(){
 	//DDRD |= LED1;
 	//DDRB |= LED2;
 	
-	DDRC &= ~(BUTTON3 | BUTTON4);
+	DDRC &= ~(BUTTON_2 | BUTTON_1);
      fd6:	87 b1       	in	r24, 0x07	; 7
      fd8:	83 7f       	andi	r24, 0xF3	; 243
      fda:	87 b9       	out	0x07, r24	; 7
-	DDRB &= ~(BUTTON1 | BUTTON2);
+	DDRB &= ~(BUTTON_4 | BUTTON_3);
      fdc:	84 b1       	in	r24, 0x04	; 4
      fde:	89 7f       	andi	r24, 0xF9	; 249
      fe0:	84 b9       	out	0x04, r24	; 4
@@ -1259,7 +1259,7 @@ int main(void)
     102c:	d4 df       	rcall	.-88     	; 0xfd6 <port_init>
 	display_init();
     102e:	e8 df       	rcall	.-48     	; 0x1000 <display_init>
-			if(BUTTON1_PRESSED) {
+			if(BUTTON_4_PRESSED) {
 				switch_menu(MENU_CLOCK);
 					_delay_ms(200);
 			};
@@ -1298,7 +1298,7 @@ int add_number(int number, int max) {
     104c:	88 32       	cpi	r24, 0x28	; 40
     104e:	61 f1       	breq	.+88     	; 0x10a8 <main+0x7e>
 		{
-			if(BUTTON4_PRESSED && selected_menu == MENU_CLOCK) switch_menu(MENU_CLOCK_SET);
+			if(BUTTON_1_PRESSED && selected_menu == MENU_CLOCK) switch_menu(MENU_CLOCK_SET);
     1050:	33 99       	sbic	0x06, 3	; 6
     1052:	08 c0       	rjmp	.+16     	; 0x1064 <main+0x3a>
     1054:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
@@ -1308,14 +1308,14 @@ int add_number(int number, int max) {
     105e:	90 e0       	ldi	r25, 0x00	; 0
     1060:	aa df       	rcall	.-172    	; 0xfb6 <switch_menu>
     1062:	6d c0       	rjmp	.+218    	; 0x113e <main+0x114>
-			else if(BUTTON4_PRESSED) switch_menu(MENU_CLOCK);
+			else if(BUTTON_1_PRESSED) switch_menu(MENU_CLOCK);
     1064:	33 99       	sbic	0x06, 3	; 6
     1066:	04 c0       	rjmp	.+8      	; 0x1070 <main+0x46>
     1068:	81 e0       	ldi	r24, 0x01	; 1
     106a:	90 e0       	ldi	r25, 0x00	; 0
     106c:	a4 df       	rcall	.-184    	; 0xfb6 <switch_menu>
     106e:	67 c0       	rjmp	.+206    	; 0x113e <main+0x114>
-			else if(BUTTON3_PRESSED && selected_menu == MENU_TIMER) switch_menu(MENU_TIMER_SET);
+			else if(BUTTON_2_PRESSED && selected_menu == MENU_TIMER) switch_menu(MENU_TIMER_SET);
     1070:	32 99       	sbic	0x06, 2	; 6
     1072:	08 c0       	rjmp	.+16     	; 0x1084 <main+0x5a>
     1074:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
@@ -1325,21 +1325,21 @@ int add_number(int number, int max) {
     107e:	90 e0       	ldi	r25, 0x00	; 0
     1080:	9a df       	rcall	.-204    	; 0xfb6 <switch_menu>
     1082:	5d c0       	rjmp	.+186    	; 0x113e <main+0x114>
-			else if(BUTTON3_PRESSED) switch_menu(MENU_TIMER);
+			else if(BUTTON_2_PRESSED) switch_menu(MENU_TIMER);
     1084:	32 99       	sbic	0x06, 2	; 6
     1086:	04 c0       	rjmp	.+8      	; 0x1090 <main+0x66>
     1088:	8e e1       	ldi	r24, 0x1E	; 30
     108a:	90 e0       	ldi	r25, 0x00	; 0
     108c:	94 df       	rcall	.-216    	; 0xfb6 <switch_menu>
     108e:	57 c0       	rjmp	.+174    	; 0x113e <main+0x114>
-			else if(BUTTON2_PRESSED) switch_menu(MENU_TEMPEREATURE);
+			else if(BUTTON_3_PRESSED) switch_menu(MENU_TEMPEREATURE);
     1090:	1a 99       	sbic	0x03, 2	; 3
     1092:	04 c0       	rjmp	.+8      	; 0x109c <main+0x72>
     1094:	82 e3       	ldi	r24, 0x32	; 50
     1096:	90 e0       	ldi	r25, 0x00	; 0
     1098:	8e df       	rcall	.-228    	; 0xfb6 <switch_menu>
     109a:	51 c0       	rjmp	.+162    	; 0x113e <main+0x114>
-			else if(BUTTON1_PRESSED) switch_menu(MENU_HUMIDITY);
+			else if(BUTTON_4_PRESSED) switch_menu(MENU_HUMIDITY);
     109c:	19 99       	sbic	0x03, 1	; 3
     109e:	4f c0       	rjmp	.+158    	; 0x113e <main+0x114>
     10a0:	8c e3       	ldi	r24, 0x3C	; 60
@@ -1353,7 +1353,7 @@ int add_number(int number, int max) {
     10ae:	b9 f5       	brne	.+110    	; 0x111e <main+0xf4>
 		{
 	
-			if(BUTTON4_PRESSED){
+			if(BUTTON_1_PRESSED){
     10b0:	33 99       	sbic	0x06, 3	; 6
     10b2:	13 c0       	rjmp	.+38     	; 0x10da <main+0xb0>
 				selected_hour = add_hour(selected_hour);
@@ -1375,7 +1375,7 @@ int add_number(int number, int max) {
 		else if(selected_menu == MENU_CLOCK_SET)
 		{
 	
-			if(BUTTON4_PRESSED){
+			if(BUTTON_1_PRESSED){
 				selected_hour = add_hour(selected_hour);
     10c4:	80 93 01 01 	sts	0x0101, r24	; 0x800101 <selected_hour>
     10c8:	2f ef       	ldi	r18, 0xFF	; 255
@@ -1389,7 +1389,7 @@ int add_number(int number, int max) {
     10d8:	00 00       	nop
 				_delay_ms(200);
 			}
-			if(BUTTON3_PRESSED){
+			if(BUTTON_2_PRESSED){
     10da:	32 99       	sbic	0x06, 2	; 6
     10dc:	11 c0       	rjmp	.+34     	; 0x1100 <main+0xd6>
 				selected_hour = subtract_hour(selected_hour);	
@@ -1405,11 +1405,11 @@ int subtract_number(int number, int max){
 	if(number < 0) number = max;
     10e6:	0a f4       	brpl	.+2      	; 0x10ea <main+0xc0>
     10e8:	8f 2d       	mov	r24, r15
-			if(BUTTON4_PRESSED){
+			if(BUTTON_1_PRESSED){
 				selected_hour = add_hour(selected_hour);
 				_delay_ms(200);
 			}
-			if(BUTTON3_PRESSED){
+			if(BUTTON_2_PRESSED){
 				selected_hour = subtract_hour(selected_hour);	
     10ea:	80 93 01 01 	sts	0x0101, r24	; 0x800101 <selected_hour>
     10ee:	2f ef       	ldi	r18, 0xFF	; 255
@@ -1423,7 +1423,7 @@ int subtract_number(int number, int max){
     10fe:	00 00       	nop
 				_delay_ms(200);
 			}
-			if(BUTTON1_PRESSED) {
+			if(BUTTON_4_PRESSED) {
     1100:	19 99       	sbic	0x03, 1	; 3
     1102:	1d c0       	rjmp	.+58     	; 0x113e <main+0x114>
 				switch_menu(MENU_CLOCK);
@@ -1446,7 +1446,7 @@ int subtract_number(int number, int max){
 		else if (selected_menu = MENU_TIMER_SET)
     111e:	c0 93 00 01 	sts	0x0100, r28	; 0x800100 <__data_start>
 		{
-			if(BUTTON1_PRESSED) { 
+			if(BUTTON_4_PRESSED) { 
     1122:	19 99       	sbic	0x03, 1	; 3
     1124:	0c c0       	rjmp	.+24     	; 0x113e <main+0x114>
 				switch_menu(MENU_TIMER);

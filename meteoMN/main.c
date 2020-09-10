@@ -16,19 +16,19 @@
 #define LED1 (1<<PD7)
 #define LED2 (1<<PB0)
 
-#define BUTTON1_PORT PORTB
-#define BUTTON2_PORT PORTB
-#define BUTTON3_PORT PORTC
-#define BUTTON4_PORT PORTC
-#define BUTTON1 (1<<PB1)
-#define BUTTON2 (1<<PB2)
-#define BUTTON3 (1<<PC2)
-#define BUTTON4 (1<<PC3)
+#define BUTTON_4_PORT PORTB
+#define BUTTON_3_PORT PORTB
+#define BUTTON_2_PORT PORTC
+#define BUTTON_1_PORT PORTC
+#define BUTTON_1 (1<<PC3)
+#define BUTTON_2 (1<<PC2)
+#define BUTTON_3 (1<<PB2)
+#define BUTTON_4 (1<<PB1)
 
-#define BUTTON1_PRESSED !(PINB & BUTTON1)
-#define BUTTON2_PRESSED !(PINB & BUTTON2)
-#define BUTTON3_PRESSED !(PINC & BUTTON3)
-#define BUTTON4_PRESSED !(PINC & BUTTON4)
+#define BUTTON_4_PRESSED !(PINB & BUTTON_4)
+#define BUTTON_3_PRESSED !(PINB & BUTTON_3)
+#define BUTTON_2_PRESSED !(PINC & BUTTON_2)
+#define BUTTON_1_PRESSED !(PINC & BUTTON_1)
 
 #define DISPaddrW 0x78
 #define DISPaddrW2 0x7A
@@ -330,8 +330,8 @@ void port_init(){
 	//DDRD |= LED1;
 	//DDRB |= LED2;
 	
-	DDRC &= ~(BUTTON3 | BUTTON4);
-	DDRB &= ~(BUTTON1 | BUTTON2);
+	DDRC &= ~(BUTTON_2 | BUTTON_1);
+	DDRB &= ~(BUTTON_4 | BUTTON_3);
 	
 	TCCR1B = (1<<CS12) | (1<<WGM12);
 	OCR1AH = 0x7A;
@@ -359,32 +359,32 @@ int main(void)
 	{
 		if(selected_menu != MENU_CLOCK_SET && selected_menu != MENU_TIMER_SET)
 		{
-			if(BUTTON4_PRESSED && selected_menu == MENU_CLOCK) switch_menu(MENU_CLOCK_SET);
-			else if(BUTTON4_PRESSED) switch_menu(MENU_CLOCK);
-			else if(BUTTON3_PRESSED && selected_menu == MENU_TIMER) switch_menu(MENU_TIMER_SET);
-			else if(BUTTON3_PRESSED) switch_menu(MENU_TIMER);
-			else if(BUTTON2_PRESSED) switch_menu(MENU_TEMPEREATURE);
-			else if(BUTTON1_PRESSED) switch_menu(MENU_HUMIDITY);
+			if(BUTTON_1_PRESSED && selected_menu == MENU_CLOCK) switch_menu(MENU_CLOCK_SET);
+			else if(BUTTON_1_PRESSED) switch_menu(MENU_CLOCK);
+			else if(BUTTON_2_PRESSED && selected_menu == MENU_TIMER) switch_menu(MENU_TIMER_SET);
+			else if(BUTTON_2_PRESSED) switch_menu(MENU_TIMER);
+			else if(BUTTON_3_PRESSED) switch_menu(MENU_TEMPEREATURE);
+			else if(BUTTON_4_PRESSED) switch_menu(MENU_HUMIDITY);
 		}
 		else if(selected_menu == MENU_CLOCK_SET)
 		{
 	
-			if(BUTTON4_PRESSED){
+			if(BUTTON_1_PRESSED){
 				selected_hour = add_hour(selected_hour);
 				_delay_ms(200);
 			}
-			if(BUTTON3_PRESSED){
+			if(BUTTON_2_PRESSED){
 				selected_hour = subtract_hour(selected_hour);	
 				_delay_ms(200);
 			}
-			if(BUTTON1_PRESSED) {
+			if(BUTTON_4_PRESSED) {
 				switch_menu(MENU_CLOCK);
 					_delay_ms(200);
 			};
 		}
 		else if (selected_menu = MENU_TIMER_SET)
 		{
-			if(BUTTON1_PRESSED) { 
+			if(BUTTON_4_PRESSED) { 
 				switch_menu(MENU_TIMER);
 				_delay_ms(200);
 			}
