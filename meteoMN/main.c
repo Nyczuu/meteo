@@ -16,19 +16,22 @@
 #define LED1 (1<<PD7)
 #define LED2 (1<<PB0)
 
-#define BUTTON_4_PORT PORTB
-#define BUTTON_3_PORT PORTB
-#define BUTTON_2_PORT PORTC
 #define BUTTON_1_PORT PORTC
+#define BUTTON_2_PORT PORTC
+#define BUTTON_3_PORT PORTB
+#define BUTTON_4_PORT PORTB
+
 #define BUTTON_1 (1<<PC3)
 #define BUTTON_2 (1<<PC2)
 #define BUTTON_3 (1<<PB2)
 #define BUTTON_4 (1<<PB1)
 
-#define BUTTON_4_PRESSED !(PINB & BUTTON_4)
-#define BUTTON_3_PRESSED !(PINB & BUTTON_3)
-#define BUTTON_2_PRESSED !(PINC & BUTTON_2)
 #define BUTTON_1_PRESSED !(PINC & BUTTON_1)
+#define BUTTON_2_PRESSED !(PINC & BUTTON_2)
+#define BUTTON_3_PRESSED !(PINB & BUTTON_3)
+#define BUTTON_4_PRESSED !(PINB & BUTTON_4)
+
+#define BUTTON_PRESSED BUTTON_1_PRESSED || BUTTON_2_PRESSED || BUTTON_3_PRESSED || BUTTON_4_PRESSED	
 
 #define DISPaddrW 0x78
 #define DISPaddrW2 0x7A
@@ -38,9 +41,11 @@
 #define NACK 0
 
 #define MENU_CLOCK 1
-#define MENU_CLOCK_SET 20
+#define MENU_CLOCK_SET_HOUR 20
+#define MENU_CLOCK_SET_MINUTE 21
 #define MENU_TIMER 30
-#define MENU_TIMER_SET 40
+#define MENU_TIMER_SET_HOUR 40
+#define MENU_TIMER_SET_MINUTE 41
 #define MENU_TEMPEREATURE 50
 #define MENU_HUMIDITY 60
 
@@ -229,28 +234,60 @@ char* numberToCharArray(int number)
 	else if(number == 9) return number9;
 }
 
-int add_hour(int number) { return add_number(number,23); }
-int add_minute(int number) { return add_number(number,59); }
-int subtract_hour(int number) { return subtract_number(number,24); }
-int subtract_minute(int number) { return subtract_number(number,60); }
-int add_number(int number, int max) {
+int add_hour(int number) 
+{ 
+	return add_number(number,23);
+}
+
+int add_minute(int number)
+{ 
+	return add_number(number,59);
+}
+
+int subtract_hour(int number) 
+{ 
+	return subtract_number(number,24); 
+}
+
+int subtract_minute(int number) 
+{ 
+	return subtract_number(number,60);
+}
+
+int add_number(int number, int max) 
+{
 	number++;
-	if(number > max) number = 0;
+	
+	if(number > max)
+	{
+		 number = 0;
+	}
+	
 	return number; 		
 }
-int subtract_number(int number, int max){
+
+int subtract_number(int number, int max)
+{
 	number--;
-	if(number < 0) number = max;
+	
+	if(number < 0)
+	{ 
+		number = max;
+	}
+	
 	return number;
 }
 
-void draw_number(int xstart, int ystart, int number){
+void draw_number(int xstart, int ystart, int number)
+{
 	
-	if(number < 9) {
+	if(number < 9) 
+	{
 		ssd1306_draw_bmp(xstart, ystart, xstart+24, ystart+4, number0);
 		ssd1306_draw_bmp(xstart+ 24,ystart, xstart+48, ystart+4, numberToCharArray(number));
 	}
-	else if(number < 99) {
+	else if(number < 99) 
+	{
 		int first = number/10;
 		int second = number%10;
 		
@@ -261,15 +298,18 @@ void draw_number(int xstart, int ystart, int number){
 	else return;
 }
 
-void display_air_humidity(){
+void display_air_humidity()
+{
 	ssd1306_draw_bmp(0,0, 24,4, number3);
 }
 
-void display_temperature(){
+void display_temperature()
+{
 	ssd1306_draw_bmp(0,0, 24,4, number2);
 }
 
-void display_timer_set() {
+void display_timer_set() 
+{
 		ssd1306tx_stringxy(ssd1306xled_font8x16data, 0, 0, "S");
 		ssd1306tx_stringxy(ssd1306xled_font8x16data, 8, 0, "E");
 		ssd1306tx_stringxy(ssd1306xled_font8x16data, 16, 0, "T");
@@ -281,13 +321,15 @@ void display_timer_set() {
 		ssd1306tx_stringxy(ssd1306xled_font8x16data, 64, 0, "R");
 }
 
-void display_timer() {
+void display_timer() 
+{
 	draw_number(0,0,0);
 	ssd1306tx_stringxy(ssd1306xled_font8x16data, 48, 1, ":");
 	draw_number(60,0,0);
 }
 
-void display_clock_set() {
+void display_clock_set() 
+{
 	ssd1306tx_stringxy(ssd1306xled_font8x16data, 0, 0, "S");
 	ssd1306tx_stringxy(ssd1306xled_font8x16data, 8, 0, "E");
 	ssd1306tx_stringxy(ssd1306xled_font8x16data, 16, 0, "T");
@@ -303,29 +345,33 @@ void display_clock_set() {
 	draw_number(60,2,selected_minute);
 }
 
-void display_clock() {
+void display_clock() 
+{
 	draw_number(0,0,hour);
 	ssd1306tx_stringxy(ssd1306xled_font8x16data, 48, 1, ":");
 	draw_number(60,0,minute);
 	draw_number(60,4,second);
 }
 
-void run(){	
+void run()
+{	
 	if(selected_menu == MENU_HUMIDITY) display_air_humidity();
 	else if(selected_menu == MENU_TEMPEREATURE) display_temperature();
 	else if(selected_menu == MENU_TIMER) display_timer();
-	else if(selected_menu == MENU_TIMER_SET) display_timer_set();
+	else if(selected_menu == MENU_TIMER_SET_HOUR || selected_menu == MENU_TIMER_SET_MINUTE) display_timer_set();
 	else if(selected_menu == MENU_CLOCK) display_clock();
-	else if(selected_menu == MENU_CLOCK_SET) display_clock_set();
+	else if(selected_menu == MENU_CLOCK_SET_HOUR || selected_menu == MENU_CLOCK_SET_MINUTE) display_clock_set();
 }
 
-void switch_menu(int number){
+void switch_menu(int number)
+{
 	ssd1306_clear_display();
 	selected_menu = number;
 	_delay_ms(250);
 }
 
-void port_init(){
+void port_init()
+{
 	
 	//DDRD |= LED1;
 	//DDRB |= LED2;
@@ -338,7 +384,9 @@ void port_init(){
 	OCR1AL = 0x12;
 	TIMSK1 |= (1<<ICIE1) | (1<<OCIE1A);
 }
-void display_init(){
+
+void display_init()
+{
 	I2C_Initialize(100);
 	I2COutBuffer = 0;
 	ssd1306_init();
@@ -357,34 +405,69 @@ int main(void)
 
 	while (1)
 	{
-		if(selected_menu != MENU_CLOCK_SET && selected_menu != MENU_TIMER_SET)
+		if(selected_menu == MENU_CLOCK || selected_menu == MENU_TIMER || selected_menu == MENU_TEMPEREATURE || selected_menu == MENU_HUMIDITY)
 		{
-			if(BUTTON_1_PRESSED && selected_menu == MENU_CLOCK) switch_menu(MENU_CLOCK_SET);
+			if(BUTTON_1_PRESSED && selected_menu == MENU_CLOCK) switch_menu(MENU_CLOCK_SET_HOUR);
 			else if(BUTTON_1_PRESSED) switch_menu(MENU_CLOCK);
-			else if(BUTTON_2_PRESSED && selected_menu == MENU_TIMER) switch_menu(MENU_TIMER_SET);
+			else if(BUTTON_2_PRESSED && selected_menu == MENU_TIMER) switch_menu(MENU_TIMER_SET_HOUR);
 			else if(BUTTON_2_PRESSED) switch_menu(MENU_TIMER);
 			else if(BUTTON_3_PRESSED) switch_menu(MENU_TEMPEREATURE);
 			else if(BUTTON_4_PRESSED) switch_menu(MENU_HUMIDITY);
 		}
-		else if(selected_menu == MENU_CLOCK_SET)
+		else if(selected_menu == MENU_CLOCK_SET_HOUR)
 		{
-	
-			if(BUTTON_1_PRESSED){
+			if(BUTTON_1_PRESSED)
+			{
 				selected_hour = add_hour(selected_hour);
 				_delay_ms(200);
 			}
-			if(BUTTON_2_PRESSED){
+			else if(BUTTON_2_PRESSED)
+			{
 				selected_hour = subtract_hour(selected_hour);	
 				_delay_ms(200);
 			}
-			if(BUTTON_4_PRESSED) {
+			else if(BUTTON_3_PRESSED)
+			{
+				switch_menu(MENU_CLOCK_SET_MINUTE);
+				_delay_ms(200);
+			}
+			else if(BUTTON_4_PRESSED) 
+			{
 				switch_menu(MENU_CLOCK);
 					_delay_ms(200);
 			};
 		}
-		else if (selected_menu = MENU_TIMER_SET)
+		else if(selected_menu == MENU_CLOCK_SET_MINUTE) 
 		{
-			if(BUTTON_4_PRESSED) { 
+			if(BUTTON_1_PRESSED)
+			{
+				selected_minute = add_minute(selected_minute);
+				_delay_ms(200);
+			}
+			else if(BUTTON_2_PRESSED)
+			{
+				selected_minute = subtract_minute(selected_minute);
+				_delay_ms(200);
+			}
+			else if(BUTTON_3_PRESSED)
+			{
+				hour = selected_hour;
+				minute = selected_minute;
+				second = 0;
+				switch_menu(MENU_CLOCK);
+			
+				_delay_ms(200);
+			}
+			else if(BUTTON_4_PRESSED)
+			{
+				switch_menu(MENU_CLOCK_SET_HOUR);
+				_delay_ms(200);
+			};
+		}
+		else if (selected_menu = MENU_TIMER_SET_HOUR)
+		{
+			if(BUTTON_4_PRESSED) 
+			{ 
 				switch_menu(MENU_TIMER);
 				_delay_ms(200);
 			}
