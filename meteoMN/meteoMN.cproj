@@ -30,15 +30,15 @@
     <EraseKey />
     <AsfFrameworkConfig>
       <framework-data xmlns="">
-  <options />
-  <configurations />
-  <files />
-  <documentation help="" />
-  <offline-documentation help="" />
-  <dependencies>
-    <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.47.0" />
-  </dependencies>
-</framework-data>
+        <options />
+        <configurations />
+        <files />
+        <documentation help="" />
+        <offline-documentation help="" />
+        <dependencies>
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.47.0" />
+        </dependencies>
+      </framework-data>
     </AsfFrameworkConfig>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -121,6 +121,18 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="display.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="display.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="display_extensions.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="display_extensions.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="fonts.h">
       <SubType>compile</SubType>
     </Compile>
@@ -134,6 +146,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="SSD1306.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="time.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="time.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

@@ -1,7 +1,7 @@
 Archive member included to satisfy reference by file (symbol)
 
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_divmodhi4.o)
-                              main.o (__divmodhi4)
+                              display_extensions.o (__divmodhi4)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_divmodsi4.o)
                               I2C.o (__divmodsi4)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_negsi2.o)
@@ -9,9 +9,9 @@ c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/..
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
                               C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega88p/avr4/crtatmega88p.o (exit)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_copy_data.o)
-                              main.o (__do_copy_data)
+                              display_extensions.o (__do_copy_data)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_clear_bss.o)
-                              main.o (__do_clear_bss)
+                              display.o (__do_clear_bss)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_udivmodhi4.o)
                               c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_divmodhi4.o) (__udivmodhi4)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_udivmodsi4.o)
@@ -21,14 +21,29 @@ Allocating common symbols
 Common symbol       size              file
 
 ssd1306tx_font_char_base
-                    0x1               main.o
-ssd1306tx_font_src  0x2               main.o
-I2COutBuffer        0x1               main.o
+                    0x1               display.o
+ssd1306tx_font_src  0x2               display.o
 
 Discarded input sections
 
  .data          0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega88p/avr4/crtatmega88p.o
  .bss           0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega88p/avr4/crtatmega88p.o
+ .text          0x00000000        0x0 display.o
+ .data          0x00000000        0x0 display.o
+ .bss           0x00000000        0x0 display.o
+ .text.ssd1306_fill4
+                0x00000000       0x5c display.o
+ .text.ssd1306_data_byte
+                0x00000000        0x6 display.o
+ .text.ssd1306tx_char
+                0x00000000       0x4e display.o
+ .text.ssd1306tx_string
+                0x00000000       0x1c display.o
+ .text          0x00000000        0x0 display_extensions.o
+ .data          0x00000000        0x0 display_extensions.o
+ .bss           0x00000000        0x0 display_extensions.o
+ .progmem.data.ssd1306xled_font6x8data
+                0x00000000      0x228 display_extensions.o
  .text          0x00000000        0x0 I2C.o
  .data          0x00000000        0x0 I2C.o
  .bss           0x00000000        0x0 I2C.o
@@ -37,38 +52,23 @@ Discarded input sections
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
- .text.ssd1306_fill4
-                0x00000000       0x44 main.o
- .text.ssd1306_data_byte
-                0x00000000        0x4 main.o
- .text.ssd1306_stop
-                0x00000000        0x4 main.o
- .text.ssd1306tx_init
-                0x00000000        0xe main.o
- .text.ssd1306tx_char
-                0x00000000       0x4c main.o
- .text.ssd1306tx_string
-                0x00000000       0x1c main.o
- .text.add_hour
-                0x00000000        0xe main.o
- .text.add_minute
-                0x00000000        0xe main.o
- .text.subtract_hour
-                0x00000000        0xa main.o
- .text.subtract_minute
-                0x00000000        0xa main.o
- .text.add_number
-                0x00000000        0xe main.o
- .text.subtract_number
-                0x00000000        0xa main.o
- .progmem.data.ssd1306xled_font6x8data
-                0x00000000      0x228 main.o
+ .text.display_air_humidity
+                0x00000000        0x2 main.o
+ .text.display_temperature
+                0x00000000        0x2 main.o
  .text          0x00000000        0x0 SSD1306.o
  .data          0x00000000        0x0 SSD1306.o
  .bss           0x00000000        0x0 SSD1306.o
  .debug_line    0x00000000        0x0 SSD1306.o
  .debug_str     0x00000000       0xe3 SSD1306.o
  .comment       0x00000000       0x31 SSD1306.o
+ .text          0x00000000        0x0 time.o
+ .data          0x00000000        0x0 time.o
+ .bss           0x00000000        0x0 time.o
+ .text.add_number
+                0x00000000        0xe time.o
+ .text.subtract_number
+                0x00000000        0xa time.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_divmodhi4.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_divmodhi4.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_divmodhi4.o)
@@ -204,9 +204,12 @@ Linker script and memory map
 
 Address of section .data set to 0x800100
 LOAD C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega88p/avr4/crtatmega88p.o
+LOAD display.o
+LOAD display_extensions.o
 LOAD I2C.o
 LOAD main.o
 LOAD SSD1306.o
+LOAD time.o
 START GROUP
 LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libm.a
 END GROUP
@@ -316,7 +319,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x1374
+.text           0x00000000     0x12dc
  *(.vectors)
  .vectors       0x00000000       0x34 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega88p/avr4/crtatmega88p.o
                 0x00000000                __vector_default
@@ -333,40 +336,40 @@ END GROUP
  *libc.a:*(.progmem.data)
  *(.progmem*)
  .progmem.data.ssd1306_init_sequence
-                0x00000034       0x20 main.o
+                0x00000034       0x20 display.o
                 0x00000034                ssd1306_init_sequence
  .progmem.data.number9
-                0x00000054       0x60 main.o
+                0x00000054       0x60 display_extensions.o
                 0x00000054                number9
  .progmem.data.number8
-                0x000000b4       0x60 main.o
+                0x000000b4       0x60 display_extensions.o
                 0x000000b4                number8
  .progmem.data.number7
-                0x00000114       0x60 main.o
+                0x00000114       0x60 display_extensions.o
                 0x00000114                number7
  .progmem.data.number6
-                0x00000174       0x60 main.o
+                0x00000174       0x60 display_extensions.o
                 0x00000174                number6
  .progmem.data.number5
-                0x000001d4       0x60 main.o
+                0x000001d4       0x60 display_extensions.o
                 0x000001d4                number5
  .progmem.data.number4
-                0x00000234       0x60 main.o
+                0x00000234       0x60 display_extensions.o
                 0x00000234                number4
  .progmem.data.number3
-                0x00000294       0x60 main.o
+                0x00000294       0x60 display_extensions.o
                 0x00000294                number3
  .progmem.data.number2
-                0x000002f4       0x60 main.o
+                0x000002f4       0x60 display_extensions.o
                 0x000002f4                number2
  .progmem.data.number1
-                0x00000354       0x60 main.o
+                0x00000354       0x60 display_extensions.o
                 0x00000354                number1
  .progmem.data.number0
-                0x000003b4       0x60 main.o
+                0x000003b4       0x60 display_extensions.o
                 0x000003b4                number0
  .progmem.data.ssd1306xled_font8x16data
-                0x00000414      0x5f0 main.o
+                0x00000414      0x5f0 display_extensions.o
                 0x00000414                ssd1306xled_font8x16data
                 0x00000a04                . = ALIGN (0x2)
  *(.jumptables)
@@ -438,100 +441,124 @@ END GROUP
                 0x00000a3a                __vector_20
                 0x00000a3c                . = ALIGN (0x2)
  *(.text.*)
- .text.I2C_Initialize
-                0x00000a3c       0x2e I2C.o
-                0x00000a3c                I2C_Initialize
- .text.I2C_start
-                0x00000a6a       0x12 I2C.o
-                0x00000a6a                I2C_start
- .text.I2C_stop
-                0x00000a7c       0x12 I2C.o
-                0x00000a7c                I2C_stop
- .text.I2C_write
-                0x00000a8e       0x16 I2C.o
-                0x00000a8e                I2C_write
  .text.ssd1306_start_command
-                0x00000aa4        0xc main.o
-                0x00000aa4                ssd1306_start_command
+                0x00000a3c       0x10 display.o
+                0x00000a3c                ssd1306_start_command
  .text.ssd1306_start_data
-                0x00000ab0        0xc main.o
-                0x00000ab0                ssd1306_start_data
+                0x00000a4c       0x10 display.o
+                0x00000a4c                ssd1306_start_data
  .text.ssd1306_init
-                0x00000abc       0x2c main.o
-                0x00000abc                ssd1306_init
+                0x00000a5c       0x2e display.o
+                0x00000a5c                ssd1306_init
  .text.ssd1306_setpos
-                0x00000ae8       0x2a main.o
-                0x00000ae8                ssd1306_setpos
+                0x00000a8a       0x30 display.o
+                0x00000a8a                ssd1306_setpos
+ .text.ssd1306_stop
+                0x00000aba        0x4 display.o
+                0x00000aba                ssd1306_stop
  .text.ssd1306_draw_bmp
-                0x00000b12       0x8a main.o
-                0x00000b12                ssd1306_draw_bmp
+                0x00000abe       0x8c display.o
+                0x00000abe                ssd1306_draw_bmp
  .text.ssd1306_clear_display
-                0x00000b9c       0x24 main.o
-                0x00000b9c                ssd1306_clear_display
+                0x00000b4a       0x26 display.o
+                0x00000b4a                ssd1306_clear_display
+ .text.ssd1306tx_init
+                0x00000b70        0xe display.o
+                0x00000b70                ssd1306tx_init
  .text.ssd1306tx_stringxy
-                0x00000bc0       0xc6 main.o
-                0x00000bc0                ssd1306tx_stringxy
- .text.numberToCharArray
-                0x00000c86       0x7a main.o
-                0x00000c86                numberToCharArray
- .text.draw_number
-                0x00000d00       0xa4 main.o
-                0x00000d00                draw_number
- .text.display_air_humidity
-                0x00000da4       0x18 main.o
-                0x00000da4                display_air_humidity
- .text.display_temperature
-                0x00000dbc       0x18 main.o
-                0x00000dbc                display_temperature
- .text.display_timer_set
-                0x00000dd4       0x80 main.o
-                0x00000dd4                display_timer_set
- .text.display_timer
-                0x00000e54       0x2c main.o
-                0x00000e54                display_timer
- .text.display_clock_set
-                0x00000e80       0xbe main.o
-                0x00000e80                display_clock_set
- .text.display_clock
-                0x00000f3e       0x40 main.o
-                0x00000f3e                display_clock
- .text.run      0x00000f7e       0x58 main.o
-                0x00000f7e                run
- .text.switch_menu
-                0x00000fd6       0x20 main.o
-                0x00000fd6                switch_menu
- .text.port_init
-                0x00000ff6       0x2a main.o
-                0x00000ff6                port_init
+                0x00000b7e       0xca display.o
+                0x00000b7e                ssd1306tx_stringxy
  .text.display_init
-                0x00001020       0x2a main.o
-                0x00001020                display_init
- .text.main     0x0000104a      0x1fc main.o
-                0x0000104a                main
+                0x00000c48       0x1e display_extensions.o
+                0x00000c48                display_init
+ .text.numberToCharArray
+                0x00000c66       0x7a display_extensions.o
+                0x00000c66                numberToCharArray
+ .text.draw_digit
+                0x00000ce0       0x2a display_extensions.o
+                0x00000ce0                draw_digit
+ .text.draw_number
+                0x00000d0a       0x4e display_extensions.o
+                0x00000d0a                draw_number
+ .text.draw_string
+                0x00000d58        0xe display_extensions.o
+                0x00000d58                draw_string
+ .text.draw_clock
+                0x00000d66       0x50 display_extensions.o
+                0x00000d66                draw_clock
+ .text.I2C_Initialize
+                0x00000db6       0x2e I2C.o
+                0x00000db6                I2C_Initialize
+ .text.I2C_start
+                0x00000de4       0x12 I2C.o
+                0x00000de4                I2C_start
+ .text.I2C_stop
+                0x00000df6       0x12 I2C.o
+                0x00000df6                I2C_stop
+ .text.I2C_write
+                0x00000e08       0x16 I2C.o
+                0x00000e08                I2C_write
+ .text.display_timer_set
+                0x00000e1e       0x3a main.o
+                0x00000e1e                display_timer_set
+ .text.display_timer
+                0x00000e58       0x36 main.o
+                0x00000e58                display_timer
+ .text.display_clock_set
+                0x00000e8e       0x3a main.o
+                0x00000e8e                display_clock_set
+ .text.display_clock
+                0x00000ec8       0x38 main.o
+                0x00000ec8                display_clock
+ .text.run      0x00000f00       0x50 main.o
+                0x00000f00                run
+ .text.switch_menu
+                0x00000f50       0x20 main.o
+                0x00000f50                switch_menu
+ .text.port_init
+                0x00000f70       0x2a main.o
+                0x00000f70                port_init
+ .text.refreshBools
+                0x00000f9a       0x22 main.o
+                0x00000f9a                refreshBools
+ .text.main     0x00000fbc      0x1c2 main.o
+                0x00000fbc                main
  .text.__vector_11
-                0x00001246       0x60 main.o
-                0x00001246                __vector_11
+                0x0000117e       0x60 main.o
+                0x0000117e                __vector_11
+ .text.add_hour
+                0x000011de        0xe time.o
+                0x000011de                add_hour
+ .text.add_minute
+                0x000011ec        0xe time.o
+                0x000011ec                add_minute
+ .text.subtract_hour
+                0x000011fa        0xa time.o
+                0x000011fa                subtract_hour
+ .text.subtract_minute
+                0x00001204        0xa time.o
+                0x00001204                subtract_minute
  .text.libgcc.div
-                0x000012a6       0x26 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_divmodhi4.o)
-                0x000012a6                _div
-                0x000012a6                __divmodhi4
+                0x0000120e       0x26 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_divmodhi4.o)
+                0x0000120e                _div
+                0x0000120e                __divmodhi4
  .text.libgcc.div
-                0x000012cc       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_divmodsi4.o)
-                0x000012cc                __divmodsi4
+                0x00001234       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_divmodsi4.o)
+                0x00001234                __divmodsi4
  .text.libgcc.div
-                0x000012f4       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_negsi2.o)
-                0x000012f4                __negsi2
+                0x0000125c       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_negsi2.o)
+                0x0000125c                __negsi2
  .text.libgcc.div
-                0x00001304       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_udivmodhi4.o)
-                0x00001304                __udivmodhi4
+                0x0000126c       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_udivmodhi4.o)
+                0x0000126c                __udivmodhi4
  .text.libgcc.div
-                0x0000132c       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_udivmodsi4.o)
-                0x0000132c                __udivmodsi4
-                0x00001370                . = ALIGN (0x2)
+                0x00001294       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_udivmodsi4.o)
+                0x00001294                __udivmodsi4
+                0x000012d8                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00001370        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
-                0x00001370                _exit
-                0x00001370                exit
+ .fini9         0x000012d8        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
+                0x000012d8                _exit
+                0x000012d8                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -550,34 +577,43 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00001370        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
+ .fini0         0x000012d8        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
  *(.fini0)
-                0x00001374                _etext = .
+                0x000012dc                _etext = .
 
-.data           0x00800100       0x1c load address 0x00001374
+.data           0x00800100       0x1c load address 0x000012dc
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
  .data.selected_menu
                 0x00800100        0x1 main.o
                 0x00800100                selected_menu
- .data.selected_hour
+ .data.displayMinute
                 0x00800101        0x1 main.o
-                0x00800101                selected_hour
- .data.hour     0x00800102        0x1 main.o
-                0x00800102                hour
+                0x00800101                displayMinute
+ .data.displayHour
+                0x00800102        0x1 main.o
+                0x00800102                displayHour
+ .data.selected_hour
+                0x00800103        0x1 main.o
+                0x00800103                selected_hour
+ .data.hour     0x00800104        0x1 main.o
+                0x00800104                hour
  *(.gnu.linkonce.d*)
  *(.rodata)
  *(.rodata*)
  .rodata.str1.1
-                0x00800103       0x18 main.o
+                0x00800105        0x2 display_extensions.o
+ .rodata.str1.1
+                0x00800107       0x14 main.o
+                                 0x1a (size before relaxing)
  *(.gnu.linkonce.r*)
                 0x0080011c                . = ALIGN (0x2)
  *fill*         0x0080011b        0x1 
                 0x0080011c                _edata = .
                 0x0080011c                PROVIDE (__data_end, .)
 
-.bss            0x0080011c        0x8
+.bss            0x0080011c        0x7
                 0x0080011c                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
@@ -592,19 +628,18 @@ END GROUP
  .bss.minute    0x0080011f        0x1 main.o
                 0x0080011f                minute
  *(COMMON)
- COMMON         0x00800120        0x4 main.o
+ COMMON         0x00800120        0x3 display.o
                 0x00800120                ssd1306tx_font_char_base
                 0x00800121                ssd1306tx_font_src
-                0x00800123                I2COutBuffer
-                0x00800124                PROVIDE (__bss_end, .)
-                0x00001374                __data_load_start = LOADADDR (.data)
-                0x00001390                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00800123                PROVIDE (__bss_end, .)
+                0x000012dc                __data_load_start = LOADADDR (.data)
+                0x000012f8                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800124        0x0
+.noinit         0x00800123        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800124                _end = .
+                0x00800123                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -646,9 +681,12 @@ END GROUP
 
 .comment        0x00000000       0x30
  *(.comment)
- .comment       0x00000000       0x30 I2C.o
+ .comment       0x00000000       0x30 display.o
                                  0x31 (size before relaxing)
+ .comment       0x00000030       0x31 display_extensions.o
+ .comment       0x00000030       0x31 I2C.o
  .comment       0x00000030       0x31 main.o
+ .comment       0x00000030       0x31 time.o
 
 .note.gnu.avr.deviceinfo
                 0x00000000       0x3c
@@ -670,51 +708,78 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x160
+.debug_aranges  0x00000000      0x1c8
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x40 I2C.o
+                0x00000000       0x80 display.o
  .debug_aranges
-                0x00000040      0x120 main.o
+                0x00000080       0x48 display_extensions.o
+ .debug_aranges
+                0x000000c8       0x40 I2C.o
+ .debug_aranges
+                0x00000108       0x78 main.o
+ .debug_aranges
+                0x00000180       0x48 time.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x22e8
+.debug_info     0x00000000     0x21bf
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x5f4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega88p/avr4/crtatmega88p.o
- .debug_info    0x000005f4      0x131 I2C.o
- .debug_info    0x00000725     0x1bc3 main.o
+ .debug_info    0x000005f4      0xa21 display.o
+ .debug_info    0x00001015      0x641 display_extensions.o
+ .debug_info    0x00001656      0x131 I2C.o
+ .debug_info    0x00001787      0x821 main.o
+ .debug_info    0x00001fa8      0x217 time.o
 
-.debug_abbrev   0x00000000      0x9fa
+.debug_abbrev   0x00000000      0xc62
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x5a2 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega88p/avr4/crtatmega88p.o
- .debug_abbrev  0x000005a2       0xb2 I2C.o
- .debug_abbrev  0x00000654      0x3a6 main.o
+ .debug_abbrev  0x000005a2      0x1ed display.o
+ .debug_abbrev  0x0000078f      0x1ab display_extensions.o
+ .debug_abbrev  0x0000093a       0xb2 I2C.o
+ .debug_abbrev  0x000009ec      0x1b8 main.o
+ .debug_abbrev  0x00000ba4       0xbe time.o
 
-.debug_line     0x00000000      0xd95
+.debug_line     0x00000000      0xe4c
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x133 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega88p/avr4/crtatmega88p.o
- .debug_line    0x00000133      0x174 I2C.o
- .debug_line    0x000002a7      0xaee main.o
+ .debug_line    0x00000133      0x3a8 display.o
+ .debug_line    0x000004db      0x21e display_extensions.o
+ .debug_line    0x000006f9      0x174 I2C.o
+ .debug_line    0x0000086d      0x4c6 main.o
+ .debug_line    0x00000d33      0x119 time.o
 
-.debug_frame    0x00000000      0x3d0
+.debug_frame    0x00000000      0x4ac
  *(.debug_frame)
- .debug_frame   0x00000000       0x64 I2C.o
- .debug_frame   0x00000064      0x36c main.o
+ .debug_frame   0x00000000      0x1e8 display.o
+ .debug_frame   0x000001e8       0xd0 display_extensions.o
+ .debug_frame   0x000002b8       0x64 I2C.o
+ .debug_frame   0x0000031c      0x11c main.o
+ .debug_frame   0x00000438       0x74 time.o
 
-.debug_str      0x00000000      0x710
+.debug_str      0x00000000      0x79c
  *(.debug_str)
  .debug_str     0x00000000      0x208 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega88p/avr4/crtatmega88p.o
- .debug_str     0x00000208      0x175 I2C.o
+ .debug_str     0x00000208      0x28c display.o
+                                0x2d7 (size before relaxing)
+ .debug_str     0x00000494      0x14d display_extensions.o
+                                0x32e (size before relaxing)
+ .debug_str     0x000005e1       0x31 I2C.o
                                 0x1a9 (size before relaxing)
- .debug_str     0x0000037d      0x393 main.o
-                                0x535 (size before relaxing)
+ .debug_str     0x00000612      0x163 main.o
+                                0x32b (size before relaxing)
+ .debug_str     0x00000775       0x27 time.o
+                                0x134 (size before relaxing)
 
-.debug_loc      0x00000000     0x136d
+.debug_loc      0x00000000     0x1586
  *(.debug_loc)
- .debug_loc     0x00000000       0x9d I2C.o
- .debug_loc     0x0000009d     0x12d0 main.o
+ .debug_loc     0x00000000      0xa1b display.o
+ .debug_loc     0x00000a1b      0x518 display_extensions.o
+ .debug_loc     0x00000f33       0x9d I2C.o
+ .debug_loc     0x00000fd0      0x3c8 main.o
+ .debug_loc     0x00001398      0x1ee time.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -734,10 +799,13 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x170
+.debug_ranges   0x00000000      0x178
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x30 I2C.o
- .debug_ranges  0x00000030      0x140 main.o
+ .debug_ranges  0x00000000       0x70 display.o
+ .debug_ranges  0x00000070       0x38 display_extensions.o
+ .debug_ranges  0x000000a8       0x30 I2C.o
+ .debug_ranges  0x000000d8       0x68 main.o
+ .debug_ranges  0x00000140       0x38 time.o
 
 .debug_macro
  *(.debug_macro)

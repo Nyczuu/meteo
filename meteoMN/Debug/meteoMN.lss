@@ -3,31 +3,31 @@ meteoMN.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         0000001c  00800100  00001374  00001408  2**0
+  0 .data         0000001c  00800100  000012dc  00001370  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00001374  00000000  00000000  00000094  2**1
+  1 .text         000012dc  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000008  0080011c  0080011c  00001424  2**0
+  2 .bss          00000007  0080011c  0080011c  0000138c  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00001424  2**0
+  3 .comment      00000030  00000000  00000000  0000138c  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00001454  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000013bc  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000160  00000000  00000000  00001490  2**0
+  5 .debug_aranges 000001c8  00000000  00000000  000013f8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000022e8  00000000  00000000  000015f0  2**0
+  6 .debug_info   000021bf  00000000  00000000  000015c0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000009fa  00000000  00000000  000038d8  2**0
+  7 .debug_abbrev 00000c62  00000000  00000000  0000377f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000d95  00000000  00000000  000042d2  2**0
+  8 .debug_line   00000e4c  00000000  00000000  000043e1  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000003d0  00000000  00000000  00005068  2**2
+  9 .debug_frame  000004ac  00000000  00000000  00005230  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000710  00000000  00000000  00005438  2**0
+ 10 .debug_str    0000079c  00000000  00000000  000056dc  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    0000136d  00000000  00000000  00005b48  2**0
+ 11 .debug_loc    00001586  00000000  00000000  00005e78  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000170  00000000  00000000  00006eb5  2**0
+ 12 .debug_ranges 00000178  00000000  00000000  000073fe  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -44,7 +44,7 @@ Disassembly of section .text:
       10:	14 c5       	rjmp	.+2600   	; 0xa3a <__bad_interrupt>
       12:	13 c5       	rjmp	.+2598   	; 0xa3a <__bad_interrupt>
       14:	12 c5       	rjmp	.+2596   	; 0xa3a <__bad_interrupt>
-      16:	17 c9       	rjmp	.-3538   	; 0xfffff246 <__eeprom_end+0xff7ef246>
+      16:	b3 c8       	rjmp	.-3738   	; 0xfffff17e <__eeprom_end+0xff7ef17e>
       18:	10 c5       	rjmp	.+2592   	; 0xa3a <__bad_interrupt>
       1a:	0f c5       	rjmp	.+2590   	; 0xa3a <__bad_interrupt>
       1c:	0e c5       	rjmp	.+2588   	; 0xa3a <__bad_interrupt>
@@ -61,7 +61,7 @@ Disassembly of section .text:
       32:	03 c5       	rjmp	.+2566   	; 0xa3a <__bad_interrupt>
 
 00000034 <__trampolines_end>:
-      34:	ae d5       	rcall	.+2908   	; 0xb92 <ssd1306_draw_bmp+0x80>
+      34:	ae d5       	rcall	.+2908   	; 0xb92 <ssd1306tx_stringxy+0x14>
       36:	f0 a8       	ldd	r15, Z+48	; 0x30
       38:	3f d3       	rcall	.+1662   	; 0x6b8 <__stack+0x1b9>
       3a:	00 40       	sbci	r16, 0x00	; 0
@@ -275,8 +275,8 @@ Disassembly of section .text:
      a10:	11 e0       	ldi	r17, 0x01	; 1
      a12:	a0 e0       	ldi	r26, 0x00	; 0
      a14:	b1 e0       	ldi	r27, 0x01	; 1
-     a16:	e4 e7       	ldi	r30, 0x74	; 116
-     a18:	f3 e1       	ldi	r31, 0x13	; 19
+     a16:	ec ed       	ldi	r30, 0xDC	; 220
+     a18:	f2 e1       	ldi	r31, 0x12	; 18
      a1a:	02 c0       	rjmp	.+4      	; 0xa20 <__do_copy_data+0x10>
      a1c:	05 90       	lpm	r0, Z+
      a1e:	0d 92       	st	X+, r0
@@ -294,1572 +294,1577 @@ Disassembly of section .text:
      a2e:	1d 92       	st	X+, r1
 
 00000a30 <.do_clear_bss_start>:
-     a30:	a4 32       	cpi	r26, 0x24	; 36
+     a30:	a3 32       	cpi	r26, 0x23	; 35
      a32:	b2 07       	cpc	r27, r18
      a34:	e1 f7       	brne	.-8      	; 0xa2e <.do_clear_bss_loop>
-     a36:	09 d3       	rcall	.+1554   	; 0x104a <main>
-     a38:	9b c4       	rjmp	.+2358   	; 0x1370 <_exit>
+     a36:	c2 d2       	rcall	.+1412   	; 0xfbc <main>
+     a38:	4f c4       	rjmp	.+2206   	; 0x12d8 <_exit>
 
 00000a3a <__bad_interrupt>:
      a3a:	e2 ca       	rjmp	.-2620   	; 0x0 <__vectors>
 
-00000a3c <I2C_Initialize>:
-{
-	//TWSR |= 0x00; // Set prescaler to 1
+00000a3c <ssd1306_start_command>:
 
-	uint8_t bitrate_div;
-
-	bitrate_div = ((F_CPU/1000l)/bitRate_kHz);
-     a3c:	9c 01       	movw	r18, r24
-     a3e:	40 e0       	ldi	r20, 0x00	; 0
-     a40:	50 e0       	ldi	r21, 0x00	; 0
-     a42:	60 e4       	ldi	r22, 0x40	; 64
-     a44:	7f e1       	ldi	r23, 0x1F	; 31
-     a46:	80 e0       	ldi	r24, 0x00	; 0
-     a48:	90 e0       	ldi	r25, 0x00	; 0
-     a4a:	40 d4       	rcall	.+2176   	; 0x12cc <__divmodsi4>
-     a4c:	82 2f       	mov	r24, r18
-	
-	if(bitrate_div >= 16)
-     a4e:	20 31       	cpi	r18, 0x10	; 16
-     a50:	48 f0       	brcs	.+18     	; 0xa64 <I2C_Initialize+0x28>
-	bitrate_div = (bitrate_div-16)/2;
-     a52:	30 e0       	ldi	r19, 0x00	; 0
-     a54:	20 51       	subi	r18, 0x10	; 16
-     a56:	31 09       	sbc	r19, r1
-     a58:	c9 01       	movw	r24, r18
-     a5a:	99 23       	and	r25, r25
-     a5c:	0c f4       	brge	.+2      	; 0xa60 <I2C_Initialize+0x24>
-     a5e:	01 96       	adiw	r24, 0x01	; 1
-     a60:	95 95       	asr	r25
-     a62:	87 95       	ror	r24
-	
-	TWBR = bitrate_div;
-     a64:	80 93 b8 00 	sts	0x00B8, r24	; 0x8000b8 <__DATA_REGION_ORIGIN__+0x58>
-     a68:	08 95       	ret
-
-00000a6a <I2C_start>:
-}
-
-void I2C_start(void){
-	TWCR = (1<<TWINT) | (1<<TWEN) |( 1<<TWSTA);
-     a6a:	84 ea       	ldi	r24, 0xA4	; 164
-     a6c:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
-	while (! (TWCR & (1<<TWINT)));
-     a70:	ec eb       	ldi	r30, 0xBC	; 188
-     a72:	f0 e0       	ldi	r31, 0x00	; 0
-     a74:	80 81       	ld	r24, Z
-     a76:	88 23       	and	r24, r24
-     a78:	ec f7       	brge	.-6      	; 0xa74 <I2C_start+0xa>
-}
-     a7a:	08 95       	ret
-
-00000a7c <I2C_stop>:
-
-void I2C_stop(void){
-	TWCR = (1<<TWINT) | (1<<TWEN) | (1<<TWSTO);
-     a7c:	84 e9       	ldi	r24, 0x94	; 148
-     a7e:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
-	while (! (TWCR & (1<<TWSTO)));
-     a82:	ec eb       	ldi	r30, 0xBC	; 188
-     a84:	f0 e0       	ldi	r31, 0x00	; 0
-     a86:	80 81       	ld	r24, Z
-     a88:	84 ff       	sbrs	r24, 4
-     a8a:	fd cf       	rjmp	.-6      	; 0xa86 <I2C_stop+0xa>
-}
-     a8c:	08 95       	ret
-
-00000a8e <I2C_write>:
-
-void I2C_write(uint8_t dane){
-	TWDR = dane;
-     a8e:	80 93 bb 00 	sts	0x00BB, r24	; 0x8000bb <__DATA_REGION_ORIGIN__+0x5b>
-	TWCR = (1<<TWINT) | (1<<TWEN);
-     a92:	84 e8       	ldi	r24, 0x84	; 132
-     a94:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
-	while (! (TWCR & (1<<TWINT)));
-     a98:	ec eb       	ldi	r30, 0xBC	; 188
-     a9a:	f0 e0       	ldi	r31, 0x00	; 0
-     a9c:	80 81       	ld	r24, Z
-     a9e:	88 23       	and	r24, r24
-     aa0:	ec f7       	brge	.-6      	; 0xa9c <I2C_write+0xe>
-}
-     aa2:	08 95       	ret
-
-00000aa4 <ssd1306_start_command>:
-	{ 
-		number = max;
+void ssd1306tx_string(char *s) {
+	while (*s) {
+		ssd1306tx_char(*s++);
 	}
-	
-	return number;
 }
-     aa4:	e2 df       	rcall	.-60     	; 0xa6a <I2C_start>
-     aa6:	88 e7       	ldi	r24, 0x78	; 120
-     aa8:	f2 df       	rcall	.-28     	; 0xa8e <I2C_write>
-     aaa:	80 e0       	ldi	r24, 0x00	; 0
-     aac:	f0 df       	rcall	.-32     	; 0xa8e <I2C_write>
-     aae:	08 95       	ret
+     a3c:	d3 d1       	rcall	.+934    	; 0xde4 <I2C_start>
+     a3e:	88 e7       	ldi	r24, 0x78	; 120
+     a40:	90 e0       	ldi	r25, 0x00	; 0
+     a42:	e2 d1       	rcall	.+964    	; 0xe08 <I2C_write>
+     a44:	80 e0       	ldi	r24, 0x00	; 0
+     a46:	90 e0       	ldi	r25, 0x00	; 0
+     a48:	df d1       	rcall	.+958    	; 0xe08 <I2C_write>
+     a4a:	08 95       	ret
 
-00000ab0 <ssd1306_start_data>:
-     ab0:	dc df       	rcall	.-72     	; 0xa6a <I2C_start>
-     ab2:	88 e7       	ldi	r24, 0x78	; 120
-     ab4:	ec df       	rcall	.-40     	; 0xa8e <I2C_write>
-     ab6:	80 e4       	ldi	r24, 0x40	; 64
-     ab8:	ea df       	rcall	.-44     	; 0xa8e <I2C_write>
-     aba:	08 95       	ret
+00000a4c <ssd1306_start_data>:
+     a4c:	cb d1       	rcall	.+918    	; 0xde4 <I2C_start>
+     a4e:	88 e7       	ldi	r24, 0x78	; 120
+     a50:	90 e0       	ldi	r25, 0x00	; 0
+     a52:	da d1       	rcall	.+948    	; 0xe08 <I2C_write>
+     a54:	80 e4       	ldi	r24, 0x40	; 64
+     a56:	90 e0       	ldi	r25, 0x00	; 0
+     a58:	d7 d1       	rcall	.+942    	; 0xe08 <I2C_write>
+     a5a:	08 95       	ret
 
-00000abc <ssd1306_init>:
-     abc:	0f 93       	push	r16
-     abe:	1f 93       	push	r17
-     ac0:	cf 93       	push	r28
-     ac2:	df 93       	push	r29
-     ac4:	ef df       	rcall	.-34     	; 0xaa4 <ssd1306_start_command>
-     ac6:	c4 e3       	ldi	r28, 0x34	; 52
-     ac8:	d0 e0       	ldi	r29, 0x00	; 0
-     aca:	04 e5       	ldi	r16, 0x54	; 84
-     acc:	10 e0       	ldi	r17, 0x00	; 0
-     ace:	fe 01       	movw	r30, r28
-     ad0:	84 91       	lpm	r24, Z
-     ad2:	dd df       	rcall	.-70     	; 0xa8e <I2C_write>
-     ad4:	21 96       	adiw	r28, 0x01	; 1
-     ad6:	c0 17       	cp	r28, r16
-     ad8:	d1 07       	cpc	r29, r17
-     ada:	c9 f7       	brne	.-14     	; 0xace <ssd1306_init+0x12>
-     adc:	cf df       	rcall	.-98     	; 0xa7c <I2C_stop>
-     ade:	df 91       	pop	r29
-     ae0:	cf 91       	pop	r28
-     ae2:	1f 91       	pop	r17
-     ae4:	0f 91       	pop	r16
-     ae6:	08 95       	ret
+00000a5c <ssd1306_init>:
+     a5c:	0f 93       	push	r16
+     a5e:	1f 93       	push	r17
+     a60:	cf 93       	push	r28
+     a62:	df 93       	push	r29
+     a64:	eb df       	rcall	.-42     	; 0xa3c <ssd1306_start_command>
+     a66:	c4 e3       	ldi	r28, 0x34	; 52
+     a68:	d0 e0       	ldi	r29, 0x00	; 0
+     a6a:	04 e5       	ldi	r16, 0x54	; 84
+     a6c:	10 e0       	ldi	r17, 0x00	; 0
+     a6e:	fe 01       	movw	r30, r28
+     a70:	84 91       	lpm	r24, Z
+     a72:	90 e0       	ldi	r25, 0x00	; 0
+     a74:	c9 d1       	rcall	.+914    	; 0xe08 <I2C_write>
+     a76:	21 96       	adiw	r28, 0x01	; 1
+     a78:	c0 17       	cp	r28, r16
+     a7a:	d1 07       	cpc	r29, r17
+     a7c:	c1 f7       	brne	.-16     	; 0xa6e <ssd1306_init+0x12>
+     a7e:	bb d1       	rcall	.+886    	; 0xdf6 <I2C_stop>
+     a80:	df 91       	pop	r29
+     a82:	cf 91       	pop	r28
+     a84:	1f 91       	pop	r17
+     a86:	0f 91       	pop	r16
+     a88:	08 95       	ret
 
-00000ae8 <ssd1306_setpos>:
-     ae8:	cf 93       	push	r28
-     aea:	df 93       	push	r29
-     aec:	c8 2f       	mov	r28, r24
-     aee:	d6 2f       	mov	r29, r22
-     af0:	d9 df       	rcall	.-78     	; 0xaa4 <ssd1306_start_command>
-     af2:	8d 2f       	mov	r24, r29
-     af4:	87 70       	andi	r24, 0x07	; 7
-     af6:	80 6b       	ori	r24, 0xB0	; 176
-     af8:	ca df       	rcall	.-108    	; 0xa8e <I2C_write>
-     afa:	8c 2f       	mov	r24, r28
-     afc:	8f 70       	andi	r24, 0x0F	; 15
-     afe:	c7 df       	rcall	.-114    	; 0xa8e <I2C_write>
-     b00:	8c 2f       	mov	r24, r28
-     b02:	82 95       	swap	r24
-     b04:	8f 70       	andi	r24, 0x0F	; 15
-     b06:	80 61       	ori	r24, 0x10	; 16
-     b08:	c2 df       	rcall	.-124    	; 0xa8e <I2C_write>
-     b0a:	b8 df       	rcall	.-144    	; 0xa7c <I2C_stop>
-     b0c:	df 91       	pop	r29
-     b0e:	cf 91       	pop	r28
-     b10:	08 95       	ret
+00000a8a <ssd1306_setpos>:
+     a8a:	cf 93       	push	r28
+     a8c:	df 93       	push	r29
+     a8e:	c8 2f       	mov	r28, r24
+     a90:	d6 2f       	mov	r29, r22
+     a92:	d4 df       	rcall	.-88     	; 0xa3c <ssd1306_start_command>
+     a94:	d7 70       	andi	r29, 0x07	; 7
+     a96:	8d 2f       	mov	r24, r29
+     a98:	80 6b       	ori	r24, 0xB0	; 176
+     a9a:	90 e0       	ldi	r25, 0x00	; 0
+     a9c:	b5 d1       	rcall	.+874    	; 0xe08 <I2C_write>
+     a9e:	8c 2f       	mov	r24, r28
+     aa0:	8f 70       	andi	r24, 0x0F	; 15
+     aa2:	90 e0       	ldi	r25, 0x00	; 0
+     aa4:	b1 d1       	rcall	.+866    	; 0xe08 <I2C_write>
+     aa6:	c2 95       	swap	r28
+     aa8:	cf 70       	andi	r28, 0x0F	; 15
+     aaa:	8c 2f       	mov	r24, r28
+     aac:	80 61       	ori	r24, 0x10	; 16
+     aae:	90 e0       	ldi	r25, 0x00	; 0
+     ab0:	ab d1       	rcall	.+854    	; 0xe08 <I2C_write>
+     ab2:	a1 d1       	rcall	.+834    	; 0xdf6 <I2C_stop>
+     ab4:	df 91       	pop	r29
+     ab6:	cf 91       	pop	r28
+     ab8:	08 95       	ret
 
-00000b12 <ssd1306_draw_bmp>:
-     b12:	6f 92       	push	r6
-     b14:	7f 92       	push	r7
-     b16:	8f 92       	push	r8
-     b18:	9f 92       	push	r9
-     b1a:	af 92       	push	r10
-     b1c:	bf 92       	push	r11
-     b1e:	cf 92       	push	r12
-     b20:	df 92       	push	r13
-     b22:	ef 92       	push	r14
-     b24:	ff 92       	push	r15
-     b26:	0f 93       	push	r16
-     b28:	1f 93       	push	r17
-     b2a:	cf 93       	push	r28
-     b2c:	df 93       	push	r29
-     b2e:	88 2e       	mov	r8, r24
-     b30:	96 2e       	mov	r9, r22
-     b32:	74 2e       	mov	r7, r20
-     b34:	62 2e       	mov	r6, r18
-     b36:	62 17       	cp	r22, r18
-     b38:	10 f5       	brcc	.+68     	; 0xb7e <ssd1306_draw_bmp+0x6c>
-     b3a:	c1 2c       	mov	r12, r1
-     b3c:	d1 2c       	mov	r13, r1
-     b3e:	aa 24       	eor	r10, r10
-     b40:	aa 94       	dec	r10
-     b42:	a4 0e       	add	r10, r20
-     b44:	a8 1a       	sub	r10, r24
-     b46:	b1 2c       	mov	r11, r1
-     b48:	8f ef       	ldi	r24, 0xFF	; 255
-     b4a:	a8 1a       	sub	r10, r24
-     b4c:	b8 0a       	sbc	r11, r24
-     b4e:	69 2d       	mov	r22, r9
-     b50:	88 2d       	mov	r24, r8
-     b52:	ca df       	rcall	.-108    	; 0xae8 <ssd1306_setpos>
-     b54:	ad df       	rcall	.-166    	; 0xab0 <ssd1306_start_data>
-     b56:	87 14       	cp	r8, r7
-     b58:	78 f4       	brcc	.+30     	; 0xb78 <ssd1306_draw_bmp+0x66>
-     b5a:	e8 01       	movw	r28, r16
-     b5c:	cc 0d       	add	r28, r12
-     b5e:	dd 1d       	adc	r29, r13
-     b60:	ca 0c       	add	r12, r10
-     b62:	db 1c       	adc	r13, r11
-     b64:	78 01       	movw	r14, r16
-     b66:	ec 0c       	add	r14, r12
-     b68:	fd 1c       	adc	r15, r13
-     b6a:	fe 01       	movw	r30, r28
-     b6c:	84 91       	lpm	r24, Z
-     b6e:	8f df       	rcall	.-226    	; 0xa8e <I2C_write>
-     b70:	21 96       	adiw	r28, 0x01	; 1
-     b72:	ce 15       	cp	r28, r14
-     b74:	df 05       	cpc	r29, r15
-     b76:	c9 f7       	brne	.-14     	; 0xb6a <ssd1306_draw_bmp+0x58>
-     b78:	93 94       	inc	r9
-     b7a:	96 14       	cp	r9, r6
-     b7c:	40 f3       	brcs	.-48     	; 0xb4e <ssd1306_draw_bmp+0x3c>
-     b7e:	df 91       	pop	r29
-     b80:	cf 91       	pop	r28
-     b82:	1f 91       	pop	r17
-     b84:	0f 91       	pop	r16
-     b86:	ff 90       	pop	r15
-     b88:	ef 90       	pop	r14
-     b8a:	df 90       	pop	r13
-     b8c:	cf 90       	pop	r12
-     b8e:	bf 90       	pop	r11
-     b90:	af 90       	pop	r10
-     b92:	9f 90       	pop	r9
-     b94:	8f 90       	pop	r8
-     b96:	7f 90       	pop	r7
-     b98:	6f 90       	pop	r6
-     b9a:	08 95       	ret
+00000aba <ssd1306_stop>:
+     aba:	9d d1       	rcall	.+826    	; 0xdf6 <I2C_stop>
+     abc:	08 95       	ret
 
-00000b9c <ssd1306_clear_display>:
-     b9c:	cf 93       	push	r28
-     b9e:	df 93       	push	r29
-     ba0:	d0 e0       	ldi	r29, 0x00	; 0
-     ba2:	6d 2f       	mov	r22, r29
-     ba4:	80 e0       	ldi	r24, 0x00	; 0
-     ba6:	a0 df       	rcall	.-192    	; 0xae8 <ssd1306_setpos>
-     ba8:	83 df       	rcall	.-250    	; 0xab0 <ssd1306_start_data>
-     baa:	c0 e8       	ldi	r28, 0x80	; 128
-     bac:	80 e0       	ldi	r24, 0x00	; 0
-     bae:	6f df       	rcall	.-290    	; 0xa8e <I2C_write>
-     bb0:	c1 50       	subi	r28, 0x01	; 1
-     bb2:	e1 f7       	brne	.-8      	; 0xbac <ssd1306_clear_display+0x10>
-     bb4:	df 5f       	subi	r29, 0xFF	; 255
-     bb6:	d8 30       	cpi	r29, 0x08	; 8
-     bb8:	a1 f7       	brne	.-24     	; 0xba2 <ssd1306_clear_display+0x6>
-     bba:	df 91       	pop	r29
-     bbc:	cf 91       	pop	r28
-     bbe:	08 95       	ret
+00000abe <ssd1306_draw_bmp>:
+     abe:	6f 92       	push	r6
+     ac0:	7f 92       	push	r7
+     ac2:	8f 92       	push	r8
+     ac4:	9f 92       	push	r9
+     ac6:	af 92       	push	r10
+     ac8:	bf 92       	push	r11
+     aca:	cf 92       	push	r12
+     acc:	df 92       	push	r13
+     ace:	ef 92       	push	r14
+     ad0:	ff 92       	push	r15
+     ad2:	0f 93       	push	r16
+     ad4:	1f 93       	push	r17
+     ad6:	cf 93       	push	r28
+     ad8:	df 93       	push	r29
+     ada:	88 2e       	mov	r8, r24
+     adc:	96 2e       	mov	r9, r22
+     ade:	74 2e       	mov	r7, r20
+     ae0:	62 2e       	mov	r6, r18
+     ae2:	62 17       	cp	r22, r18
+     ae4:	18 f5       	brcc	.+70     	; 0xb2c <ssd1306_draw_bmp+0x6e>
+     ae6:	c1 2c       	mov	r12, r1
+     ae8:	d1 2c       	mov	r13, r1
+     aea:	aa 24       	eor	r10, r10
+     aec:	aa 94       	dec	r10
+     aee:	a4 0e       	add	r10, r20
+     af0:	a8 1a       	sub	r10, r24
+     af2:	b1 2c       	mov	r11, r1
+     af4:	8f ef       	ldi	r24, 0xFF	; 255
+     af6:	a8 1a       	sub	r10, r24
+     af8:	b8 0a       	sbc	r11, r24
+     afa:	69 2d       	mov	r22, r9
+     afc:	88 2d       	mov	r24, r8
+     afe:	c5 df       	rcall	.-118    	; 0xa8a <ssd1306_setpos>
+     b00:	a5 df       	rcall	.-182    	; 0xa4c <ssd1306_start_data>
+     b02:	87 14       	cp	r8, r7
+     b04:	80 f4       	brcc	.+32     	; 0xb26 <ssd1306_draw_bmp+0x68>
+     b06:	e8 01       	movw	r28, r16
+     b08:	cc 0d       	add	r28, r12
+     b0a:	dd 1d       	adc	r29, r13
+     b0c:	ca 0c       	add	r12, r10
+     b0e:	db 1c       	adc	r13, r11
+     b10:	78 01       	movw	r14, r16
+     b12:	ec 0c       	add	r14, r12
+     b14:	fd 1c       	adc	r15, r13
+     b16:	fe 01       	movw	r30, r28
+     b18:	84 91       	lpm	r24, Z
+     b1a:	90 e0       	ldi	r25, 0x00	; 0
+     b1c:	75 d1       	rcall	.+746    	; 0xe08 <I2C_write>
+     b1e:	21 96       	adiw	r28, 0x01	; 1
+     b20:	ce 15       	cp	r28, r14
+     b22:	df 05       	cpc	r29, r15
+     b24:	c1 f7       	brne	.-16     	; 0xb16 <ssd1306_draw_bmp+0x58>
+     b26:	93 94       	inc	r9
+     b28:	96 14       	cp	r9, r6
+     b2a:	38 f3       	brcs	.-50     	; 0xafa <ssd1306_draw_bmp+0x3c>
+     b2c:	df 91       	pop	r29
+     b2e:	cf 91       	pop	r28
+     b30:	1f 91       	pop	r17
+     b32:	0f 91       	pop	r16
+     b34:	ff 90       	pop	r15
+     b36:	ef 90       	pop	r14
+     b38:	df 90       	pop	r13
+     b3a:	cf 90       	pop	r12
+     b3c:	bf 90       	pop	r11
+     b3e:	af 90       	pop	r10
+     b40:	9f 90       	pop	r9
+     b42:	8f 90       	pop	r8
+     b44:	7f 90       	pop	r7
+     b46:	6f 90       	pop	r6
+     b48:	08 95       	ret
 
-00000bc0 <ssd1306tx_stringxy>:
-     bc0:	8f 92       	push	r8
-     bc2:	9f 92       	push	r9
-     bc4:	af 92       	push	r10
-     bc6:	bf 92       	push	r11
-     bc8:	cf 92       	push	r12
-     bca:	df 92       	push	r13
-     bcc:	ef 92       	push	r14
-     bce:	ff 92       	push	r15
-     bd0:	0f 93       	push	r16
-     bd2:	1f 93       	push	r17
-     bd4:	cf 93       	push	r28
-     bd6:	df 93       	push	r29
-     bd8:	6c 01       	movw	r12, r24
-     bda:	96 2e       	mov	r9, r22
-     bdc:	84 2e       	mov	r8, r20
-     bde:	f9 01       	movw	r30, r18
-     be0:	a0 80       	ld	r10, Z
-     be2:	aa 20       	and	r10, r10
-     be4:	09 f4       	brne	.+2      	; 0xbe8 <ssd1306tx_stringxy+0x28>
-     be6:	42 c0       	rjmp	.+132    	; 0xc6c <ssd1306tx_stringxy+0xac>
-     be8:	79 01       	movw	r14, r18
-     bea:	ff ef       	ldi	r31, 0xFF	; 255
-     bec:	ef 1a       	sub	r14, r31
-     bee:	ff 0a       	sbc	r15, r31
-     bf0:	b1 2c       	mov	r11, r1
-     bf2:	80 e2       	ldi	r24, 0x20	; 32
-     bf4:	a8 1a       	sub	r10, r24
-     bf6:	b1 08       	sbc	r11, r1
-     bf8:	aa 0c       	add	r10, r10
-     bfa:	bb 1c       	adc	r11, r11
-     bfc:	aa 0c       	add	r10, r10
-     bfe:	bb 1c       	adc	r11, r11
-     c00:	aa 0c       	add	r10, r10
-     c02:	bb 1c       	adc	r11, r11
-     c04:	aa 0c       	add	r10, r10
-     c06:	bb 1c       	adc	r11, r11
-     c08:	e8 e7       	ldi	r30, 0x78	; 120
-     c0a:	e9 15       	cp	r30, r9
-     c0c:	10 f4       	brcc	.+4      	; 0xc12 <ssd1306tx_stringxy+0x52>
-     c0e:	83 94       	inc	r8
-     c10:	91 2c       	mov	r9, r1
-     c12:	68 2d       	mov	r22, r8
-     c14:	89 2d       	mov	r24, r9
-     c16:	68 df       	rcall	.-304    	; 0xae8 <ssd1306_setpos>
-     c18:	4b df       	rcall	.-362    	; 0xab0 <ssd1306_start_data>
-     c1a:	86 01       	movw	r16, r12
-     c1c:	0a 0d       	add	r16, r10
-     c1e:	1b 1d       	adc	r17, r11
-     c20:	e5 01       	movw	r28, r10
-     c22:	28 96       	adiw	r28, 0x08	; 8
-     c24:	cc 0d       	add	r28, r12
-     c26:	dd 1d       	adc	r29, r13
-     c28:	f8 01       	movw	r30, r16
-     c2a:	84 91       	lpm	r24, Z
-     c2c:	30 df       	rcall	.-416    	; 0xa8e <I2C_write>
-     c2e:	0f 5f       	subi	r16, 0xFF	; 255
-     c30:	1f 4f       	sbci	r17, 0xFF	; 255
-     c32:	0c 17       	cp	r16, r28
-     c34:	1d 07       	cpc	r17, r29
-     c36:	c1 f7       	brne	.-16     	; 0xc28 <ssd1306tx_stringxy+0x68>
-     c38:	21 df       	rcall	.-446    	; 0xa7c <I2C_stop>
-     c3a:	61 e0       	ldi	r22, 0x01	; 1
-     c3c:	68 0d       	add	r22, r8
-     c3e:	89 2d       	mov	r24, r9
-     c40:	53 df       	rcall	.-346    	; 0xae8 <ssd1306_setpos>
-     c42:	36 df       	rcall	.-404    	; 0xab0 <ssd1306_start_data>
-     c44:	85 01       	movw	r16, r10
-     c46:	00 5f       	subi	r16, 0xF0	; 240
-     c48:	1f 4f       	sbci	r17, 0xFF	; 255
-     c4a:	0c 0d       	add	r16, r12
-     c4c:	1d 1d       	adc	r17, r13
-     c4e:	fe 01       	movw	r30, r28
-     c50:	84 91       	lpm	r24, Z
-     c52:	1d df       	rcall	.-454    	; 0xa8e <I2C_write>
-     c54:	21 96       	adiw	r28, 0x01	; 1
-     c56:	c0 17       	cp	r28, r16
-     c58:	d1 07       	cpc	r29, r17
-     c5a:	c9 f7       	brne	.-14     	; 0xc4e <ssd1306tx_stringxy+0x8e>
-     c5c:	0f df       	rcall	.-482    	; 0xa7c <I2C_stop>
-     c5e:	f8 e0       	ldi	r31, 0x08	; 8
-     c60:	9f 0e       	add	r9, r31
-     c62:	f7 01       	movw	r30, r14
-     c64:	a1 90       	ld	r10, Z+
-     c66:	7f 01       	movw	r14, r30
-     c68:	a1 10       	cpse	r10, r1
-     c6a:	c2 cf       	rjmp	.-124    	; 0xbf0 <ssd1306tx_stringxy+0x30>
-     c6c:	df 91       	pop	r29
-     c6e:	cf 91       	pop	r28
-     c70:	1f 91       	pop	r17
-     c72:	0f 91       	pop	r16
-     c74:	ff 90       	pop	r15
-     c76:	ef 90       	pop	r14
-     c78:	df 90       	pop	r13
-     c7a:	cf 90       	pop	r12
-     c7c:	bf 90       	pop	r11
-     c7e:	af 90       	pop	r10
-     c80:	9f 90       	pop	r9
-     c82:	8f 90       	pop	r8
-     c84:	08 95       	ret
+00000b4a <ssd1306_clear_display>:
+     b4a:	cf 93       	push	r28
+     b4c:	df 93       	push	r29
+     b4e:	d0 e0       	ldi	r29, 0x00	; 0
+     b50:	6d 2f       	mov	r22, r29
+     b52:	80 e0       	ldi	r24, 0x00	; 0
+     b54:	9a df       	rcall	.-204    	; 0xa8a <ssd1306_setpos>
+     b56:	7a df       	rcall	.-268    	; 0xa4c <ssd1306_start_data>
+     b58:	c0 e8       	ldi	r28, 0x80	; 128
+     b5a:	80 e0       	ldi	r24, 0x00	; 0
+     b5c:	90 e0       	ldi	r25, 0x00	; 0
+     b5e:	54 d1       	rcall	.+680    	; 0xe08 <I2C_write>
+     b60:	c1 50       	subi	r28, 0x01	; 1
+     b62:	d9 f7       	brne	.-10     	; 0xb5a <ssd1306_clear_display+0x10>
+     b64:	df 5f       	subi	r29, 0xFF	; 255
+     b66:	d8 30       	cpi	r29, 0x08	; 8
+     b68:	99 f7       	brne	.-26     	; 0xb50 <ssd1306_clear_display+0x6>
+     b6a:	df 91       	pop	r29
+     b6c:	cf 91       	pop	r28
+     b6e:	08 95       	ret
 
-00000c86 <numberToCharArray>:
-     c86:	00 97       	sbiw	r24, 0x00	; 0
-     c88:	d9 f0       	breq	.+54     	; 0xcc0 <numberToCharArray+0x3a>
-     c8a:	81 30       	cpi	r24, 0x01	; 1
-     c8c:	91 05       	cpc	r25, r1
-     c8e:	d9 f0       	breq	.+54     	; 0xcc6 <numberToCharArray+0x40>
-     c90:	82 30       	cpi	r24, 0x02	; 2
-     c92:	91 05       	cpc	r25, r1
-     c94:	d9 f0       	breq	.+54     	; 0xccc <numberToCharArray+0x46>
-     c96:	83 30       	cpi	r24, 0x03	; 3
-     c98:	91 05       	cpc	r25, r1
-     c9a:	d9 f0       	breq	.+54     	; 0xcd2 <numberToCharArray+0x4c>
-     c9c:	84 30       	cpi	r24, 0x04	; 4
-     c9e:	91 05       	cpc	r25, r1
-     ca0:	d9 f0       	breq	.+54     	; 0xcd8 <numberToCharArray+0x52>
-     ca2:	85 30       	cpi	r24, 0x05	; 5
-     ca4:	91 05       	cpc	r25, r1
-     ca6:	d9 f0       	breq	.+54     	; 0xcde <numberToCharArray+0x58>
-     ca8:	86 30       	cpi	r24, 0x06	; 6
-     caa:	91 05       	cpc	r25, r1
-     cac:	d9 f0       	breq	.+54     	; 0xce4 <numberToCharArray+0x5e>
-     cae:	87 30       	cpi	r24, 0x07	; 7
-     cb0:	91 05       	cpc	r25, r1
-     cb2:	d9 f0       	breq	.+54     	; 0xcea <numberToCharArray+0x64>
-     cb4:	88 30       	cpi	r24, 0x08	; 8
-     cb6:	91 05       	cpc	r25, r1
-     cb8:	d9 f0       	breq	.+54     	; 0xcf0 <numberToCharArray+0x6a>
-     cba:	09 97       	sbiw	r24, 0x09	; 9
-     cbc:	e1 f0       	breq	.+56     	; 0xcf6 <numberToCharArray+0x70>
-     cbe:	08 95       	ret
-     cc0:	24 eb       	ldi	r18, 0xB4	; 180
-     cc2:	33 e0       	ldi	r19, 0x03	; 3
-     cc4:	1a c0       	rjmp	.+52     	; 0xcfa <numberToCharArray+0x74>
-     cc6:	24 e5       	ldi	r18, 0x54	; 84
-     cc8:	33 e0       	ldi	r19, 0x03	; 3
-     cca:	17 c0       	rjmp	.+46     	; 0xcfa <numberToCharArray+0x74>
-     ccc:	24 ef       	ldi	r18, 0xF4	; 244
-     cce:	32 e0       	ldi	r19, 0x02	; 2
-     cd0:	14 c0       	rjmp	.+40     	; 0xcfa <numberToCharArray+0x74>
-     cd2:	24 e9       	ldi	r18, 0x94	; 148
-     cd4:	32 e0       	ldi	r19, 0x02	; 2
-     cd6:	11 c0       	rjmp	.+34     	; 0xcfa <numberToCharArray+0x74>
-     cd8:	24 e3       	ldi	r18, 0x34	; 52
-     cda:	32 e0       	ldi	r19, 0x02	; 2
-     cdc:	0e c0       	rjmp	.+28     	; 0xcfa <numberToCharArray+0x74>
-     cde:	24 ed       	ldi	r18, 0xD4	; 212
-     ce0:	31 e0       	ldi	r19, 0x01	; 1
-     ce2:	0b c0       	rjmp	.+22     	; 0xcfa <numberToCharArray+0x74>
-     ce4:	24 e7       	ldi	r18, 0x74	; 116
-     ce6:	31 e0       	ldi	r19, 0x01	; 1
-     ce8:	08 c0       	rjmp	.+16     	; 0xcfa <numberToCharArray+0x74>
-     cea:	24 e1       	ldi	r18, 0x14	; 20
-     cec:	31 e0       	ldi	r19, 0x01	; 1
-     cee:	05 c0       	rjmp	.+10     	; 0xcfa <numberToCharArray+0x74>
-     cf0:	24 eb       	ldi	r18, 0xB4	; 180
-     cf2:	30 e0       	ldi	r19, 0x00	; 0
-     cf4:	02 c0       	rjmp	.+4      	; 0xcfa <numberToCharArray+0x74>
-     cf6:	24 e5       	ldi	r18, 0x54	; 84
-     cf8:	30 e0       	ldi	r19, 0x00	; 0
-     cfa:	82 2f       	mov	r24, r18
-     cfc:	93 2f       	mov	r25, r19
-     cfe:	08 95       	ret
+00000b70 <ssd1306tx_init>:
+     b70:	90 93 22 01 	sts	0x0122, r25	; 0x800122 <ssd1306tx_font_src+0x1>
+     b74:	80 93 21 01 	sts	0x0121, r24	; 0x800121 <ssd1306tx_font_src>
+     b78:	60 93 20 01 	sts	0x0120, r22	; 0x800120 <ssd1306tx_font_char_base>
+     b7c:	08 95       	ret
 
-00000d00 <draw_number>:
+00000b7e <ssd1306tx_stringxy>:
 
-void draw_number(int xstart, int ystart, int number)
-{
-     d00:	cf 92       	push	r12
-     d02:	df 92       	push	r13
-     d04:	ef 92       	push	r14
-     d06:	ff 92       	push	r15
-     d08:	0f 93       	push	r16
-     d0a:	1f 93       	push	r17
-     d0c:	cf 93       	push	r28
-     d0e:	df 93       	push	r29
-     d10:	c8 2f       	mov	r28, r24
-     d12:	d6 2f       	mov	r29, r22
-     d14:	7a 01       	movw	r14, r20
-	
-	if(number < 9) 
-     d16:	49 30       	cpi	r20, 0x09	; 9
-     d18:	51 05       	cpc	r21, r1
-     d1a:	cc f4       	brge	.+50     	; 0xd4e <draw_number+0x4e>
-	{
-		ssd1306_draw_bmp(xstart, ystart, xstart+24, ystart+4, number0);
-     d1c:	68 94       	set
-     d1e:	cc 24       	eor	r12, r12
-     d20:	c2 f8       	bld	r12, 2
-     d22:	c6 0e       	add	r12, r22
-     d24:	0f 2e       	mov	r0, r31
-     d26:	f8 e1       	ldi	r31, 0x18	; 24
-     d28:	df 2e       	mov	r13, r31
-     d2a:	f0 2d       	mov	r31, r0
-     d2c:	dc 0e       	add	r13, r28
-     d2e:	04 eb       	ldi	r16, 0xB4	; 180
-     d30:	13 e0       	ldi	r17, 0x03	; 3
-     d32:	2c 2d       	mov	r18, r12
-     d34:	4d 2d       	mov	r20, r13
-     d36:	8c 2f       	mov	r24, r28
-     d38:	ec de       	rcall	.-552    	; 0xb12 <ssd1306_draw_bmp>
-		ssd1306_draw_bmp(xstart+ 24,ystart, xstart+48, ystart+4, numberToCharArray(number));
-     d3a:	c7 01       	movw	r24, r14
-     d3c:	a4 df       	rcall	.-184    	; 0xc86 <numberToCharArray>
-     d3e:	40 e3       	ldi	r20, 0x30	; 48
-     d40:	4c 0f       	add	r20, r28
-     d42:	8c 01       	movw	r16, r24
-     d44:	2c 2d       	mov	r18, r12
-     d46:	6d 2f       	mov	r22, r29
-     d48:	8d 2d       	mov	r24, r13
-     d4a:	e3 de       	rcall	.-570    	; 0xb12 <ssd1306_draw_bmp>
-     d4c:	22 c0       	rjmp	.+68     	; 0xd92 <draw_number+0x92>
-	}
-	else if(number < 99) 
-     d4e:	43 36       	cpi	r20, 0x63	; 99
-     d50:	51 05       	cpc	r21, r1
-     d52:	fc f4       	brge	.+62     	; 0xd92 <draw_number+0x92>
-	{
-		int first = number/10;
-		int second = number%10;
-		
-		ssd1306_draw_bmp(xstart, ystart, xstart+24, ystart+4, numberToCharArray(first));
-     d54:	ca 01       	movw	r24, r20
-     d56:	6a e0       	ldi	r22, 0x0A	; 10
-     d58:	70 e0       	ldi	r23, 0x00	; 0
-     d5a:	a5 d2       	rcall	.+1354   	; 0x12a6 <__divmodhi4>
-     d5c:	6c 01       	movw	r12, r24
-     d5e:	cb 01       	movw	r24, r22
-     d60:	92 df       	rcall	.-220    	; 0xc86 <numberToCharArray>
-     d62:	68 94       	set
-     d64:	ee 24       	eor	r14, r14
-     d66:	e2 f8       	bld	r14, 2
-     d68:	ed 0e       	add	r14, r29
-     d6a:	0f 2e       	mov	r0, r31
-     d6c:	f8 e1       	ldi	r31, 0x18	; 24
-     d6e:	ff 2e       	mov	r15, r31
-     d70:	f0 2d       	mov	r31, r0
-     d72:	fc 0e       	add	r15, r28
-     d74:	8c 01       	movw	r16, r24
-     d76:	2e 2d       	mov	r18, r14
-     d78:	4f 2d       	mov	r20, r15
-     d7a:	6d 2f       	mov	r22, r29
-     d7c:	8c 2f       	mov	r24, r28
-     d7e:	c9 de       	rcall	.-622    	; 0xb12 <ssd1306_draw_bmp>
-		ssd1306_draw_bmp(xstart+ 24,ystart, xstart+48, ystart+4, numberToCharArray(second));
-     d80:	c6 01       	movw	r24, r12
-     d82:	81 df       	rcall	.-254    	; 0xc86 <numberToCharArray>
-     d84:	40 e3       	ldi	r20, 0x30	; 48
-     d86:	4c 0f       	add	r20, r28
-     d88:	8c 01       	movw	r16, r24
-     d8a:	2e 2d       	mov	r18, r14
-     d8c:	6d 2f       	mov	r22, r29
-     d8e:	8f 2d       	mov	r24, r15
-     d90:	c0 de       	rcall	.-640    	; 0xb12 <ssd1306_draw_bmp>
-	}
-	
-	else return;
-}
-     d92:	df 91       	pop	r29
-     d94:	cf 91       	pop	r28
-     d96:	1f 91       	pop	r17
-     d98:	0f 91       	pop	r16
-     d9a:	ff 90       	pop	r15
-     d9c:	ef 90       	pop	r14
-     d9e:	df 90       	pop	r13
-     da0:	cf 90       	pop	r12
-     da2:	08 95       	ret
-
-00000da4 <display_air_humidity>:
-
-void display_air_humidity()
-{
-     da4:	0f 93       	push	r16
-     da6:	1f 93       	push	r17
-	ssd1306_draw_bmp(0,0, 24,4, number3);
-     da8:	04 e9       	ldi	r16, 0x94	; 148
-     daa:	12 e0       	ldi	r17, 0x02	; 2
-     dac:	24 e0       	ldi	r18, 0x04	; 4
-     dae:	48 e1       	ldi	r20, 0x18	; 24
-     db0:	60 e0       	ldi	r22, 0x00	; 0
-     db2:	80 e0       	ldi	r24, 0x00	; 0
-     db4:	ae de       	rcall	.-676    	; 0xb12 <ssd1306_draw_bmp>
-}
-     db6:	1f 91       	pop	r17
-     db8:	0f 91       	pop	r16
-     dba:	08 95       	ret
-
-00000dbc <display_temperature>:
-
-void display_temperature()
-{
-     dbc:	0f 93       	push	r16
-     dbe:	1f 93       	push	r17
-	ssd1306_draw_bmp(0,0, 24,4, number2);
-     dc0:	04 ef       	ldi	r16, 0xF4	; 244
-     dc2:	12 e0       	ldi	r17, 0x02	; 2
-     dc4:	24 e0       	ldi	r18, 0x04	; 4
-     dc6:	48 e1       	ldi	r20, 0x18	; 24
-     dc8:	60 e0       	ldi	r22, 0x00	; 0
-     dca:	80 e0       	ldi	r24, 0x00	; 0
-     dcc:	a2 de       	rcall	.-700    	; 0xb12 <ssd1306_draw_bmp>
-}
-     dce:	1f 91       	pop	r17
-     dd0:	0f 91       	pop	r16
-     dd2:	08 95       	ret
-
-00000dd4 <display_timer_set>:
-
-void display_timer_set() 
-{
-		ssd1306tx_stringxy(ssd1306xled_font8x16data, 0, 0, "S");
-     dd4:	23 e0       	ldi	r18, 0x03	; 3
-     dd6:	31 e0       	ldi	r19, 0x01	; 1
-     dd8:	40 e0       	ldi	r20, 0x00	; 0
-     dda:	60 e0       	ldi	r22, 0x00	; 0
-     ddc:	84 e1       	ldi	r24, 0x14	; 20
-     dde:	94 e0       	ldi	r25, 0x04	; 4
-     de0:	ef de       	rcall	.-546    	; 0xbc0 <ssd1306tx_stringxy>
-		ssd1306tx_stringxy(ssd1306xled_font8x16data, 8, 0, "E");
-     de2:	25 e0       	ldi	r18, 0x05	; 5
-     de4:	31 e0       	ldi	r19, 0x01	; 1
-     de6:	40 e0       	ldi	r20, 0x00	; 0
-     de8:	68 e0       	ldi	r22, 0x08	; 8
-     dea:	84 e1       	ldi	r24, 0x14	; 20
-     dec:	94 e0       	ldi	r25, 0x04	; 4
-     dee:	e8 de       	rcall	.-560    	; 0xbc0 <ssd1306tx_stringxy>
-		ssd1306tx_stringxy(ssd1306xled_font8x16data, 16, 0, "T");
-     df0:	27 e0       	ldi	r18, 0x07	; 7
-     df2:	31 e0       	ldi	r19, 0x01	; 1
-     df4:	40 e0       	ldi	r20, 0x00	; 0
-     df6:	60 e1       	ldi	r22, 0x10	; 16
-     df8:	84 e1       	ldi	r24, 0x14	; 20
-     dfa:	94 e0       	ldi	r25, 0x04	; 4
-     dfc:	e1 de       	rcall	.-574    	; 0xbc0 <ssd1306tx_stringxy>
-		ssd1306tx_stringxy(ssd1306xled_font8x16data, 24, 0, " ");
-     dfe:	29 e0       	ldi	r18, 0x09	; 9
-     e00:	31 e0       	ldi	r19, 0x01	; 1
-     e02:	40 e0       	ldi	r20, 0x00	; 0
-     e04:	68 e1       	ldi	r22, 0x18	; 24
-     e06:	84 e1       	ldi	r24, 0x14	; 20
-     e08:	94 e0       	ldi	r25, 0x04	; 4
-     e0a:	da de       	rcall	.-588    	; 0xbc0 <ssd1306tx_stringxy>
-		ssd1306tx_stringxy(ssd1306xled_font8x16data, 32, 0, "T");
-     e0c:	27 e0       	ldi	r18, 0x07	; 7
-     e0e:	31 e0       	ldi	r19, 0x01	; 1
-     e10:	40 e0       	ldi	r20, 0x00	; 0
-     e12:	60 e2       	ldi	r22, 0x20	; 32
-     e14:	84 e1       	ldi	r24, 0x14	; 20
-     e16:	94 e0       	ldi	r25, 0x04	; 4
-     e18:	d3 de       	rcall	.-602    	; 0xbc0 <ssd1306tx_stringxy>
-		ssd1306tx_stringxy(ssd1306xled_font8x16data, 40, 0, "I");
-     e1a:	2b e0       	ldi	r18, 0x0B	; 11
-     e1c:	31 e0       	ldi	r19, 0x01	; 1
-     e1e:	40 e0       	ldi	r20, 0x00	; 0
-     e20:	68 e2       	ldi	r22, 0x28	; 40
-     e22:	84 e1       	ldi	r24, 0x14	; 20
-     e24:	94 e0       	ldi	r25, 0x04	; 4
-     e26:	cc de       	rcall	.-616    	; 0xbc0 <ssd1306tx_stringxy>
-		ssd1306tx_stringxy(ssd1306xled_font8x16data, 48, 0, "M");
-     e28:	2d e0       	ldi	r18, 0x0D	; 13
-     e2a:	31 e0       	ldi	r19, 0x01	; 1
-     e2c:	40 e0       	ldi	r20, 0x00	; 0
-     e2e:	60 e3       	ldi	r22, 0x30	; 48
-     e30:	84 e1       	ldi	r24, 0x14	; 20
-     e32:	94 e0       	ldi	r25, 0x04	; 4
-     e34:	c5 de       	rcall	.-630    	; 0xbc0 <ssd1306tx_stringxy>
-		ssd1306tx_stringxy(ssd1306xled_font8x16data, 56, 0, "E");
-     e36:	25 e0       	ldi	r18, 0x05	; 5
-     e38:	31 e0       	ldi	r19, 0x01	; 1
-     e3a:	40 e0       	ldi	r20, 0x00	; 0
-     e3c:	68 e3       	ldi	r22, 0x38	; 56
-     e3e:	84 e1       	ldi	r24, 0x14	; 20
-     e40:	94 e0       	ldi	r25, 0x04	; 4
-     e42:	be de       	rcall	.-644    	; 0xbc0 <ssd1306tx_stringxy>
-		ssd1306tx_stringxy(ssd1306xled_font8x16data, 64, 0, "R");
-     e44:	2f e0       	ldi	r18, 0x0F	; 15
-     e46:	31 e0       	ldi	r19, 0x01	; 1
-     e48:	40 e0       	ldi	r20, 0x00	; 0
-     e4a:	60 e4       	ldi	r22, 0x40	; 64
-     e4c:	84 e1       	ldi	r24, 0x14	; 20
-     e4e:	94 e0       	ldi	r25, 0x04	; 4
-     e50:	b7 de       	rcall	.-658    	; 0xbc0 <ssd1306tx_stringxy>
-     e52:	08 95       	ret
-
-00000e54 <display_timer>:
-}
-
-void display_timer() 
-{
-	draw_number(0,0,0);
-     e54:	40 e0       	ldi	r20, 0x00	; 0
-     e56:	50 e0       	ldi	r21, 0x00	; 0
-     e58:	60 e0       	ldi	r22, 0x00	; 0
-     e5a:	70 e0       	ldi	r23, 0x00	; 0
-     e5c:	80 e0       	ldi	r24, 0x00	; 0
-     e5e:	90 e0       	ldi	r25, 0x00	; 0
-     e60:	4f df       	rcall	.-354    	; 0xd00 <draw_number>
-	ssd1306tx_stringxy(ssd1306xled_font8x16data, 48, 1, ":");
-     e62:	21 e1       	ldi	r18, 0x11	; 17
-     e64:	31 e0       	ldi	r19, 0x01	; 1
-     e66:	41 e0       	ldi	r20, 0x01	; 1
-     e68:	60 e3       	ldi	r22, 0x30	; 48
-     e6a:	84 e1       	ldi	r24, 0x14	; 20
-     e6c:	94 e0       	ldi	r25, 0x04	; 4
-     e6e:	a8 de       	rcall	.-688    	; 0xbc0 <ssd1306tx_stringxy>
-	draw_number(60,0,0);
-     e70:	40 e0       	ldi	r20, 0x00	; 0
-     e72:	50 e0       	ldi	r21, 0x00	; 0
-     e74:	60 e0       	ldi	r22, 0x00	; 0
-     e76:	70 e0       	ldi	r23, 0x00	; 0
-     e78:	8c e3       	ldi	r24, 0x3C	; 60
-     e7a:	90 e0       	ldi	r25, 0x00	; 0
-     e7c:	41 df       	rcall	.-382    	; 0xd00 <draw_number>
-     e7e:	08 95       	ret
-
-00000e80 <display_clock_set>:
-}
-
-void display_clock_set() 
-{
-	ssd1306tx_stringxy(ssd1306xled_font8x16data, 0, 0, "S");
-     e80:	23 e0       	ldi	r18, 0x03	; 3
-     e82:	31 e0       	ldi	r19, 0x01	; 1
-     e84:	40 e0       	ldi	r20, 0x00	; 0
-     e86:	60 e0       	ldi	r22, 0x00	; 0
-     e88:	84 e1       	ldi	r24, 0x14	; 20
-     e8a:	94 e0       	ldi	r25, 0x04	; 4
-     e8c:	99 de       	rcall	.-718    	; 0xbc0 <ssd1306tx_stringxy>
-	ssd1306tx_stringxy(ssd1306xled_font8x16data, 8, 0, "E");
-     e8e:	25 e0       	ldi	r18, 0x05	; 5
-     e90:	31 e0       	ldi	r19, 0x01	; 1
-     e92:	40 e0       	ldi	r20, 0x00	; 0
-     e94:	68 e0       	ldi	r22, 0x08	; 8
-     e96:	84 e1       	ldi	r24, 0x14	; 20
-     e98:	94 e0       	ldi	r25, 0x04	; 4
-     e9a:	92 de       	rcall	.-732    	; 0xbc0 <ssd1306tx_stringxy>
-	ssd1306tx_stringxy(ssd1306xled_font8x16data, 16, 0, "T");
-     e9c:	27 e0       	ldi	r18, 0x07	; 7
-     e9e:	31 e0       	ldi	r19, 0x01	; 1
-     ea0:	40 e0       	ldi	r20, 0x00	; 0
-     ea2:	60 e1       	ldi	r22, 0x10	; 16
-     ea4:	84 e1       	ldi	r24, 0x14	; 20
-     ea6:	94 e0       	ldi	r25, 0x04	; 4
-     ea8:	8b de       	rcall	.-746    	; 0xbc0 <ssd1306tx_stringxy>
-	ssd1306tx_stringxy(ssd1306xled_font8x16data, 24, 0, " ");
-     eaa:	29 e0       	ldi	r18, 0x09	; 9
-     eac:	31 e0       	ldi	r19, 0x01	; 1
-     eae:	40 e0       	ldi	r20, 0x00	; 0
-     eb0:	68 e1       	ldi	r22, 0x18	; 24
-     eb2:	84 e1       	ldi	r24, 0x14	; 20
-     eb4:	94 e0       	ldi	r25, 0x04	; 4
-     eb6:	84 de       	rcall	.-760    	; 0xbc0 <ssd1306tx_stringxy>
-	ssd1306tx_stringxy(ssd1306xled_font8x16data, 32, 0, "C");
-     eb8:	23 e1       	ldi	r18, 0x13	; 19
-     eba:	31 e0       	ldi	r19, 0x01	; 1
-     ebc:	40 e0       	ldi	r20, 0x00	; 0
-     ebe:	60 e2       	ldi	r22, 0x20	; 32
-     ec0:	84 e1       	ldi	r24, 0x14	; 20
-     ec2:	94 e0       	ldi	r25, 0x04	; 4
-     ec4:	7d de       	rcall	.-774    	; 0xbc0 <ssd1306tx_stringxy>
-	ssd1306tx_stringxy(ssd1306xled_font8x16data, 40, 0, "L");
-     ec6:	25 e1       	ldi	r18, 0x15	; 21
-     ec8:	31 e0       	ldi	r19, 0x01	; 1
-     eca:	40 e0       	ldi	r20, 0x00	; 0
-     ecc:	68 e2       	ldi	r22, 0x28	; 40
-     ece:	84 e1       	ldi	r24, 0x14	; 20
-     ed0:	94 e0       	ldi	r25, 0x04	; 4
-     ed2:	76 de       	rcall	.-788    	; 0xbc0 <ssd1306tx_stringxy>
-	ssd1306tx_stringxy(ssd1306xled_font8x16data, 48, 0, "O");
-     ed4:	27 e1       	ldi	r18, 0x17	; 23
-     ed6:	31 e0       	ldi	r19, 0x01	; 1
-     ed8:	40 e0       	ldi	r20, 0x00	; 0
-     eda:	60 e3       	ldi	r22, 0x30	; 48
-     edc:	84 e1       	ldi	r24, 0x14	; 20
-     ede:	94 e0       	ldi	r25, 0x04	; 4
-     ee0:	6f de       	rcall	.-802    	; 0xbc0 <ssd1306tx_stringxy>
-	ssd1306tx_stringxy(ssd1306xled_font8x16data, 56, 0, "C");
-     ee2:	23 e1       	ldi	r18, 0x13	; 19
-     ee4:	31 e0       	ldi	r19, 0x01	; 1
-     ee6:	40 e0       	ldi	r20, 0x00	; 0
-     ee8:	68 e3       	ldi	r22, 0x38	; 56
-     eea:	84 e1       	ldi	r24, 0x14	; 20
-     eec:	94 e0       	ldi	r25, 0x04	; 4
-     eee:	68 de       	rcall	.-816    	; 0xbc0 <ssd1306tx_stringxy>
-	ssd1306tx_stringxy(ssd1306xled_font8x16data, 64, 0, "K");
-     ef0:	29 e1       	ldi	r18, 0x19	; 25
-     ef2:	31 e0       	ldi	r19, 0x01	; 1
-     ef4:	40 e0       	ldi	r20, 0x00	; 0
-     ef6:	60 e4       	ldi	r22, 0x40	; 64
-     ef8:	84 e1       	ldi	r24, 0x14	; 20
-     efa:	94 e0       	ldi	r25, 0x04	; 4
-     efc:	61 de       	rcall	.-830    	; 0xbc0 <ssd1306tx_stringxy>
-
-	if(selected_menu == MENU_CLOCK_SET_HOUR) draw_number(0,2,selected_hour);
-     efe:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
-     f02:	84 31       	cpi	r24, 0x14	; 20
-     f04:	41 f4       	brne	.+16     	; 0xf16 <display_clock_set+0x96>
-     f06:	40 91 01 01 	lds	r20, 0x0101	; 0x800101 <selected_hour>
-     f0a:	50 e0       	ldi	r21, 0x00	; 0
-     f0c:	62 e0       	ldi	r22, 0x02	; 2
-     f0e:	70 e0       	ldi	r23, 0x00	; 0
-     f10:	80 e0       	ldi	r24, 0x00	; 0
-     f12:	90 e0       	ldi	r25, 0x00	; 0
-     f14:	f5 de       	rcall	.-534    	; 0xd00 <draw_number>
-	ssd1306tx_stringxy(ssd1306xled_font8x16data, 48, 3, ":");
-     f16:	21 e1       	ldi	r18, 0x11	; 17
-     f18:	31 e0       	ldi	r19, 0x01	; 1
-     f1a:	43 e0       	ldi	r20, 0x03	; 3
-     f1c:	60 e3       	ldi	r22, 0x30	; 48
-     f1e:	84 e1       	ldi	r24, 0x14	; 20
-     f20:	94 e0       	ldi	r25, 0x04	; 4
-     f22:	4e de       	rcall	.-868    	; 0xbc0 <ssd1306tx_stringxy>
-	if(selected_menu == MENU_CLOCK_SET_MINUTE) draw_number(60,2,selected_minute);
-     f24:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
-     f28:	85 31       	cpi	r24, 0x15	; 21
-     f2a:	41 f4       	brne	.+16     	; 0xf3c <display_clock_set+0xbc>
-     f2c:	40 91 1d 01 	lds	r20, 0x011D	; 0x80011d <selected_minute>
-     f30:	50 e0       	ldi	r21, 0x00	; 0
-     f32:	62 e0       	ldi	r22, 0x02	; 2
-     f34:	70 e0       	ldi	r23, 0x00	; 0
-     f36:	8c e3       	ldi	r24, 0x3C	; 60
-     f38:	90 e0       	ldi	r25, 0x00	; 0
-     f3a:	e2 de       	rcall	.-572    	; 0xd00 <draw_number>
-     f3c:	08 95       	ret
-
-00000f3e <display_clock>:
-}
-
-void display_clock() 
-{
-	draw_number(0,0,hour);
-     f3e:	40 91 02 01 	lds	r20, 0x0102	; 0x800102 <hour>
-     f42:	50 e0       	ldi	r21, 0x00	; 0
-     f44:	60 e0       	ldi	r22, 0x00	; 0
-     f46:	70 e0       	ldi	r23, 0x00	; 0
-     f48:	80 e0       	ldi	r24, 0x00	; 0
-     f4a:	90 e0       	ldi	r25, 0x00	; 0
-     f4c:	d9 de       	rcall	.-590    	; 0xd00 <draw_number>
-	ssd1306tx_stringxy(ssd1306xled_font8x16data, 48, 1, ":");
-     f4e:	21 e1       	ldi	r18, 0x11	; 17
-     f50:	31 e0       	ldi	r19, 0x01	; 1
-     f52:	41 e0       	ldi	r20, 0x01	; 1
-     f54:	60 e3       	ldi	r22, 0x30	; 48
-     f56:	84 e1       	ldi	r24, 0x14	; 20
-     f58:	94 e0       	ldi	r25, 0x04	; 4
-     f5a:	32 de       	rcall	.-924    	; 0xbc0 <ssd1306tx_stringxy>
-	draw_number(60,0,minute);
-     f5c:	40 91 1f 01 	lds	r20, 0x011F	; 0x80011f <minute>
-     f60:	50 e0       	ldi	r21, 0x00	; 0
-     f62:	60 e0       	ldi	r22, 0x00	; 0
-     f64:	70 e0       	ldi	r23, 0x00	; 0
-     f66:	8c e3       	ldi	r24, 0x3C	; 60
-     f68:	90 e0       	ldi	r25, 0x00	; 0
-     f6a:	ca de       	rcall	.-620    	; 0xd00 <draw_number>
-	draw_number(60,4,second);
-     f6c:	40 91 1e 01 	lds	r20, 0x011E	; 0x80011e <second>
-     f70:	50 e0       	ldi	r21, 0x00	; 0
-     f72:	64 e0       	ldi	r22, 0x04	; 4
-     f74:	70 e0       	ldi	r23, 0x00	; 0
-     f76:	8c e3       	ldi	r24, 0x3C	; 60
-     f78:	90 e0       	ldi	r25, 0x00	; 0
-     f7a:	c2 de       	rcall	.-636    	; 0xd00 <draw_number>
-     f7c:	08 95       	ret
-
-00000f7e <run>:
-}
-
-void run()
-{	
-	if(selected_menu == MENU_HUMIDITY) display_air_humidity();
-     f7e:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
-     f82:	8c 33       	cpi	r24, 0x3C	; 60
-     f84:	11 f4       	brne	.+4      	; 0xf8a <run+0xc>
-     f86:	0e df       	rcall	.-484    	; 0xda4 <display_air_humidity>
-     f88:	08 95       	ret
-	else if(selected_menu == MENU_TEMPEREATURE) display_temperature();
-     f8a:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
-     f8e:	82 33       	cpi	r24, 0x32	; 50
-     f90:	11 f4       	brne	.+4      	; 0xf96 <run+0x18>
-     f92:	14 df       	rcall	.-472    	; 0xdbc <display_temperature>
-     f94:	08 95       	ret
-	else if(selected_menu == MENU_TIMER) display_timer();
-     f96:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
-     f9a:	8e 31       	cpi	r24, 0x1E	; 30
-     f9c:	11 f4       	brne	.+4      	; 0xfa2 <run+0x24>
-     f9e:	5a df       	rcall	.-332    	; 0xe54 <display_timer>
-     fa0:	08 95       	ret
-	else if(selected_menu == MENU_TIMER_SET_HOUR || selected_menu == MENU_TIMER_SET_MINUTE) display_timer_set();
-     fa2:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
-     fa6:	88 32       	cpi	r24, 0x28	; 40
-     fa8:	21 f0       	breq	.+8      	; 0xfb2 <run+0x34>
-     faa:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
-     fae:	89 32       	cpi	r24, 0x29	; 41
-     fb0:	11 f4       	brne	.+4      	; 0xfb6 <run+0x38>
-     fb2:	10 df       	rcall	.-480    	; 0xdd4 <display_timer_set>
-     fb4:	08 95       	ret
-	else if(selected_menu == MENU_CLOCK) display_clock();
-     fb6:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
-     fba:	81 30       	cpi	r24, 0x01	; 1
-     fbc:	11 f4       	brne	.+4      	; 0xfc2 <run+0x44>
-     fbe:	bf df       	rcall	.-130    	; 0xf3e <display_clock>
-     fc0:	08 95       	ret
-	else if(selected_menu == MENU_CLOCK_SET_HOUR || selected_menu == MENU_CLOCK_SET_MINUTE) display_clock_set();
-     fc2:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
-     fc6:	84 31       	cpi	r24, 0x14	; 20
-     fc8:	21 f0       	breq	.+8      	; 0xfd2 <run+0x54>
-     fca:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
-     fce:	85 31       	cpi	r24, 0x15	; 21
-     fd0:	09 f4       	brne	.+2      	; 0xfd4 <run+0x56>
-     fd2:	56 df       	rcall	.-340    	; 0xe80 <display_clock_set>
-     fd4:	08 95       	ret
-
-00000fd6 <switch_menu>:
-}
-
-void switch_menu(int number)
-{
-     fd6:	cf 93       	push	r28
-     fd8:	c8 2f       	mov	r28, r24
-	ssd1306_clear_display();
-     fda:	e0 dd       	rcall	.-1088   	; 0xb9c <ssd1306_clear_display>
-	selected_menu = number;
-     fdc:	c0 93 00 01 	sts	0x0100, r28	; 0x800100 <__data_start>
-	#else
-		//round up by default
-		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
-	#endif
-
-	__builtin_avr_delay_cycles(__ticks_dc);
-     fe0:	2f e7       	ldi	r18, 0x7F	; 127
-     fe2:	8a e1       	ldi	r24, 0x1A	; 26
-     fe4:	96 e0       	ldi	r25, 0x06	; 6
-     fe6:	21 50       	subi	r18, 0x01	; 1
-     fe8:	80 40       	sbci	r24, 0x00	; 0
-     fea:	90 40       	sbci	r25, 0x00	; 0
-     fec:	e1 f7       	brne	.-8      	; 0xfe6 <switch_menu+0x10>
-     fee:	00 c0       	rjmp	.+0      	; 0xff0 <switch_menu+0x1a>
-     ff0:	00 00       	nop
-	_delay_ms(250);
-}
-     ff2:	cf 91       	pop	r28
-     ff4:	08 95       	ret
-
-00000ff6 <port_init>:
-{
-	
-	//DDRD |= LED1;
-	//DDRB |= LED2;
-	
-	DDRC &= ~(BUTTON_2 | BUTTON_1);
-     ff6:	87 b1       	in	r24, 0x07	; 7
-     ff8:	83 7f       	andi	r24, 0xF3	; 243
-     ffa:	87 b9       	out	0x07, r24	; 7
-	DDRB &= ~(BUTTON_4 | BUTTON_3);
-     ffc:	84 b1       	in	r24, 0x04	; 4
-     ffe:	89 7f       	andi	r24, 0xF9	; 249
-    1000:	84 b9       	out	0x04, r24	; 4
-	
-	TCCR1B = (1<<CS12) | (1<<WGM12);
-    1002:	8c e0       	ldi	r24, 0x0C	; 12
-    1004:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__DATA_REGION_ORIGIN__+0x21>
-	OCR1AH = 0x7A;
-    1008:	8a e7       	ldi	r24, 0x7A	; 122
-    100a:	80 93 89 00 	sts	0x0089, r24	; 0x800089 <__DATA_REGION_ORIGIN__+0x29>
-	OCR1AL = 0x12;
-    100e:	82 e1       	ldi	r24, 0x12	; 18
-    1010:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__DATA_REGION_ORIGIN__+0x28>
-	TIMSK1 |= (1<<ICIE1) | (1<<OCIE1A);
-    1014:	ef e6       	ldi	r30, 0x6F	; 111
-    1016:	f0 e0       	ldi	r31, 0x00	; 0
-    1018:	80 81       	ld	r24, Z
-    101a:	82 62       	ori	r24, 0x22	; 34
-    101c:	80 83       	st	Z, r24
-    101e:	08 95       	ret
-
-00001020 <display_init>:
-}
-
-void display_init()
-{
-	I2C_Initialize(100);
-    1020:	84 e6       	ldi	r24, 0x64	; 100
-    1022:	90 e0       	ldi	r25, 0x00	; 0
-    1024:	0b dd       	rcall	.-1514   	; 0xa3c <I2C_Initialize>
-	I2COutBuffer = 0;
-    1026:	10 92 23 01 	sts	0x0123, r1	; 0x800123 <I2COutBuffer>
-	ssd1306_init();
-    102a:	48 dd       	rcall	.-1392   	; 0xabc <ssd1306_init>
+void ssd1306tx_stringxy(const uint8_t *fron_src, uint8_t x, uint8_t y, const char s[]) {
+     b7e:	8f 92       	push	r8
+     b80:	9f 92       	push	r9
+     b82:	af 92       	push	r10
+     b84:	bf 92       	push	r11
+     b86:	cf 92       	push	r12
+     b88:	df 92       	push	r13
+     b8a:	ef 92       	push	r14
+     b8c:	ff 92       	push	r15
+     b8e:	0f 93       	push	r16
+     b90:	1f 93       	push	r17
+     b92:	cf 93       	push	r28
+     b94:	df 93       	push	r29
+     b96:	6c 01       	movw	r12, r24
+     b98:	96 2e       	mov	r9, r22
+     b9a:	84 2e       	mov	r8, r20
+	uint16_t j, k = 0;
+	while (s[k] != '\0') {
+     b9c:	f9 01       	movw	r30, r18
+     b9e:	a0 80       	ld	r10, Z
+     ba0:	aa 20       	and	r10, r10
+     ba2:	09 f4       	brne	.+2      	; 0xba6 <ssd1306tx_stringxy+0x28>
+     ba4:	44 c0       	rjmp	.+136    	; 0xc2e <ssd1306tx_stringxy+0xb0>
+     ba6:	79 01       	movw	r14, r18
+     ba8:	ff ef       	ldi	r31, 0xFF	; 255
+     baa:	ef 1a       	sub	r14, r31
+     bac:	ff 0a       	sbc	r15, r31
+		j = s[k] * 16 - (32 * 16); // Convert ASCII code to font data index. NOTE: (x*16) already optimized to (x<<4).
+     bae:	b1 2c       	mov	r11, r1
+     bb0:	80 e2       	ldi	r24, 0x20	; 32
+     bb2:	a8 1a       	sub	r10, r24
+     bb4:	b1 08       	sbc	r11, r1
+     bb6:	aa 0c       	add	r10, r10
+     bb8:	bb 1c       	adc	r11, r11
+     bba:	aa 0c       	add	r10, r10
+     bbc:	bb 1c       	adc	r11, r11
+     bbe:	aa 0c       	add	r10, r10
+     bc0:	bb 1c       	adc	r11, r11
+     bc2:	aa 0c       	add	r10, r10
+     bc4:	bb 1c       	adc	r11, r11
+		if (x > 120) {
+     bc6:	e8 e7       	ldi	r30, 0x78	; 120
+     bc8:	e9 15       	cp	r30, r9
+     bca:	10 f4       	brcc	.+4      	; 0xbd0 <ssd1306tx_stringxy+0x52>
+			x = 0;    // Go to the next line.
+			y++;
+     bcc:	83 94       	inc	r8
+void ssd1306tx_stringxy(const uint8_t *fron_src, uint8_t x, uint8_t y, const char s[]) {
+	uint16_t j, k = 0;
+	while (s[k] != '\0') {
+		j = s[k] * 16 - (32 * 16); // Convert ASCII code to font data index. NOTE: (x*16) already optimized to (x<<4).
+		if (x > 120) {
+			x = 0;    // Go to the next line.
+     bce:	91 2c       	mov	r9, r1
+			y++;
 		}
+		ssd1306_setpos(x, y);
+     bd0:	68 2d       	mov	r22, r8
+     bd2:	89 2d       	mov	r24, r9
+     bd4:	5a df       	rcall	.-332    	; 0xa8a <ssd1306_setpos>
+		ssd1306_start_data();
+     bd6:	3a df       	rcall	.-396    	; 0xa4c <ssd1306_start_data>
+     bd8:	86 01       	movw	r16, r12
+     bda:	0a 0d       	add	r16, r10
+     bdc:	1b 1d       	adc	r17, r11
+     bde:	e5 01       	movw	r28, r10
+     be0:	28 96       	adiw	r28, 0x08	; 8
+     be2:	cc 0d       	add	r28, r12
+     be4:	dd 1d       	adc	r29, r13
+		for (uint8_t i = 0; i < 8; i++) {
+			ssd1306_data_byte(pgm_read_byte(&fron_src[j + i]));
+     be6:	f8 01       	movw	r30, r16
+     be8:	84 91       	lpm	r24, Z
 	}
+	I2C_stop();	// Finish transmission
 }
 
-void ssd1306tx_init(const uint8_t *fron_src, uint8_t char_base) {
-	ssd1306tx_font_src = fron_src;
-    102c:	84 e1       	ldi	r24, 0x14	; 20
-    102e:	94 e0       	ldi	r25, 0x04	; 4
-    1030:	90 93 22 01 	sts	0x0122, r25	; 0x800122 <ssd1306tx_font_src+0x1>
-    1034:	80 93 21 01 	sts	0x0121, r24	; 0x800121 <ssd1306tx_font_src>
-	ssd1306tx_font_char_base = char_base;
-    1038:	80 e2       	ldi	r24, 0x20	; 32
-    103a:	80 93 20 01 	sts	0x0120, r24	; 0x800120 <ssd1306tx_font_char_base>
-{
-	I2C_Initialize(100);
-	I2COutBuffer = 0;
-	ssd1306_init();
-	ssd1306tx_init(ssd1306xled_font8x16data, ' ');
-	ssd1306_start_command();
-    103e:	32 dd       	rcall	.-1436   	; 0xaa4 <ssd1306_start_command>
-	I2C_write(0xA6);
-    1040:	86 ea       	ldi	r24, 0xA6	; 166
-    1042:	25 dd       	rcall	.-1462   	; 0xa8e <I2C_write>
+void ssd1306_data_byte(uint8_t b) {
+	I2C_write(b);
+     bea:	90 e0       	ldi	r25, 0x00	; 0
+     bec:	0d d1       	rcall	.+538    	; 0xe08 <I2C_write>
+     bee:	0f 5f       	subi	r16, 0xFF	; 255
+     bf0:	1f 4f       	sbci	r17, 0xFF	; 255
+			x = 0;    // Go to the next line.
+			y++;
+		}
+		ssd1306_setpos(x, y);
+		ssd1306_start_data();
+		for (uint8_t i = 0; i < 8; i++) {
+     bf2:	0c 17       	cp	r16, r28
+     bf4:	1d 07       	cpc	r17, r29
+     bf6:	b9 f7       	brne	.-18     	; 0xbe6 <ssd1306tx_stringxy+0x68>
 void ssd1306_data_byte(uint8_t b) {
 	I2C_write(b);
 }
 
 void ssd1306_stop(void) {
 	I2C_stop();
-    1044:	1b dd       	rcall	.-1482   	; 0xa7c <I2C_stop>
-	ssd1306_init();
-	ssd1306tx_init(ssd1306xled_font8x16data, ' ');
-	ssd1306_start_command();
-	I2C_write(0xA6);
-	ssd1306_stop();
-	ssd1306_clear_display();
-    1046:	aa dd       	rcall	.-1196   	; 0xb9c <ssd1306_clear_display>
-    1048:	08 95       	ret
+     bf8:	fe d0       	rcall	.+508    	; 0xdf6 <I2C_stop>
+		ssd1306_start_data();
+		for (uint8_t i = 0; i < 8; i++) {
+			ssd1306_data_byte(pgm_read_byte(&fron_src[j + i]));
+		}
+		ssd1306_stop();
+		ssd1306_setpos(x, y + 1);
+     bfa:	61 e0       	ldi	r22, 0x01	; 1
+     bfc:	68 0d       	add	r22, r8
+     bfe:	89 2d       	mov	r24, r9
+     c00:	44 df       	rcall	.-376    	; 0xa8a <ssd1306_setpos>
+		ssd1306_start_data();
+     c02:	24 df       	rcall	.-440    	; 0xa4c <ssd1306_start_data>
+     c04:	85 01       	movw	r16, r10
+     c06:	00 5f       	subi	r16, 0xF0	; 240
+     c08:	1f 4f       	sbci	r17, 0xFF	; 255
+     c0a:	0c 0d       	add	r16, r12
+     c0c:	1d 1d       	adc	r17, r13
+		for (uint8_t i = 0; i < 8; i++) {
+			ssd1306_data_byte(pgm_read_byte(&fron_src[j + i + 8]));
+     c0e:	fe 01       	movw	r30, r28
+     c10:	84 91       	lpm	r24, Z
+	}
+	I2C_stop();	// Finish transmission
+}
 
-0000104a <main>:
+void ssd1306_data_byte(uint8_t b) {
+	I2C_write(b);
+     c12:	90 e0       	ldi	r25, 0x00	; 0
+     c14:	f9 d0       	rcall	.+498    	; 0xe08 <I2C_write>
+     c16:	21 96       	adiw	r28, 0x01	; 1
+			ssd1306_data_byte(pgm_read_byte(&fron_src[j + i]));
+		}
+		ssd1306_stop();
+		ssd1306_setpos(x, y + 1);
+		ssd1306_start_data();
+		for (uint8_t i = 0; i < 8; i++) {
+     c18:	c0 17       	cp	r28, r16
+     c1a:	d1 07       	cpc	r29, r17
+     c1c:	c1 f7       	brne	.-16     	; 0xc0e <ssd1306tx_stringxy+0x90>
+void ssd1306_data_byte(uint8_t b) {
+	I2C_write(b);
+}
+
+void ssd1306_stop(void) {
+	I2C_stop();
+     c1e:	eb d0       	rcall	.+470    	; 0xdf6 <I2C_stop>
+		ssd1306_start_data();
+		for (uint8_t i = 0; i < 8; i++) {
+			ssd1306_data_byte(pgm_read_byte(&fron_src[j + i + 8]));
+		}
+		ssd1306_stop();
+		x += 8;
+     c20:	f8 e0       	ldi	r31, 0x08	; 8
+     c22:	9f 0e       	add	r9, r31
+	}
+}
+
+void ssd1306tx_stringxy(const uint8_t *fron_src, uint8_t x, uint8_t y, const char s[]) {
+	uint16_t j, k = 0;
+	while (s[k] != '\0') {
+     c24:	f7 01       	movw	r30, r14
+     c26:	a1 90       	ld	r10, Z+
+     c28:	7f 01       	movw	r14, r30
+     c2a:	a1 10       	cpse	r10, r1
+     c2c:	c0 cf       	rjmp	.-128    	; 0xbae <ssd1306tx_stringxy+0x30>
+		}
+		ssd1306_stop();
+		x += 8;
+		k++;
+	}
+}
+     c2e:	df 91       	pop	r29
+     c30:	cf 91       	pop	r28
+     c32:	1f 91       	pop	r17
+     c34:	0f 91       	pop	r16
+     c36:	ff 90       	pop	r15
+     c38:	ef 90       	pop	r14
+     c3a:	df 90       	pop	r13
+     c3c:	cf 90       	pop	r12
+     c3e:	bf 90       	pop	r11
+     c40:	af 90       	pop	r10
+     c42:	9f 90       	pop	r9
+     c44:	8f 90       	pop	r8
+     c46:	08 95       	ret
+
+00000c48 <display_init>:
+#include "display_extensions.h"
+
+
+void display_init()
+{
+	I2C_Initialize(100);
+     c48:	84 e6       	ldi	r24, 0x64	; 100
+     c4a:	90 e0       	ldi	r25, 0x00	; 0
+     c4c:	b4 d0       	rcall	.+360    	; 0xdb6 <I2C_Initialize>
+	ssd1306_init();
+     c4e:	06 df       	rcall	.-500    	; 0xa5c <ssd1306_init>
+	ssd1306tx_init(ssd1306xled_font8x16data, ' ');
+     c50:	60 e2       	ldi	r22, 0x20	; 32
+     c52:	84 e1       	ldi	r24, 0x14	; 20
+     c54:	94 e0       	ldi	r25, 0x04	; 4
+     c56:	8c df       	rcall	.-232    	; 0xb70 <ssd1306tx_init>
+	ssd1306_start_command();
+     c58:	f1 de       	rcall	.-542    	; 0xa3c <ssd1306_start_command>
+	I2C_write(0xA6);
+     c5a:	86 ea       	ldi	r24, 0xA6	; 166
+     c5c:	90 e0       	ldi	r25, 0x00	; 0
+     c5e:	d4 d0       	rcall	.+424    	; 0xe08 <I2C_write>
+	ssd1306_stop();
+     c60:	2c df       	rcall	.-424    	; 0xaba <ssd1306_stop>
+	ssd1306_clear_display();
+     c62:	73 df       	rcall	.-282    	; 0xb4a <ssd1306_clear_display>
+     c64:	08 95       	ret
+
+00000c66 <numberToCharArray>:
+}
+
+char * numberToCharArray(int number)
+{
+	if(number == 0) return number0;
+     c66:	00 97       	sbiw	r24, 0x00	; 0
+     c68:	d9 f0       	breq	.+54     	; 0xca0 <numberToCharArray+0x3a>
+	else if(number == 1) return number1;
+     c6a:	81 30       	cpi	r24, 0x01	; 1
+     c6c:	91 05       	cpc	r25, r1
+     c6e:	d9 f0       	breq	.+54     	; 0xca6 <numberToCharArray+0x40>
+	else if(number == 2) return number2;
+     c70:	82 30       	cpi	r24, 0x02	; 2
+     c72:	91 05       	cpc	r25, r1
+     c74:	d9 f0       	breq	.+54     	; 0xcac <numberToCharArray+0x46>
+	else if(number == 3) return number3;
+     c76:	83 30       	cpi	r24, 0x03	; 3
+     c78:	91 05       	cpc	r25, r1
+     c7a:	d9 f0       	breq	.+54     	; 0xcb2 <numberToCharArray+0x4c>
+	else if(number == 4) return number4;
+     c7c:	84 30       	cpi	r24, 0x04	; 4
+     c7e:	91 05       	cpc	r25, r1
+     c80:	d9 f0       	breq	.+54     	; 0xcb8 <numberToCharArray+0x52>
+	else if(number == 5) return number5;
+     c82:	85 30       	cpi	r24, 0x05	; 5
+     c84:	91 05       	cpc	r25, r1
+     c86:	d9 f0       	breq	.+54     	; 0xcbe <numberToCharArray+0x58>
+	else if(number == 6) return number6;
+     c88:	86 30       	cpi	r24, 0x06	; 6
+     c8a:	91 05       	cpc	r25, r1
+     c8c:	d9 f0       	breq	.+54     	; 0xcc4 <numberToCharArray+0x5e>
+	else if(number == 7) return number7;
+     c8e:	87 30       	cpi	r24, 0x07	; 7
+     c90:	91 05       	cpc	r25, r1
+     c92:	d9 f0       	breq	.+54     	; 0xcca <numberToCharArray+0x64>
+	else if(number == 8) return number8;
+     c94:	88 30       	cpi	r24, 0x08	; 8
+     c96:	91 05       	cpc	r25, r1
+     c98:	d9 f0       	breq	.+54     	; 0xcd0 <numberToCharArray+0x6a>
+	else if(number == 9) return number9;
+     c9a:	09 97       	sbiw	r24, 0x09	; 9
+     c9c:	e1 f0       	breq	.+56     	; 0xcd6 <numberToCharArray+0x70>
+}
+     c9e:	08 95       	ret
+	ssd1306_clear_display();
+}
+
+char * numberToCharArray(int number)
+{
+	if(number == 0) return number0;
+     ca0:	24 eb       	ldi	r18, 0xB4	; 180
+     ca2:	33 e0       	ldi	r19, 0x03	; 3
+     ca4:	1a c0       	rjmp	.+52     	; 0xcda <numberToCharArray+0x74>
+	else if(number == 1) return number1;
+     ca6:	24 e5       	ldi	r18, 0x54	; 84
+     ca8:	33 e0       	ldi	r19, 0x03	; 3
+     caa:	17 c0       	rjmp	.+46     	; 0xcda <numberToCharArray+0x74>
+	else if(number == 2) return number2;
+     cac:	24 ef       	ldi	r18, 0xF4	; 244
+     cae:	32 e0       	ldi	r19, 0x02	; 2
+     cb0:	14 c0       	rjmp	.+40     	; 0xcda <numberToCharArray+0x74>
+	else if(number == 3) return number3;
+     cb2:	24 e9       	ldi	r18, 0x94	; 148
+     cb4:	32 e0       	ldi	r19, 0x02	; 2
+     cb6:	11 c0       	rjmp	.+34     	; 0xcda <numberToCharArray+0x74>
+	else if(number == 4) return number4;
+     cb8:	24 e3       	ldi	r18, 0x34	; 52
+     cba:	32 e0       	ldi	r19, 0x02	; 2
+     cbc:	0e c0       	rjmp	.+28     	; 0xcda <numberToCharArray+0x74>
+	else if(number == 5) return number5;
+     cbe:	24 ed       	ldi	r18, 0xD4	; 212
+     cc0:	31 e0       	ldi	r19, 0x01	; 1
+     cc2:	0b c0       	rjmp	.+22     	; 0xcda <numberToCharArray+0x74>
+	else if(number == 6) return number6;
+     cc4:	24 e7       	ldi	r18, 0x74	; 116
+     cc6:	31 e0       	ldi	r19, 0x01	; 1
+     cc8:	08 c0       	rjmp	.+16     	; 0xcda <numberToCharArray+0x74>
+	else if(number == 7) return number7;
+     cca:	24 e1       	ldi	r18, 0x14	; 20
+     ccc:	31 e0       	ldi	r19, 0x01	; 1
+     cce:	05 c0       	rjmp	.+10     	; 0xcda <numberToCharArray+0x74>
+	else if(number == 8) return number8;
+     cd0:	24 eb       	ldi	r18, 0xB4	; 180
+     cd2:	30 e0       	ldi	r19, 0x00	; 0
+     cd4:	02 c0       	rjmp	.+4      	; 0xcda <numberToCharArray+0x74>
+	else if(number == 9) return number9;
+     cd6:	24 e5       	ldi	r18, 0x54	; 84
+     cd8:	30 e0       	ldi	r19, 0x00	; 0
+     cda:	82 2f       	mov	r24, r18
+     cdc:	93 2f       	mov	r25, r19
+}
+     cde:	08 95       	ret
+
+00000ce0 <draw_digit>:
+
+void draw_digit(int xstart, int ystart, int digit)
+{
+     ce0:	0f 93       	push	r16
+     ce2:	1f 93       	push	r17
+     ce4:	cf 93       	push	r28
+     ce6:	df 93       	push	r29
+     ce8:	c8 2f       	mov	r28, r24
+     cea:	d6 2f       	mov	r29, r22
+     cec:	ca 01       	movw	r24, r20
+	ssd1306_draw_bmp(xstart, ystart, xstart+24, ystart+4, numberToCharArray(digit));
+     cee:	bb df       	rcall	.-138    	; 0xc66 <numberToCharArray>
+     cf0:	24 e0       	ldi	r18, 0x04	; 4
+     cf2:	2d 0f       	add	r18, r29
+     cf4:	48 e1       	ldi	r20, 0x18	; 24
+     cf6:	4c 0f       	add	r20, r28
+     cf8:	8c 01       	movw	r16, r24
+     cfa:	6d 2f       	mov	r22, r29
+     cfc:	8c 2f       	mov	r24, r28
+     cfe:	df de       	rcall	.-578    	; 0xabe <ssd1306_draw_bmp>
+}
+     d00:	df 91       	pop	r29
+     d02:	cf 91       	pop	r28
+     d04:	1f 91       	pop	r17
+     d06:	0f 91       	pop	r16
+     d08:	08 95       	ret
+
+00000d0a <draw_number>:
+
+void draw_number(int xstart, int ystart, int number)
+{
+     d0a:	ef 92       	push	r14
+     d0c:	ff 92       	push	r15
+     d0e:	0f 93       	push	r16
+     d10:	1f 93       	push	r17
+     d12:	cf 93       	push	r28
+     d14:	df 93       	push	r29
+     d16:	8c 01       	movw	r16, r24
+     d18:	7b 01       	movw	r14, r22
+     d1a:	ea 01       	movw	r28, r20
+	int first, second;
+	
+	if (number > 99) 
+     d1c:	44 36       	cpi	r20, 0x64	; 100
+     d1e:	51 05       	cpc	r21, r1
+     d20:	a4 f4       	brge	.+40     	; 0xd4a <draw_number+0x40>
+	{
+		return;
+	}
+	else if (number > 9)
+     d22:	4a 30       	cpi	r20, 0x0A	; 10
+     d24:	51 05       	cpc	r21, r1
+     d26:	3c f0       	brlt	.+14     	; 0xd36 <draw_number+0x2c>
+	{
+		first = number/10;
+		second = number%10;
+     d28:	ca 01       	movw	r24, r20
+     d2a:	6a e0       	ldi	r22, 0x0A	; 10
+     d2c:	70 e0       	ldi	r23, 0x00	; 0
+     d2e:	6f d2       	rcall	.+1246   	; 0x120e <__divmodhi4>
+     d30:	ab 01       	movw	r20, r22
+     d32:	ec 01       	movw	r28, r24
+     d34:	02 c0       	rjmp	.+4      	; 0xd3a <draw_number+0x30>
+	}
+	else
+	{
+		first = 0;
+     d36:	40 e0       	ldi	r20, 0x00	; 0
+     d38:	50 e0       	ldi	r21, 0x00	; 0
+		second = number;
+	}
+	
+	draw_digit(xstart, ystart, first);
+     d3a:	b7 01       	movw	r22, r14
+     d3c:	c8 01       	movw	r24, r16
+     d3e:	d0 df       	rcall	.-96     	; 0xce0 <draw_digit>
+	draw_digit(xstart+ 24,ystart, second);
+     d40:	ae 01       	movw	r20, r28
+     d42:	b7 01       	movw	r22, r14
+     d44:	c8 01       	movw	r24, r16
+     d46:	48 96       	adiw	r24, 0x18	; 24
+     d48:	cb df       	rcall	.-106    	; 0xce0 <draw_digit>
+}
+     d4a:	df 91       	pop	r29
+     d4c:	cf 91       	pop	r28
+     d4e:	1f 91       	pop	r17
+     d50:	0f 91       	pop	r16
+     d52:	ff 90       	pop	r15
+     d54:	ef 90       	pop	r14
+     d56:	08 95       	ret
+
+00000d58 <draw_string>:
+
+void draw_string(int xstart, int ystart, char* str, int stringLenght)
+{
+     d58:	9a 01       	movw	r18, r20
+	ssd1306tx_stringxy(ssd1306xled_font8x16data, xstart, ystart, str);
+     d5a:	46 2f       	mov	r20, r22
+     d5c:	68 2f       	mov	r22, r24
+     d5e:	84 e1       	ldi	r24, 0x14	; 20
+     d60:	94 e0       	ldi	r25, 0x04	; 4
+     d62:	0d df       	rcall	.-486    	; 0xb7e <ssd1306tx_stringxy>
+     d64:	08 95       	ret
+
+00000d66 <draw_clock>:
+}
+
+void draw_clock(int xstart, int ystart, int hours, int minutes, bool displayHour, bool displayMinute)
+{
+     d66:	af 92       	push	r10
+     d68:	bf 92       	push	r11
+     d6a:	cf 92       	push	r12
+     d6c:	df 92       	push	r13
+     d6e:	ef 92       	push	r14
+     d70:	0f 93       	push	r16
+     d72:	cf 93       	push	r28
+     d74:	df 93       	push	r29
+     d76:	ec 01       	movw	r28, r24
+     d78:	6b 01       	movw	r12, r22
+     d7a:	59 01       	movw	r10, r18
+	if(displayHour)
+     d7c:	01 11       	cpse	r16, r1
+	{
+		draw_number(xstart,ystart, hours);
+     d7e:	c5 df       	rcall	.-118    	; 0xd0a <draw_number>
+	draw_digit(xstart+ 24,ystart, second);
+}
+
+void draw_string(int xstart, int ystart, char* str, int stringLenght)
+{
+	ssd1306tx_stringxy(ssd1306xled_font8x16data, xstart, ystart, str);
+     d80:	25 e0       	ldi	r18, 0x05	; 5
+     d82:	31 e0       	ldi	r19, 0x01	; 1
+     d84:	a6 01       	movw	r20, r12
+     d86:	4f 5f       	subi	r20, 0xFF	; 255
+     d88:	5f 4f       	sbci	r21, 0xFF	; 255
+     d8a:	be 01       	movw	r22, r28
+     d8c:	60 5d       	subi	r22, 0xD0	; 208
+     d8e:	7f 4f       	sbci	r23, 0xFF	; 255
+     d90:	84 e1       	ldi	r24, 0x14	; 20
+     d92:	94 e0       	ldi	r25, 0x04	; 4
+     d94:	f4 de       	rcall	.-536    	; 0xb7e <ssd1306tx_stringxy>
+		draw_number(xstart,ystart, hours);
+	}
+	
+	draw_string(xstart +48, ystart +1, ":",1);
+	
+	if(displayMinute)
+     d96:	ee 20       	and	r14, r14
+     d98:	29 f0       	breq	.+10     	; 0xda4 <draw_clock+0x3e>
+	{	
+		draw_number(xstart + 60, ystart, minutes);
+     d9a:	a5 01       	movw	r20, r10
+     d9c:	b6 01       	movw	r22, r12
+     d9e:	ce 01       	movw	r24, r28
+     da0:	cc 96       	adiw	r24, 0x3c	; 60
+     da2:	b3 df       	rcall	.-154    	; 0xd0a <draw_number>
+	}
+}
+     da4:	df 91       	pop	r29
+     da6:	cf 91       	pop	r28
+     da8:	0f 91       	pop	r16
+     daa:	ef 90       	pop	r14
+     dac:	df 90       	pop	r13
+     dae:	cf 90       	pop	r12
+     db0:	bf 90       	pop	r11
+     db2:	af 90       	pop	r10
+     db4:	08 95       	ret
+
+00000db6 <I2C_Initialize>:
+{
+	//TWSR |= 0x00; // Set prescaler to 1
+
+	uint8_t bitrate_div;
+
+	bitrate_div = ((F_CPU/1000l)/bitRate_kHz);
+     db6:	9c 01       	movw	r18, r24
+     db8:	40 e0       	ldi	r20, 0x00	; 0
+     dba:	50 e0       	ldi	r21, 0x00	; 0
+     dbc:	60 e4       	ldi	r22, 0x40	; 64
+     dbe:	7f e1       	ldi	r23, 0x1F	; 31
+     dc0:	80 e0       	ldi	r24, 0x00	; 0
+     dc2:	90 e0       	ldi	r25, 0x00	; 0
+     dc4:	37 d2       	rcall	.+1134   	; 0x1234 <__divmodsi4>
+     dc6:	82 2f       	mov	r24, r18
+	
+	if(bitrate_div >= 16)
+     dc8:	20 31       	cpi	r18, 0x10	; 16
+     dca:	48 f0       	brcs	.+18     	; 0xdde <I2C_Initialize+0x28>
+	bitrate_div = (bitrate_div-16)/2;
+     dcc:	30 e0       	ldi	r19, 0x00	; 0
+     dce:	20 51       	subi	r18, 0x10	; 16
+     dd0:	31 09       	sbc	r19, r1
+     dd2:	c9 01       	movw	r24, r18
+     dd4:	99 23       	and	r25, r25
+     dd6:	0c f4       	brge	.+2      	; 0xdda <I2C_Initialize+0x24>
+     dd8:	01 96       	adiw	r24, 0x01	; 1
+     dda:	95 95       	asr	r25
+     ddc:	87 95       	ror	r24
+	
+	TWBR = bitrate_div;
+     dde:	80 93 b8 00 	sts	0x00B8, r24	; 0x8000b8 <__DATA_REGION_ORIGIN__+0x58>
+     de2:	08 95       	ret
+
+00000de4 <I2C_start>:
+}
+
+void I2C_start(void){
+	TWCR = (1<<TWINT) | (1<<TWEN) |( 1<<TWSTA);
+     de4:	84 ea       	ldi	r24, 0xA4	; 164
+     de6:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
+	while (! (TWCR & (1<<TWINT)));
+     dea:	ec eb       	ldi	r30, 0xBC	; 188
+     dec:	f0 e0       	ldi	r31, 0x00	; 0
+     dee:	80 81       	ld	r24, Z
+     df0:	88 23       	and	r24, r24
+     df2:	ec f7       	brge	.-6      	; 0xdee <I2C_start+0xa>
+}
+     df4:	08 95       	ret
+
+00000df6 <I2C_stop>:
+
+void I2C_stop(void){
+	TWCR = (1<<TWINT) | (1<<TWEN) | (1<<TWSTO);
+     df6:	84 e9       	ldi	r24, 0x94	; 148
+     df8:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
+	while (! (TWCR & (1<<TWSTO)));
+     dfc:	ec eb       	ldi	r30, 0xBC	; 188
+     dfe:	f0 e0       	ldi	r31, 0x00	; 0
+     e00:	80 81       	ld	r24, Z
+     e02:	84 ff       	sbrs	r24, 4
+     e04:	fd cf       	rjmp	.-6      	; 0xe00 <I2C_stop+0xa>
+}
+     e06:	08 95       	ret
+
+00000e08 <I2C_write>:
+
+void I2C_write(uint8_t dane){
+	TWDR = dane;
+     e08:	80 93 bb 00 	sts	0x00BB, r24	; 0x8000bb <__DATA_REGION_ORIGIN__+0x5b>
+	TWCR = (1<<TWINT) | (1<<TWEN);
+     e0c:	84 e8       	ldi	r24, 0x84	; 132
+     e0e:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
+	while (! (TWCR & (1<<TWINT)));
+     e12:	ec eb       	ldi	r30, 0xBC	; 188
+     e14:	f0 e0       	ldi	r31, 0x00	; 0
+     e16:	80 81       	ld	r24, Z
+     e18:	88 23       	and	r24, r24
+     e1a:	ec f7       	brge	.-6      	; 0xe16 <I2C_write+0xe>
+}
+     e1c:	08 95       	ret
+
+00000e1e <display_timer_set>:
+{
+	//ssd1306_draw_bmp(0,0, 24,4, number2);
+}
+
+void display_timer_set() 
+{	
+     e1e:	ef 92       	push	r14
+     e20:	0f 93       	push	r16
+	draw_string(0, 0, "SET TIMER", 9);
+     e22:	29 e0       	ldi	r18, 0x09	; 9
+     e24:	30 e0       	ldi	r19, 0x00	; 0
+     e26:	47 e0       	ldi	r20, 0x07	; 7
+     e28:	51 e0       	ldi	r21, 0x01	; 1
+     e2a:	60 e0       	ldi	r22, 0x00	; 0
+     e2c:	70 e0       	ldi	r23, 0x00	; 0
+     e2e:	80 e0       	ldi	r24, 0x00	; 0
+     e30:	90 e0       	ldi	r25, 0x00	; 0
+     e32:	92 df       	rcall	.-220    	; 0xd58 <draw_string>
+	draw_clock(0,2, selected_hour, selected_minute, displayHour,displayMinute);
+     e34:	20 91 1d 01 	lds	r18, 0x011D	; 0x80011d <selected_minute>
+     e38:	40 91 03 01 	lds	r20, 0x0103	; 0x800103 <selected_hour>
+     e3c:	30 e0       	ldi	r19, 0x00	; 0
+     e3e:	50 e0       	ldi	r21, 0x00	; 0
+     e40:	e0 90 01 01 	lds	r14, 0x0101	; 0x800101 <displayMinute>
+     e44:	00 91 02 01 	lds	r16, 0x0102	; 0x800102 <displayHour>
+     e48:	62 e0       	ldi	r22, 0x02	; 2
+     e4a:	70 e0       	ldi	r23, 0x00	; 0
+     e4c:	80 e0       	ldi	r24, 0x00	; 0
+     e4e:	90 e0       	ldi	r25, 0x00	; 0
+     e50:	8a df       	rcall	.-236    	; 0xd66 <draw_clock>
+}
+     e52:	0f 91       	pop	r16
+     e54:	ef 90       	pop	r14
+     e56:	08 95       	ret
+
+00000e58 <display_timer>:
+
+void display_timer() 
+{
+     e58:	ef 92       	push	r14
+     e5a:	0f 93       	push	r16
+	draw_string(0, 0, "TIMER", 5);
+     e5c:	25 e0       	ldi	r18, 0x05	; 5
+     e5e:	30 e0       	ldi	r19, 0x00	; 0
+     e60:	4b e0       	ldi	r20, 0x0B	; 11
+     e62:	51 e0       	ldi	r21, 0x01	; 1
+     e64:	60 e0       	ldi	r22, 0x00	; 0
+     e66:	70 e0       	ldi	r23, 0x00	; 0
+     e68:	80 e0       	ldi	r24, 0x00	; 0
+     e6a:	90 e0       	ldi	r25, 0x00	; 0
+     e6c:	75 df       	rcall	.-278    	; 0xd58 <draw_string>
+	draw_clock(0,2, 0, 0, displayHour,displayMinute);
+     e6e:	e0 90 01 01 	lds	r14, 0x0101	; 0x800101 <displayMinute>
+     e72:	00 91 02 01 	lds	r16, 0x0102	; 0x800102 <displayHour>
+     e76:	20 e0       	ldi	r18, 0x00	; 0
+     e78:	30 e0       	ldi	r19, 0x00	; 0
+     e7a:	40 e0       	ldi	r20, 0x00	; 0
+     e7c:	50 e0       	ldi	r21, 0x00	; 0
+     e7e:	62 e0       	ldi	r22, 0x02	; 2
+     e80:	70 e0       	ldi	r23, 0x00	; 0
+     e82:	80 e0       	ldi	r24, 0x00	; 0
+     e84:	90 e0       	ldi	r25, 0x00	; 0
+     e86:	6f df       	rcall	.-290    	; 0xd66 <draw_clock>
+}
+     e88:	0f 91       	pop	r16
+     e8a:	ef 90       	pop	r14
+     e8c:	08 95       	ret
+
+00000e8e <display_clock_set>:
+
+void display_clock_set() 
+{
+     e8e:	ef 92       	push	r14
+     e90:	0f 93       	push	r16
+	draw_string(0, 0, "SET CLOCK", 9);
+     e92:	29 e0       	ldi	r18, 0x09	; 9
+     e94:	30 e0       	ldi	r19, 0x00	; 0
+     e96:	41 e1       	ldi	r20, 0x11	; 17
+     e98:	51 e0       	ldi	r21, 0x01	; 1
+     e9a:	60 e0       	ldi	r22, 0x00	; 0
+     e9c:	70 e0       	ldi	r23, 0x00	; 0
+     e9e:	80 e0       	ldi	r24, 0x00	; 0
+     ea0:	90 e0       	ldi	r25, 0x00	; 0
+     ea2:	5a df       	rcall	.-332    	; 0xd58 <draw_string>
+	draw_clock(0,2, selected_hour, selected_minute, displayHour,displayMinute);
+     ea4:	20 91 1d 01 	lds	r18, 0x011D	; 0x80011d <selected_minute>
+     ea8:	40 91 03 01 	lds	r20, 0x0103	; 0x800103 <selected_hour>
+     eac:	30 e0       	ldi	r19, 0x00	; 0
+     eae:	50 e0       	ldi	r21, 0x00	; 0
+     eb0:	e0 90 01 01 	lds	r14, 0x0101	; 0x800101 <displayMinute>
+     eb4:	00 91 02 01 	lds	r16, 0x0102	; 0x800102 <displayHour>
+     eb8:	62 e0       	ldi	r22, 0x02	; 2
+     eba:	70 e0       	ldi	r23, 0x00	; 0
+     ebc:	80 e0       	ldi	r24, 0x00	; 0
+     ebe:	90 e0       	ldi	r25, 0x00	; 0
+     ec0:	52 df       	rcall	.-348    	; 0xd66 <draw_clock>
+}
+     ec2:	0f 91       	pop	r16
+     ec4:	ef 90       	pop	r14
+     ec6:	08 95       	ret
+
+00000ec8 <display_clock>:
+
+void display_clock() 
+{
+     ec8:	ef 92       	push	r14
+     eca:	0f 93       	push	r16
+	draw_clock(0,0, hour, minute, displayHour, displayMinute);
+     ecc:	20 91 1f 01 	lds	r18, 0x011F	; 0x80011f <minute>
+     ed0:	40 91 04 01 	lds	r20, 0x0104	; 0x800104 <hour>
+     ed4:	30 e0       	ldi	r19, 0x00	; 0
+     ed6:	50 e0       	ldi	r21, 0x00	; 0
+     ed8:	e0 90 01 01 	lds	r14, 0x0101	; 0x800101 <displayMinute>
+     edc:	00 91 02 01 	lds	r16, 0x0102	; 0x800102 <displayHour>
+     ee0:	60 e0       	ldi	r22, 0x00	; 0
+     ee2:	70 e0       	ldi	r23, 0x00	; 0
+     ee4:	80 e0       	ldi	r24, 0x00	; 0
+     ee6:	90 e0       	ldi	r25, 0x00	; 0
+     ee8:	3e df       	rcall	.-388    	; 0xd66 <draw_clock>
+	draw_number(60,4,second);
+     eea:	40 91 1e 01 	lds	r20, 0x011E	; 0x80011e <second>
+     eee:	50 e0       	ldi	r21, 0x00	; 0
+     ef0:	64 e0       	ldi	r22, 0x04	; 4
+     ef2:	70 e0       	ldi	r23, 0x00	; 0
+     ef4:	8c e3       	ldi	r24, 0x3C	; 60
+     ef6:	90 e0       	ldi	r25, 0x00	; 0
+     ef8:	08 df       	rcall	.-496    	; 0xd0a <draw_number>
+}
+     efa:	0f 91       	pop	r16
+     efc:	ef 90       	pop	r14
+     efe:	08 95       	ret
+
+00000f00 <run>:
+
+void run()
+{	
+	if(selected_menu == MENU_HUMIDITY) display_air_humidity();
+     f00:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
+     f04:	8c 33       	cpi	r24, 0x3C	; 60
+     f06:	19 f1       	breq	.+70     	; 0xf4e <run+0x4e>
+	else if(selected_menu == MENU_TEMPEREATURE) display_temperature();
+     f08:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
+     f0c:	82 33       	cpi	r24, 0x32	; 50
+     f0e:	f9 f0       	breq	.+62     	; 0xf4e <run+0x4e>
+	else if(selected_menu == MENU_TIMER) display_timer();
+     f10:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
+     f14:	8e 31       	cpi	r24, 0x1E	; 30
+     f16:	11 f4       	brne	.+4      	; 0xf1c <run+0x1c>
+     f18:	9f df       	rcall	.-194    	; 0xe58 <display_timer>
+     f1a:	08 95       	ret
+	else if(selected_menu == MENU_TIMER_SET_HOUR || selected_menu == MENU_TIMER_SET_MINUTE) display_timer_set();
+     f1c:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
+     f20:	88 32       	cpi	r24, 0x28	; 40
+     f22:	21 f0       	breq	.+8      	; 0xf2c <run+0x2c>
+     f24:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
+     f28:	89 32       	cpi	r24, 0x29	; 41
+     f2a:	11 f4       	brne	.+4      	; 0xf30 <run+0x30>
+     f2c:	78 df       	rcall	.-272    	; 0xe1e <display_timer_set>
+     f2e:	08 95       	ret
+	else if(selected_menu == MENU_CLOCK) display_clock();
+     f30:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
+     f34:	81 30       	cpi	r24, 0x01	; 1
+     f36:	11 f4       	brne	.+4      	; 0xf3c <run+0x3c>
+     f38:	c7 df       	rcall	.-114    	; 0xec8 <display_clock>
+     f3a:	08 95       	ret
+	else if(selected_menu == MENU_CLOCK_SET_HOUR || selected_menu == MENU_CLOCK_SET_MINUTE) display_clock_set();
+     f3c:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
+     f40:	84 31       	cpi	r24, 0x14	; 20
+     f42:	21 f0       	breq	.+8      	; 0xf4c <run+0x4c>
+     f44:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
+     f48:	85 31       	cpi	r24, 0x15	; 21
+     f4a:	09 f4       	brne	.+2      	; 0xf4e <run+0x4e>
+     f4c:	a0 df       	rcall	.-192    	; 0xe8e <display_clock_set>
+     f4e:	08 95       	ret
+
+00000f50 <switch_menu>:
+}
+
+void switch_menu(int number)
+{
+     f50:	cf 93       	push	r28
+     f52:	c8 2f       	mov	r28, r24
+	ssd1306_clear_display();
+     f54:	fa dd       	rcall	.-1036   	; 0xb4a <ssd1306_clear_display>
+	selected_menu = number;
+     f56:	c0 93 00 01 	sts	0x0100, r28	; 0x800100 <__data_start>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+     f5a:	2f e7       	ldi	r18, 0x7F	; 127
+     f5c:	8a e1       	ldi	r24, 0x1A	; 26
+     f5e:	96 e0       	ldi	r25, 0x06	; 6
+     f60:	21 50       	subi	r18, 0x01	; 1
+     f62:	80 40       	sbci	r24, 0x00	; 0
+     f64:	90 40       	sbci	r25, 0x00	; 0
+     f66:	e1 f7       	brne	.-8      	; 0xf60 <switch_menu+0x10>
+     f68:	00 c0       	rjmp	.+0      	; 0xf6a <switch_menu+0x1a>
+     f6a:	00 00       	nop
+	_delay_ms(250);
+}
+     f6c:	cf 91       	pop	r28
+     f6e:	08 95       	ret
+
+00000f70 <port_init>:
+void port_init()
+{
+	//DDRD |= LED1;
+	//DDRB |= LED2;
+	
+	DDRC &= ~(BUTTON_2 | BUTTON_1);
+     f70:	87 b1       	in	r24, 0x07	; 7
+     f72:	83 7f       	andi	r24, 0xF3	; 243
+     f74:	87 b9       	out	0x07, r24	; 7
+	DDRB &= ~(BUTTON_4 | BUTTON_3);
+     f76:	84 b1       	in	r24, 0x04	; 4
+     f78:	89 7f       	andi	r24, 0xF9	; 249
+     f7a:	84 b9       	out	0x04, r24	; 4
+	
+	TCCR1B = (1<<CS12) | (1<<WGM12);
+     f7c:	8c e0       	ldi	r24, 0x0C	; 12
+     f7e:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__DATA_REGION_ORIGIN__+0x21>
+	OCR1AH = 0x7A;
+     f82:	8a e7       	ldi	r24, 0x7A	; 122
+     f84:	80 93 89 00 	sts	0x0089, r24	; 0x800089 <__DATA_REGION_ORIGIN__+0x29>
+	OCR1AL = 0x12;
+     f88:	82 e1       	ldi	r24, 0x12	; 18
+     f8a:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__DATA_REGION_ORIGIN__+0x28>
+	TIMSK1 |= (1<<ICIE1) | (1<<OCIE1A);
+     f8e:	ef e6       	ldi	r30, 0x6F	; 111
+     f90:	f0 e0       	ldi	r31, 0x00	; 0
+     f92:	80 81       	ld	r24, Z
+     f94:	82 62       	ori	r24, 0x22	; 34
+     f96:	80 83       	st	Z, r24
+     f98:	08 95       	ret
+
+00000f9a <refreshBools>:
+}
+
+void refreshBools()
+{
+	displayMinute = !(selected_menu == MENU_CLOCK_SET_HOUR);
+     f9a:	90 91 00 01 	lds	r25, 0x0100	; 0x800100 <__data_start>
+     f9e:	81 e0       	ldi	r24, 0x01	; 1
+     fa0:	94 31       	cpi	r25, 0x14	; 20
+     fa2:	09 f4       	brne	.+2      	; 0xfa6 <refreshBools+0xc>
+     fa4:	80 e0       	ldi	r24, 0x00	; 0
+     fa6:	80 93 01 01 	sts	0x0101, r24	; 0x800101 <displayMinute>
+	displayHour = !(selected_menu == MENU_CLOCK_SET_MINUTE);
+     faa:	90 91 00 01 	lds	r25, 0x0100	; 0x800100 <__data_start>
+     fae:	81 e0       	ldi	r24, 0x01	; 1
+     fb0:	95 31       	cpi	r25, 0x15	; 21
+     fb2:	09 f4       	brne	.+2      	; 0xfb6 <refreshBools+0x1c>
+     fb4:	80 e0       	ldi	r24, 0x00	; 0
+     fb6:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <displayHour>
+     fba:	08 95       	ret
+
+00000fbc <main>:
 }
 
 int main(void)
 {
 	sei();
-    104a:	78 94       	sei
+     fbc:	78 94       	sei
 	port_init();
-    104c:	d4 df       	rcall	.-88     	; 0xff6 <port_init>
+     fbe:	d8 df       	rcall	.-80     	; 0xf70 <port_init>
 	display_init();
-    104e:	e8 df       	rcall	.-48     	; 0x1020 <display_init>
-			{
-				switch_menu(MENU_CLOCK_SET_HOUR);
-				_delay_ms(200);
-			};
-		}
-		else if (selected_menu = MENU_TIMER_SET_HOUR)
-    1050:	c8 e2       	ldi	r28, 0x28	; 40
-{
-	number++;
-	
-	if(number > max)
-	{
-		 number = 0;
-    1052:	10 e0       	ldi	r17, 0x00	; 0
-    1054:	d0 e0       	ldi	r29, 0x00	; 0
-{
-	number--;
-	
-	if(number < 0)
-	{ 
-		number = max;
-    1056:	0f 2e       	mov	r0, r31
-    1058:	f7 e1       	ldi	r31, 0x17	; 23
-    105a:	ff 2e       	mov	r15, r31
-    105c:	f0 2d       	mov	r31, r0
-    105e:	00 e0       	ldi	r16, 0x00	; 0
-	port_init();
-	display_init();
+     fc0:	43 de       	rcall	.-890    	; 0xc48 <display_init>
 
 	while (1)
 	{
+		refreshBools();
+     fc2:	eb df       	rcall	.-42     	; 0xf9a <refreshBools>
 		if(selected_menu == MENU_CLOCK || selected_menu == MENU_TIMER || selected_menu == MENU_TEMPEREATURE || selected_menu == MENU_HUMIDITY)
-    1060:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
-    1064:	81 30       	cpi	r24, 0x01	; 1
-    1066:	61 f0       	breq	.+24     	; 0x1080 <main+0x36>
-    1068:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
-    106c:	8e 31       	cpi	r24, 0x1E	; 30
-    106e:	41 f0       	breq	.+16     	; 0x1080 <main+0x36>
-    1070:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
-    1074:	82 33       	cpi	r24, 0x32	; 50
-    1076:	21 f0       	breq	.+8      	; 0x1080 <main+0x36>
-    1078:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
-    107c:	8c 33       	cpi	r24, 0x3C	; 60
-    107e:	61 f5       	brne	.+88     	; 0x10d8 <main+0x8e>
+     fc4:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
+     fc8:	81 30       	cpi	r24, 0x01	; 1
+     fca:	61 f0       	breq	.+24     	; 0xfe4 <main+0x28>
+     fcc:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
+     fd0:	8e 31       	cpi	r24, 0x1E	; 30
+     fd2:	41 f0       	breq	.+16     	; 0xfe4 <main+0x28>
+     fd4:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
+     fd8:	82 33       	cpi	r24, 0x32	; 50
+     fda:	21 f0       	breq	.+8      	; 0xfe4 <main+0x28>
+     fdc:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
+     fe0:	8c 33       	cpi	r24, 0x3C	; 60
+     fe2:	61 f5       	brne	.+88     	; 0x103c <main+0x80>
 		{
 			if(BUTTON_1_PRESSED && selected_menu == MENU_CLOCK) switch_menu(MENU_CLOCK_SET_HOUR);
-    1080:	33 99       	sbic	0x06, 3	; 6
-    1082:	08 c0       	rjmp	.+16     	; 0x1094 <main+0x4a>
-    1084:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
-    1088:	81 30       	cpi	r24, 0x01	; 1
-    108a:	21 f4       	brne	.+8      	; 0x1094 <main+0x4a>
-    108c:	84 e1       	ldi	r24, 0x14	; 20
-    108e:	90 e0       	ldi	r25, 0x00	; 0
-    1090:	a2 df       	rcall	.-188    	; 0xfd6 <switch_menu>
-    1092:	d7 c0       	rjmp	.+430    	; 0x1242 <main+0x1f8>
+     fe4:	33 99       	sbic	0x06, 3	; 6
+     fe6:	08 c0       	rjmp	.+16     	; 0xff8 <main+0x3c>
+     fe8:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
+     fec:	81 30       	cpi	r24, 0x01	; 1
+     fee:	21 f4       	brne	.+8      	; 0xff8 <main+0x3c>
+     ff0:	84 e1       	ldi	r24, 0x14	; 20
+     ff2:	90 e0       	ldi	r25, 0x00	; 0
+     ff4:	ad df       	rcall	.-166    	; 0xf50 <switch_menu>
+     ff6:	c1 c0       	rjmp	.+386    	; 0x117a <main+0x1be>
 			else if(BUTTON_1_PRESSED) switch_menu(MENU_CLOCK);
-    1094:	33 99       	sbic	0x06, 3	; 6
-    1096:	04 c0       	rjmp	.+8      	; 0x10a0 <main+0x56>
-    1098:	81 e0       	ldi	r24, 0x01	; 1
-    109a:	90 e0       	ldi	r25, 0x00	; 0
-    109c:	9c df       	rcall	.-200    	; 0xfd6 <switch_menu>
-    109e:	d1 c0       	rjmp	.+418    	; 0x1242 <main+0x1f8>
+     ff8:	33 99       	sbic	0x06, 3	; 6
+     ffa:	04 c0       	rjmp	.+8      	; 0x1004 <main+0x48>
+     ffc:	81 e0       	ldi	r24, 0x01	; 1
+     ffe:	90 e0       	ldi	r25, 0x00	; 0
+    1000:	a7 df       	rcall	.-178    	; 0xf50 <switch_menu>
+    1002:	bb c0       	rjmp	.+374    	; 0x117a <main+0x1be>
 			else if(BUTTON_2_PRESSED && selected_menu == MENU_TIMER) switch_menu(MENU_TIMER_SET_HOUR);
-    10a0:	32 99       	sbic	0x06, 2	; 6
-    10a2:	08 c0       	rjmp	.+16     	; 0x10b4 <main+0x6a>
-    10a4:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
-    10a8:	8e 31       	cpi	r24, 0x1E	; 30
-    10aa:	21 f4       	brne	.+8      	; 0x10b4 <main+0x6a>
-    10ac:	88 e2       	ldi	r24, 0x28	; 40
-    10ae:	90 e0       	ldi	r25, 0x00	; 0
-    10b0:	92 df       	rcall	.-220    	; 0xfd6 <switch_menu>
-    10b2:	c7 c0       	rjmp	.+398    	; 0x1242 <main+0x1f8>
+    1004:	32 99       	sbic	0x06, 2	; 6
+    1006:	08 c0       	rjmp	.+16     	; 0x1018 <main+0x5c>
+    1008:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
+    100c:	8e 31       	cpi	r24, 0x1E	; 30
+    100e:	21 f4       	brne	.+8      	; 0x1018 <main+0x5c>
+    1010:	88 e2       	ldi	r24, 0x28	; 40
+    1012:	90 e0       	ldi	r25, 0x00	; 0
+    1014:	9d df       	rcall	.-198    	; 0xf50 <switch_menu>
+    1016:	b1 c0       	rjmp	.+354    	; 0x117a <main+0x1be>
 			else if(BUTTON_2_PRESSED) switch_menu(MENU_TIMER);
-    10b4:	32 99       	sbic	0x06, 2	; 6
-    10b6:	04 c0       	rjmp	.+8      	; 0x10c0 <main+0x76>
-    10b8:	8e e1       	ldi	r24, 0x1E	; 30
-    10ba:	90 e0       	ldi	r25, 0x00	; 0
-    10bc:	8c df       	rcall	.-232    	; 0xfd6 <switch_menu>
-    10be:	c1 c0       	rjmp	.+386    	; 0x1242 <main+0x1f8>
+    1018:	32 99       	sbic	0x06, 2	; 6
+    101a:	04 c0       	rjmp	.+8      	; 0x1024 <main+0x68>
+    101c:	8e e1       	ldi	r24, 0x1E	; 30
+    101e:	90 e0       	ldi	r25, 0x00	; 0
+    1020:	97 df       	rcall	.-210    	; 0xf50 <switch_menu>
+    1022:	ab c0       	rjmp	.+342    	; 0x117a <main+0x1be>
 			else if(BUTTON_3_PRESSED) switch_menu(MENU_TEMPEREATURE);
-    10c0:	1a 99       	sbic	0x03, 2	; 3
-    10c2:	04 c0       	rjmp	.+8      	; 0x10cc <main+0x82>
-    10c4:	82 e3       	ldi	r24, 0x32	; 50
-    10c6:	90 e0       	ldi	r25, 0x00	; 0
-    10c8:	86 df       	rcall	.-244    	; 0xfd6 <switch_menu>
-    10ca:	bb c0       	rjmp	.+374    	; 0x1242 <main+0x1f8>
+    1024:	1a 99       	sbic	0x03, 2	; 3
+    1026:	04 c0       	rjmp	.+8      	; 0x1030 <main+0x74>
+    1028:	82 e3       	ldi	r24, 0x32	; 50
+    102a:	90 e0       	ldi	r25, 0x00	; 0
+    102c:	91 df       	rcall	.-222    	; 0xf50 <switch_menu>
+    102e:	a5 c0       	rjmp	.+330    	; 0x117a <main+0x1be>
 			else if(BUTTON_4_PRESSED) switch_menu(MENU_HUMIDITY);
-    10cc:	19 99       	sbic	0x03, 1	; 3
-    10ce:	b9 c0       	rjmp	.+370    	; 0x1242 <main+0x1f8>
-    10d0:	8c e3       	ldi	r24, 0x3C	; 60
-    10d2:	90 e0       	ldi	r25, 0x00	; 0
-    10d4:	80 df       	rcall	.-256    	; 0xfd6 <switch_menu>
-    10d6:	b5 c0       	rjmp	.+362    	; 0x1242 <main+0x1f8>
+    1030:	19 99       	sbic	0x03, 1	; 3
+    1032:	a3 c0       	rjmp	.+326    	; 0x117a <main+0x1be>
+    1034:	8c e3       	ldi	r24, 0x3C	; 60
+    1036:	90 e0       	ldi	r25, 0x00	; 0
+    1038:	8b df       	rcall	.-234    	; 0xf50 <switch_menu>
+    103a:	9f c0       	rjmp	.+318    	; 0x117a <main+0x1be>
 		}
-		else if(selected_menu == MENU_CLOCK_SET_HOUR)
-    10d8:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
-    10dc:	84 31       	cpi	r24, 0x14	; 20
-    10de:	09 f0       	breq	.+2      	; 0x10e2 <main+0x98>
-    10e0:	48 c0       	rjmp	.+144    	; 0x1172 <main+0x128>
+		else if(selected_menu == MENU_CLOCK_SET_HOUR || selected_menu == MENU_TIMER_SET_HOUR)
+    103c:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
+    1040:	84 31       	cpi	r24, 0x14	; 20
+    1042:	29 f0       	breq	.+10     	; 0x104e <main+0x92>
+    1044:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
+    1048:	88 32       	cpi	r24, 0x28	; 40
+    104a:	09 f0       	breq	.+2      	; 0x104e <main+0x92>
+    104c:	42 c0       	rjmp	.+132    	; 0x10d2 <main+0x116>
 		{				
 			if(BUTTON_1_PRESSED)
-    10e2:	33 99       	sbic	0x06, 3	; 6
-    10e4:	14 c0       	rjmp	.+40     	; 0x110e <main+0xc4>
+    104e:	33 99       	sbic	0x06, 3	; 6
+    1050:	10 c0       	rjmp	.+32     	; 0x1072 <main+0xb6>
 			{
 				selected_hour = add_hour(selected_hour);
-    10e6:	80 91 01 01 	lds	r24, 0x0101	; 0x800101 <selected_hour>
-	return subtract_number(number,59);
-}
-
-int add_number(int number, int max) 
-{
-	number++;
-    10ea:	90 e0       	ldi	r25, 0x00	; 0
-    10ec:	01 96       	adiw	r24, 0x01	; 1
-	
-	if(number > max)
-    10ee:	88 31       	cpi	r24, 0x18	; 24
-    10f0:	91 05       	cpc	r25, r1
-    10f2:	0c f0       	brlt	.+2      	; 0x10f6 <main+0xac>
-	{
-		 number = 0;
-    10f4:	81 2f       	mov	r24, r17
-		}
-		else if(selected_menu == MENU_CLOCK_SET_HOUR)
-		{				
-			if(BUTTON_1_PRESSED)
-			{
-				selected_hour = add_hour(selected_hour);
-    10f6:	80 93 01 01 	sts	0x0101, r24	; 0x800101 <selected_hour>
-    10fa:	2f ef       	ldi	r18, 0xFF	; 255
-    10fc:	81 ee       	ldi	r24, 0xE1	; 225
-    10fe:	94 e0       	ldi	r25, 0x04	; 4
-    1100:	21 50       	subi	r18, 0x01	; 1
-    1102:	80 40       	sbci	r24, 0x00	; 0
-    1104:	90 40       	sbci	r25, 0x00	; 0
-    1106:	e1 f7       	brne	.-8      	; 0x1100 <main+0xb6>
-    1108:	00 c0       	rjmp	.+0      	; 0x110a <main+0xc0>
-    110a:	00 00       	nop
-    110c:	9a c0       	rjmp	.+308    	; 0x1242 <main+0x1f8>
+    1052:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <selected_hour>
+    1056:	90 e0       	ldi	r25, 0x00	; 0
+    1058:	c2 d0       	rcall	.+388    	; 0x11de <add_hour>
+    105a:	80 93 03 01 	sts	0x0103, r24	; 0x800103 <selected_hour>
+    105e:	2f ef       	ldi	r18, 0xFF	; 255
+    1060:	81 ee       	ldi	r24, 0xE1	; 225
+    1062:	94 e0       	ldi	r25, 0x04	; 4
+    1064:	21 50       	subi	r18, 0x01	; 1
+    1066:	80 40       	sbci	r24, 0x00	; 0
+    1068:	90 40       	sbci	r25, 0x00	; 0
+    106a:	e1 f7       	brne	.-8      	; 0x1064 <main+0xa8>
+    106c:	00 c0       	rjmp	.+0      	; 0x106e <main+0xb2>
+    106e:	00 00       	nop
+    1070:	84 c0       	rjmp	.+264    	; 0x117a <main+0x1be>
 				_delay_ms(200);
 			}
 			else if(BUTTON_2_PRESSED)
-    110e:	32 99       	sbic	0x06, 2	; 6
-    1110:	12 c0       	rjmp	.+36     	; 0x1136 <main+0xec>
+    1072:	32 99       	sbic	0x06, 2	; 6
+    1074:	10 c0       	rjmp	.+32     	; 0x1096 <main+0xda>
 			{
 				selected_hour = subtract_hour(selected_hour);	
-    1112:	80 91 01 01 	lds	r24, 0x0101	; 0x800101 <selected_hour>
-	return number;
-}
-
-int subtract_number(int number, int max)
-{
-	number--;
-    1116:	90 e0       	ldi	r25, 0x00	; 0
-    1118:	01 97       	sbiw	r24, 0x01	; 1
-	
-	if(number < 0)
-    111a:	0a f4       	brpl	.+2      	; 0x111e <main+0xd4>
-	{ 
-		number = max;
-    111c:	8f 2d       	mov	r24, r15
-				selected_hour = add_hour(selected_hour);
-				_delay_ms(200);
-			}
-			else if(BUTTON_2_PRESSED)
-			{
-				selected_hour = subtract_hour(selected_hour);	
-    111e:	80 93 01 01 	sts	0x0101, r24	; 0x800101 <selected_hour>
-    1122:	2f ef       	ldi	r18, 0xFF	; 255
-    1124:	81 ee       	ldi	r24, 0xE1	; 225
-    1126:	94 e0       	ldi	r25, 0x04	; 4
-    1128:	21 50       	subi	r18, 0x01	; 1
-    112a:	80 40       	sbci	r24, 0x00	; 0
-    112c:	90 40       	sbci	r25, 0x00	; 0
-    112e:	e1 f7       	brne	.-8      	; 0x1128 <main+0xde>
-    1130:	00 c0       	rjmp	.+0      	; 0x1132 <main+0xe8>
-    1132:	00 00       	nop
-    1134:	86 c0       	rjmp	.+268    	; 0x1242 <main+0x1f8>
+    1076:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <selected_hour>
+    107a:	90 e0       	ldi	r25, 0x00	; 0
+    107c:	be d0       	rcall	.+380    	; 0x11fa <subtract_hour>
+    107e:	80 93 03 01 	sts	0x0103, r24	; 0x800103 <selected_hour>
+    1082:	2f ef       	ldi	r18, 0xFF	; 255
+    1084:	81 ee       	ldi	r24, 0xE1	; 225
+    1086:	94 e0       	ldi	r25, 0x04	; 4
+    1088:	21 50       	subi	r18, 0x01	; 1
+    108a:	80 40       	sbci	r24, 0x00	; 0
+    108c:	90 40       	sbci	r25, 0x00	; 0
+    108e:	e1 f7       	brne	.-8      	; 0x1088 <main+0xcc>
+    1090:	00 c0       	rjmp	.+0      	; 0x1092 <main+0xd6>
+    1092:	00 00       	nop
+    1094:	72 c0       	rjmp	.+228    	; 0x117a <main+0x1be>
 				_delay_ms(200);
 			}
 			else if(BUTTON_3_PRESSED)
-    1136:	1a 99       	sbic	0x03, 2	; 3
-    1138:	0d c0       	rjmp	.+26     	; 0x1154 <main+0x10a>
+    1096:	1a 99       	sbic	0x03, 2	; 3
+    1098:	0d c0       	rjmp	.+26     	; 0x10b4 <main+0xf8>
 			{
 				switch_menu(MENU_CLOCK_SET_MINUTE);
-    113a:	85 e1       	ldi	r24, 0x15	; 21
-    113c:	90 e0       	ldi	r25, 0x00	; 0
-    113e:	4b df       	rcall	.-362    	; 0xfd6 <switch_menu>
-    1140:	2f ef       	ldi	r18, 0xFF	; 255
-    1142:	81 ee       	ldi	r24, 0xE1	; 225
-    1144:	94 e0       	ldi	r25, 0x04	; 4
-    1146:	21 50       	subi	r18, 0x01	; 1
-    1148:	80 40       	sbci	r24, 0x00	; 0
-    114a:	90 40       	sbci	r25, 0x00	; 0
-    114c:	e1 f7       	brne	.-8      	; 0x1146 <main+0xfc>
-    114e:	00 c0       	rjmp	.+0      	; 0x1150 <main+0x106>
-    1150:	00 00       	nop
-    1152:	77 c0       	rjmp	.+238    	; 0x1242 <main+0x1f8>
+    109a:	85 e1       	ldi	r24, 0x15	; 21
+    109c:	90 e0       	ldi	r25, 0x00	; 0
+    109e:	58 df       	rcall	.-336    	; 0xf50 <switch_menu>
+    10a0:	2f ef       	ldi	r18, 0xFF	; 255
+    10a2:	81 ee       	ldi	r24, 0xE1	; 225
+    10a4:	94 e0       	ldi	r25, 0x04	; 4
+    10a6:	21 50       	subi	r18, 0x01	; 1
+    10a8:	80 40       	sbci	r24, 0x00	; 0
+    10aa:	90 40       	sbci	r25, 0x00	; 0
+    10ac:	e1 f7       	brne	.-8      	; 0x10a6 <main+0xea>
+    10ae:	00 c0       	rjmp	.+0      	; 0x10b0 <main+0xf4>
+    10b0:	00 00       	nop
+    10b2:	63 c0       	rjmp	.+198    	; 0x117a <main+0x1be>
 				_delay_ms(200);
 			}
 			else if(BUTTON_4_PRESSED) 
-    1154:	19 99       	sbic	0x03, 1	; 3
-    1156:	75 c0       	rjmp	.+234    	; 0x1242 <main+0x1f8>
+    10b4:	19 99       	sbic	0x03, 1	; 3
+    10b6:	61 c0       	rjmp	.+194    	; 0x117a <main+0x1be>
 			{
 				switch_menu(MENU_CLOCK);
-    1158:	81 e0       	ldi	r24, 0x01	; 1
-    115a:	90 e0       	ldi	r25, 0x00	; 0
-    115c:	3c df       	rcall	.-392    	; 0xfd6 <switch_menu>
-    115e:	2f ef       	ldi	r18, 0xFF	; 255
-    1160:	81 ee       	ldi	r24, 0xE1	; 225
-    1162:	94 e0       	ldi	r25, 0x04	; 4
-    1164:	21 50       	subi	r18, 0x01	; 1
-    1166:	80 40       	sbci	r24, 0x00	; 0
-    1168:	90 40       	sbci	r25, 0x00	; 0
-    116a:	e1 f7       	brne	.-8      	; 0x1164 <main+0x11a>
-    116c:	00 c0       	rjmp	.+0      	; 0x116e <main+0x124>
-    116e:	00 00       	nop
-    1170:	68 c0       	rjmp	.+208    	; 0x1242 <main+0x1f8>
-					_delay_ms(200);
+    10b8:	81 e0       	ldi	r24, 0x01	; 1
+    10ba:	90 e0       	ldi	r25, 0x00	; 0
+    10bc:	49 df       	rcall	.-366    	; 0xf50 <switch_menu>
+    10be:	2f ef       	ldi	r18, 0xFF	; 255
+    10c0:	81 ee       	ldi	r24, 0xE1	; 225
+    10c2:	94 e0       	ldi	r25, 0x04	; 4
+    10c4:	21 50       	subi	r18, 0x01	; 1
+    10c6:	80 40       	sbci	r24, 0x00	; 0
+    10c8:	90 40       	sbci	r25, 0x00	; 0
+    10ca:	e1 f7       	brne	.-8      	; 0x10c4 <main+0x108>
+    10cc:	00 c0       	rjmp	.+0      	; 0x10ce <main+0x112>
+    10ce:	00 00       	nop
+    10d0:	54 c0       	rjmp	.+168    	; 0x117a <main+0x1be>
+				_delay_ms(200);
 			};
 		}
 		else if(selected_menu == MENU_CLOCK_SET_MINUTE) 
-    1172:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
-    1176:	85 31       	cpi	r24, 0x15	; 21
-    1178:	09 f0       	breq	.+2      	; 0x117c <main+0x132>
-    117a:	53 c0       	rjmp	.+166    	; 0x1222 <main+0x1d8>
+    10d2:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
+    10d6:	85 31       	cpi	r24, 0x15	; 21
+    10d8:	09 f0       	breq	.+2      	; 0x10dc <main+0x120>
+    10da:	4f c0       	rjmp	.+158    	; 0x117a <main+0x1be>
 		{
 			if(BUTTON_1_PRESSED)
-    117c:	33 99       	sbic	0x06, 3	; 6
-    117e:	14 c0       	rjmp	.+40     	; 0x11a8 <main+0x15e>
+    10dc:	33 99       	sbic	0x06, 3	; 6
+    10de:	10 c0       	rjmp	.+32     	; 0x1100 <main+0x144>
 			{
 				selected_minute = add_minute(selected_minute);
-    1180:	80 91 1d 01 	lds	r24, 0x011D	; 0x80011d <selected_minute>
-	return subtract_number(number,59);
-}
-
-int add_number(int number, int max) 
-{
-	number++;
-    1184:	90 e0       	ldi	r25, 0x00	; 0
-    1186:	01 96       	adiw	r24, 0x01	; 1
-	
-	if(number > max)
-    1188:	8c 33       	cpi	r24, 0x3C	; 60
-    118a:	91 05       	cpc	r25, r1
-    118c:	0c f0       	brlt	.+2      	; 0x1190 <main+0x146>
-	{
-		 number = 0;
-    118e:	81 2f       	mov	r24, r17
-		}
-		else if(selected_menu == MENU_CLOCK_SET_MINUTE) 
-		{
-			if(BUTTON_1_PRESSED)
-			{
-				selected_minute = add_minute(selected_minute);
-    1190:	80 93 1d 01 	sts	0x011D, r24	; 0x80011d <selected_minute>
-    1194:	2f ef       	ldi	r18, 0xFF	; 255
-    1196:	81 ee       	ldi	r24, 0xE1	; 225
-    1198:	94 e0       	ldi	r25, 0x04	; 4
-    119a:	21 50       	subi	r18, 0x01	; 1
-    119c:	80 40       	sbci	r24, 0x00	; 0
-    119e:	90 40       	sbci	r25, 0x00	; 0
-    11a0:	e1 f7       	brne	.-8      	; 0x119a <main+0x150>
-    11a2:	00 c0       	rjmp	.+0      	; 0x11a4 <main+0x15a>
-    11a4:	00 00       	nop
-    11a6:	4d c0       	rjmp	.+154    	; 0x1242 <main+0x1f8>
+    10e0:	80 91 1d 01 	lds	r24, 0x011D	; 0x80011d <selected_minute>
+    10e4:	90 e0       	ldi	r25, 0x00	; 0
+    10e6:	82 d0       	rcall	.+260    	; 0x11ec <add_minute>
+    10e8:	80 93 1d 01 	sts	0x011D, r24	; 0x80011d <selected_minute>
+    10ec:	2f ef       	ldi	r18, 0xFF	; 255
+    10ee:	81 ee       	ldi	r24, 0xE1	; 225
+    10f0:	94 e0       	ldi	r25, 0x04	; 4
+    10f2:	21 50       	subi	r18, 0x01	; 1
+    10f4:	80 40       	sbci	r24, 0x00	; 0
+    10f6:	90 40       	sbci	r25, 0x00	; 0
+    10f8:	e1 f7       	brne	.-8      	; 0x10f2 <main+0x136>
+    10fa:	00 c0       	rjmp	.+0      	; 0x10fc <main+0x140>
+    10fc:	00 00       	nop
+    10fe:	3d c0       	rjmp	.+122    	; 0x117a <main+0x1be>
 				_delay_ms(200);
 			}
 			else if(BUTTON_2_PRESSED)
-    11a8:	32 99       	sbic	0x06, 2	; 6
-    11aa:	13 c0       	rjmp	.+38     	; 0x11d2 <main+0x188>
+    1100:	32 99       	sbic	0x06, 2	; 6
+    1102:	10 c0       	rjmp	.+32     	; 0x1124 <main+0x168>
 			{
 				selected_minute = subtract_minute(selected_minute);
-    11ac:	80 91 1d 01 	lds	r24, 0x011D	; 0x80011d <selected_minute>
-	return number;
-}
-
-int subtract_number(int number, int max)
-{
-	number--;
-    11b0:	90 e0       	ldi	r25, 0x00	; 0
-    11b2:	01 97       	sbiw	r24, 0x01	; 1
-	
-	if(number < 0)
-    11b4:	12 f4       	brpl	.+4      	; 0x11ba <main+0x170>
-	{ 
-		number = max;
-    11b6:	8b e3       	ldi	r24, 0x3B	; 59
-    11b8:	90 e0       	ldi	r25, 0x00	; 0
-				selected_minute = add_minute(selected_minute);
-				_delay_ms(200);
-			}
-			else if(BUTTON_2_PRESSED)
-			{
-				selected_minute = subtract_minute(selected_minute);
-    11ba:	80 93 1d 01 	sts	0x011D, r24	; 0x80011d <selected_minute>
-    11be:	2f ef       	ldi	r18, 0xFF	; 255
-    11c0:	81 ee       	ldi	r24, 0xE1	; 225
-    11c2:	94 e0       	ldi	r25, 0x04	; 4
-    11c4:	21 50       	subi	r18, 0x01	; 1
-    11c6:	80 40       	sbci	r24, 0x00	; 0
-    11c8:	90 40       	sbci	r25, 0x00	; 0
-    11ca:	e1 f7       	brne	.-8      	; 0x11c4 <main+0x17a>
-    11cc:	00 c0       	rjmp	.+0      	; 0x11ce <main+0x184>
-    11ce:	00 00       	nop
-    11d0:	38 c0       	rjmp	.+112    	; 0x1242 <main+0x1f8>
+    1104:	80 91 1d 01 	lds	r24, 0x011D	; 0x80011d <selected_minute>
+    1108:	90 e0       	ldi	r25, 0x00	; 0
+    110a:	7c d0       	rcall	.+248    	; 0x1204 <subtract_minute>
+    110c:	80 93 1d 01 	sts	0x011D, r24	; 0x80011d <selected_minute>
+    1110:	2f ef       	ldi	r18, 0xFF	; 255
+    1112:	81 ee       	ldi	r24, 0xE1	; 225
+    1114:	94 e0       	ldi	r25, 0x04	; 4
+    1116:	21 50       	subi	r18, 0x01	; 1
+    1118:	80 40       	sbci	r24, 0x00	; 0
+    111a:	90 40       	sbci	r25, 0x00	; 0
+    111c:	e1 f7       	brne	.-8      	; 0x1116 <main+0x15a>
+    111e:	00 c0       	rjmp	.+0      	; 0x1120 <main+0x164>
+    1120:	00 00       	nop
+    1122:	2b c0       	rjmp	.+86     	; 0x117a <main+0x1be>
 				_delay_ms(200);
 			}
 			else if(BUTTON_3_PRESSED)
-    11d2:	1a 99       	sbic	0x03, 2	; 3
-    11d4:	17 c0       	rjmp	.+46     	; 0x1204 <main+0x1ba>
+    1124:	1a 99       	sbic	0x03, 2	; 3
+    1126:	1b c0       	rjmp	.+54     	; 0x115e <main+0x1a2>
 			{
 				hour = selected_hour;
-    11d6:	80 91 01 01 	lds	r24, 0x0101	; 0x800101 <selected_hour>
-    11da:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <hour>
+    1128:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <selected_hour>
+    112c:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <hour>
 				minute = selected_minute;
-    11de:	80 91 1d 01 	lds	r24, 0x011D	; 0x80011d <selected_minute>
-    11e2:	80 93 1f 01 	sts	0x011F, r24	; 0x80011f <minute>
-				second = 0;
-    11e6:	10 92 1e 01 	sts	0x011E, r1	; 0x80011e <second>
+    1130:	80 91 1d 01 	lds	r24, 0x011D	; 0x80011d <selected_minute>
+    1134:	80 93 1f 01 	sts	0x011F, r24	; 0x80011f <minute>
+				second, selected_hour, selected_minute = 0;
+    1138:	80 91 1e 01 	lds	r24, 0x011E	; 0x80011e <second>
+    113c:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <selected_hour>
+    1140:	10 92 1d 01 	sts	0x011D, r1	; 0x80011d <selected_minute>
 				switch_menu(MENU_CLOCK);
-    11ea:	81 e0       	ldi	r24, 0x01	; 1
-    11ec:	90 e0       	ldi	r25, 0x00	; 0
-    11ee:	f3 de       	rcall	.-538    	; 0xfd6 <switch_menu>
-    11f0:	2f ef       	ldi	r18, 0xFF	; 255
-    11f2:	81 ee       	ldi	r24, 0xE1	; 225
-    11f4:	94 e0       	ldi	r25, 0x04	; 4
-    11f6:	21 50       	subi	r18, 0x01	; 1
-    11f8:	80 40       	sbci	r24, 0x00	; 0
-    11fa:	90 40       	sbci	r25, 0x00	; 0
-    11fc:	e1 f7       	brne	.-8      	; 0x11f6 <main+0x1ac>
-    11fe:	00 c0       	rjmp	.+0      	; 0x1200 <main+0x1b6>
-    1200:	00 00       	nop
-    1202:	1f c0       	rjmp	.+62     	; 0x1242 <main+0x1f8>
-			
+    1144:	81 e0       	ldi	r24, 0x01	; 1
+    1146:	90 e0       	ldi	r25, 0x00	; 0
+    1148:	03 df       	rcall	.-506    	; 0xf50 <switch_menu>
+    114a:	2f ef       	ldi	r18, 0xFF	; 255
+    114c:	81 ee       	ldi	r24, 0xE1	; 225
+    114e:	94 e0       	ldi	r25, 0x04	; 4
+    1150:	21 50       	subi	r18, 0x01	; 1
+    1152:	80 40       	sbci	r24, 0x00	; 0
+    1154:	90 40       	sbci	r25, 0x00	; 0
+    1156:	e1 f7       	brne	.-8      	; 0x1150 <main+0x194>
+    1158:	00 c0       	rjmp	.+0      	; 0x115a <main+0x19e>
+    115a:	00 00       	nop
+    115c:	0e c0       	rjmp	.+28     	; 0x117a <main+0x1be>
 				_delay_ms(200);
 			}
 			else if(BUTTON_4_PRESSED)
-    1204:	19 99       	sbic	0x03, 1	; 3
-    1206:	1d c0       	rjmp	.+58     	; 0x1242 <main+0x1f8>
+    115e:	19 99       	sbic	0x03, 1	; 3
+    1160:	0c c0       	rjmp	.+24     	; 0x117a <main+0x1be>
 			{
 				switch_menu(MENU_CLOCK_SET_HOUR);
-    1208:	84 e1       	ldi	r24, 0x14	; 20
-    120a:	90 e0       	ldi	r25, 0x00	; 0
-    120c:	e4 de       	rcall	.-568    	; 0xfd6 <switch_menu>
-    120e:	2f ef       	ldi	r18, 0xFF	; 255
-    1210:	81 ee       	ldi	r24, 0xE1	; 225
-    1212:	94 e0       	ldi	r25, 0x04	; 4
-    1214:	21 50       	subi	r18, 0x01	; 1
-    1216:	80 40       	sbci	r24, 0x00	; 0
-    1218:	90 40       	sbci	r25, 0x00	; 0
-    121a:	e1 f7       	brne	.-8      	; 0x1214 <main+0x1ca>
-    121c:	00 c0       	rjmp	.+0      	; 0x121e <main+0x1d4>
-    121e:	00 00       	nop
-    1220:	10 c0       	rjmp	.+32     	; 0x1242 <main+0x1f8>
+    1162:	84 e1       	ldi	r24, 0x14	; 20
+    1164:	90 e0       	ldi	r25, 0x00	; 0
+    1166:	f4 de       	rcall	.-536    	; 0xf50 <switch_menu>
+    1168:	2f ef       	ldi	r18, 0xFF	; 255
+    116a:	81 ee       	ldi	r24, 0xE1	; 225
+    116c:	94 e0       	ldi	r25, 0x04	; 4
+    116e:	21 50       	subi	r18, 0x01	; 1
+    1170:	80 40       	sbci	r24, 0x00	; 0
+    1172:	90 40       	sbci	r25, 0x00	; 0
+    1174:	e1 f7       	brne	.-8      	; 0x116e <main+0x1b2>
+    1176:	00 c0       	rjmp	.+0      	; 0x1178 <main+0x1bc>
+    1178:	00 00       	nop
 				_delay_ms(200);
 			};
 		}
-		else if (selected_menu = MENU_TIMER_SET_HOUR)
-    1222:	c0 93 00 01 	sts	0x0100, r28	; 0x800100 <__data_start>
-		{
-			if(BUTTON_4_PRESSED) 
-    1226:	19 99       	sbic	0x03, 1	; 3
-    1228:	0c c0       	rjmp	.+24     	; 0x1242 <main+0x1f8>
-			{ 
-				switch_menu(MENU_TIMER);
-    122a:	8e e1       	ldi	r24, 0x1E	; 30
-    122c:	90 e0       	ldi	r25, 0x00	; 0
-    122e:	d3 de       	rcall	.-602    	; 0xfd6 <switch_menu>
-    1230:	2f ef       	ldi	r18, 0xFF	; 255
-    1232:	81 ee       	ldi	r24, 0xE1	; 225
-    1234:	94 e0       	ldi	r25, 0x04	; 4
-    1236:	21 50       	subi	r18, 0x01	; 1
-    1238:	80 40       	sbci	r24, 0x00	; 0
-    123a:	90 40       	sbci	r25, 0x00	; 0
-    123c:	e1 f7       	brne	.-8      	; 0x1236 <main+0x1ec>
-    123e:	00 c0       	rjmp	.+0      	; 0x1240 <main+0x1f6>
-    1240:	00 00       	nop
-				_delay_ms(200);
-			}
-		}
 			
 		run();
-    1242:	9d de       	rcall	.-710    	; 0xf7e <run>
+    117a:	c2 de       	rcall	.-636    	; 0xf00 <run>
 	}
-    1244:	0d cf       	rjmp	.-486    	; 0x1060 <main+0x16>
+    117c:	22 cf       	rjmp	.-444    	; 0xfc2 <main+0x6>
 
-00001246 <__vector_11>:
+0000117e <__vector_11>:
 }
 
 ISR (TIMER1_COMPA_vect)
 {
-    1246:	1f 92       	push	r1
-    1248:	0f 92       	push	r0
-    124a:	0f b6       	in	r0, 0x3f	; 63
-    124c:	0f 92       	push	r0
-    124e:	11 24       	eor	r1, r1
-    1250:	8f 93       	push	r24
+    117e:	1f 92       	push	r1
+    1180:	0f 92       	push	r0
+    1182:	0f b6       	in	r0, 0x3f	; 63
+    1184:	0f 92       	push	r0
+    1186:	11 24       	eor	r1, r1
+    1188:	8f 93       	push	r24
 	second++;
-    1252:	80 91 1e 01 	lds	r24, 0x011E	; 0x80011e <second>
-    1256:	8f 5f       	subi	r24, 0xFF	; 255
-    1258:	80 93 1e 01 	sts	0x011E, r24	; 0x80011e <second>
+    118a:	80 91 1e 01 	lds	r24, 0x011E	; 0x80011e <second>
+    118e:	8f 5f       	subi	r24, 0xFF	; 255
+    1190:	80 93 1e 01 	sts	0x011E, r24	; 0x80011e <second>
 	if (second > 59)
-    125c:	80 91 1e 01 	lds	r24, 0x011E	; 0x80011e <second>
-    1260:	8c 33       	cpi	r24, 0x3C	; 60
-    1262:	d8 f0       	brcs	.+54     	; 0x129a <__vector_11+0x54>
+    1194:	80 91 1e 01 	lds	r24, 0x011E	; 0x80011e <second>
+    1198:	8c 33       	cpi	r24, 0x3C	; 60
+    119a:	d8 f0       	brcs	.+54     	; 0x11d2 <__vector_11+0x54>
 	{
 		second = 0;
-    1264:	10 92 1e 01 	sts	0x011E, r1	; 0x80011e <second>
+    119c:	10 92 1e 01 	sts	0x011E, r1	; 0x80011e <second>
 		minute++;
-    1268:	80 91 1f 01 	lds	r24, 0x011F	; 0x80011f <minute>
-    126c:	8f 5f       	subi	r24, 0xFF	; 255
-    126e:	80 93 1f 01 	sts	0x011F, r24	; 0x80011f <minute>
+    11a0:	80 91 1f 01 	lds	r24, 0x011F	; 0x80011f <minute>
+    11a4:	8f 5f       	subi	r24, 0xFF	; 255
+    11a6:	80 93 1f 01 	sts	0x011F, r24	; 0x80011f <minute>
 		if (minute > 59)
-    1272:	80 91 1f 01 	lds	r24, 0x011F	; 0x80011f <minute>
-    1276:	8c 33       	cpi	r24, 0x3C	; 60
-    1278:	68 f0       	brcs	.+26     	; 0x1294 <__vector_11+0x4e>
+    11aa:	80 91 1f 01 	lds	r24, 0x011F	; 0x80011f <minute>
+    11ae:	8c 33       	cpi	r24, 0x3C	; 60
+    11b0:	68 f0       	brcs	.+26     	; 0x11cc <__vector_11+0x4e>
 		{
 			minute = 0;
-    127a:	10 92 1f 01 	sts	0x011F, r1	; 0x80011f <minute>
+    11b2:	10 92 1f 01 	sts	0x011F, r1	; 0x80011f <minute>
 			hour++;
-    127e:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <hour>
-    1282:	8f 5f       	subi	r24, 0xFF	; 255
-    1284:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <hour>
+    11b6:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <hour>
+    11ba:	8f 5f       	subi	r24, 0xFF	; 255
+    11bc:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <hour>
 			if (hour > 23)
-    1288:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <hour>
-    128c:	88 31       	cpi	r24, 0x18	; 24
-    128e:	10 f0       	brcs	.+4      	; 0x1294 <__vector_11+0x4e>
+    11c0:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <hour>
+    11c4:	88 31       	cpi	r24, 0x18	; 24
+    11c6:	10 f0       	brcs	.+4      	; 0x11cc <__vector_11+0x4e>
 			{
 				hour = 0;
-    1290:	10 92 02 01 	sts	0x0102, r1	; 0x800102 <hour>
+    11c8:	10 92 04 01 	sts	0x0104, r1	; 0x800104 <hour>
 			}
 			
 		}
 		clockChangedFlag = 1;
-    1294:	81 e0       	ldi	r24, 0x01	; 1
-    1296:	80 93 1c 01 	sts	0x011C, r24	; 0x80011c <__data_end>
+    11cc:	81 e0       	ldi	r24, 0x01	; 1
+    11ce:	80 93 1c 01 	sts	0x011C, r24	; 0x80011c <__data_end>
 	}
-    129a:	8f 91       	pop	r24
-    129c:	0f 90       	pop	r0
-    129e:	0f be       	out	0x3f, r0	; 63
-    12a0:	0f 90       	pop	r0
-    12a2:	1f 90       	pop	r1
-    12a4:	18 95       	reti
+    11d2:	8f 91       	pop	r24
+    11d4:	0f 90       	pop	r0
+    11d6:	0f be       	out	0x3f, r0	; 63
+    11d8:	0f 90       	pop	r0
+    11da:	1f 90       	pop	r1
+    11dc:	18 95       	reti
 
-000012a6 <__divmodhi4>:
-    12a6:	97 fb       	bst	r25, 7
-    12a8:	07 2e       	mov	r0, r23
-    12aa:	16 f4       	brtc	.+4      	; 0x12b0 <__divmodhi4+0xa>
-    12ac:	00 94       	com	r0
-    12ae:	06 d0       	rcall	.+12     	; 0x12bc <__divmodhi4_neg1>
-    12b0:	77 fd       	sbrc	r23, 7
-    12b2:	08 d0       	rcall	.+16     	; 0x12c4 <__divmodhi4_neg2>
-    12b4:	27 d0       	rcall	.+78     	; 0x1304 <__udivmodhi4>
-    12b6:	07 fc       	sbrc	r0, 7
-    12b8:	05 d0       	rcall	.+10     	; 0x12c4 <__divmodhi4_neg2>
-    12ba:	3e f4       	brtc	.+14     	; 0x12ca <__divmodhi4_exit>
+000011de <add_hour>:
+	return subtract_number(number, HOUR_MINUTES - 1);
+}
 
-000012bc <__divmodhi4_neg1>:
-    12bc:	90 95       	com	r25
-    12be:	81 95       	neg	r24
-    12c0:	9f 4f       	sbci	r25, 0xFF	; 255
-    12c2:	08 95       	ret
+int add_number(int number, int max)
+{
+	number++;
+    11de:	01 96       	adiw	r24, 0x01	; 1
+	
+	if(number > max)
+    11e0:	88 31       	cpi	r24, 0x18	; 24
+    11e2:	91 05       	cpc	r25, r1
+    11e4:	14 f0       	brlt	.+4      	; 0x11ea <add_hour+0xc>
+	{
+		number = 0;
+    11e6:	80 e0       	ldi	r24, 0x00	; 0
+    11e8:	90 e0       	ldi	r25, 0x00	; 0
+int subtract_number(int number, int max);
 
-000012c4 <__divmodhi4_neg2>:
-    12c4:	70 95       	com	r23
-    12c6:	61 95       	neg	r22
-    12c8:	7f 4f       	sbci	r23, 0xFF	; 255
+int add_hour(int number)
+{
+	return add_number(number, DAY_HOURS - 1);
+}
+    11ea:	08 95       	ret
 
-000012ca <__divmodhi4_exit>:
-    12ca:	08 95       	ret
+000011ec <add_minute>:
+	return subtract_number(number, HOUR_MINUTES - 1);
+}
 
-000012cc <__divmodsi4>:
-    12cc:	05 2e       	mov	r0, r21
-    12ce:	97 fb       	bst	r25, 7
-    12d0:	16 f4       	brtc	.+4      	; 0x12d6 <__divmodsi4+0xa>
-    12d2:	00 94       	com	r0
-    12d4:	0f d0       	rcall	.+30     	; 0x12f4 <__negsi2>
-    12d6:	57 fd       	sbrc	r21, 7
-    12d8:	05 d0       	rcall	.+10     	; 0x12e4 <__divmodsi4_neg2>
-    12da:	28 d0       	rcall	.+80     	; 0x132c <__udivmodsi4>
-    12dc:	07 fc       	sbrc	r0, 7
-    12de:	02 d0       	rcall	.+4      	; 0x12e4 <__divmodsi4_neg2>
-    12e0:	46 f4       	brtc	.+16     	; 0x12f2 <__divmodsi4_exit>
-    12e2:	08 c0       	rjmp	.+16     	; 0x12f4 <__negsi2>
+int add_number(int number, int max)
+{
+	number++;
+    11ec:	01 96       	adiw	r24, 0x01	; 1
+	
+	if(number > max)
+    11ee:	8c 33       	cpi	r24, 0x3C	; 60
+    11f0:	91 05       	cpc	r25, r1
+    11f2:	14 f0       	brlt	.+4      	; 0x11f8 <add_minute+0xc>
+	{
+		number = 0;
+    11f4:	80 e0       	ldi	r24, 0x00	; 0
+    11f6:	90 e0       	ldi	r25, 0x00	; 0
+}
 
-000012e4 <__divmodsi4_neg2>:
-    12e4:	50 95       	com	r21
-    12e6:	40 95       	com	r20
-    12e8:	30 95       	com	r19
-    12ea:	21 95       	neg	r18
-    12ec:	3f 4f       	sbci	r19, 0xFF	; 255
-    12ee:	4f 4f       	sbci	r20, 0xFF	; 255
-    12f0:	5f 4f       	sbci	r21, 0xFF	; 255
+int add_minute(int number)
+{
+	return add_number(number, HOUR_MINUTES - 1);
+}
+    11f8:	08 95       	ret
 
-000012f2 <__divmodsi4_exit>:
-    12f2:	08 95       	ret
+000011fa <subtract_hour>:
+	return number;
+}
 
-000012f4 <__negsi2>:
-    12f4:	90 95       	com	r25
-    12f6:	80 95       	com	r24
-    12f8:	70 95       	com	r23
-    12fa:	61 95       	neg	r22
-    12fc:	7f 4f       	sbci	r23, 0xFF	; 255
-    12fe:	8f 4f       	sbci	r24, 0xFF	; 255
-    1300:	9f 4f       	sbci	r25, 0xFF	; 255
-    1302:	08 95       	ret
+int subtract_number(int number, int max)
+{
+	number--;
+    11fa:	01 97       	sbiw	r24, 0x01	; 1
+	
+	if(number < 0)
+    11fc:	12 f4       	brpl	.+4      	; 0x1202 <subtract_hour+0x8>
+	{
+		number = max;
+    11fe:	87 e1       	ldi	r24, 0x17	; 23
+    1200:	90 e0       	ldi	r25, 0x00	; 0
+}
 
-00001304 <__udivmodhi4>:
-    1304:	aa 1b       	sub	r26, r26
-    1306:	bb 1b       	sub	r27, r27
-    1308:	51 e1       	ldi	r21, 0x11	; 17
-    130a:	07 c0       	rjmp	.+14     	; 0x131a <__udivmodhi4_ep>
+int subtract_hour(int number)
+{
+	return subtract_number(number, DAY_HOURS - 1);
+}
+    1202:	08 95       	ret
 
-0000130c <__udivmodhi4_loop>:
-    130c:	aa 1f       	adc	r26, r26
-    130e:	bb 1f       	adc	r27, r27
-    1310:	a6 17       	cp	r26, r22
-    1312:	b7 07       	cpc	r27, r23
-    1314:	10 f0       	brcs	.+4      	; 0x131a <__udivmodhi4_ep>
-    1316:	a6 1b       	sub	r26, r22
-    1318:	b7 0b       	sbc	r27, r23
+00001204 <subtract_minute>:
+	return number;
+}
 
-0000131a <__udivmodhi4_ep>:
-    131a:	88 1f       	adc	r24, r24
-    131c:	99 1f       	adc	r25, r25
-    131e:	5a 95       	dec	r21
-    1320:	a9 f7       	brne	.-22     	; 0x130c <__udivmodhi4_loop>
-    1322:	80 95       	com	r24
-    1324:	90 95       	com	r25
-    1326:	bc 01       	movw	r22, r24
-    1328:	cd 01       	movw	r24, r26
-    132a:	08 95       	ret
+int subtract_number(int number, int max)
+{
+	number--;
+    1204:	01 97       	sbiw	r24, 0x01	; 1
+	
+	if(number < 0)
+    1206:	12 f4       	brpl	.+4      	; 0x120c <subtract_minute+0x8>
+	{
+		number = max;
+    1208:	8b e3       	ldi	r24, 0x3B	; 59
+    120a:	90 e0       	ldi	r25, 0x00	; 0
+}
 
-0000132c <__udivmodsi4>:
-    132c:	a1 e2       	ldi	r26, 0x21	; 33
-    132e:	1a 2e       	mov	r1, r26
-    1330:	aa 1b       	sub	r26, r26
-    1332:	bb 1b       	sub	r27, r27
-    1334:	fd 01       	movw	r30, r26
-    1336:	0d c0       	rjmp	.+26     	; 0x1352 <__udivmodsi4_ep>
+int subtract_minute(int number)
+{
+	return subtract_number(number, HOUR_MINUTES - 1);
+}
+    120c:	08 95       	ret
 
-00001338 <__udivmodsi4_loop>:
-    1338:	aa 1f       	adc	r26, r26
-    133a:	bb 1f       	adc	r27, r27
-    133c:	ee 1f       	adc	r30, r30
-    133e:	ff 1f       	adc	r31, r31
-    1340:	a2 17       	cp	r26, r18
-    1342:	b3 07       	cpc	r27, r19
-    1344:	e4 07       	cpc	r30, r20
-    1346:	f5 07       	cpc	r31, r21
-    1348:	20 f0       	brcs	.+8      	; 0x1352 <__udivmodsi4_ep>
-    134a:	a2 1b       	sub	r26, r18
-    134c:	b3 0b       	sbc	r27, r19
-    134e:	e4 0b       	sbc	r30, r20
-    1350:	f5 0b       	sbc	r31, r21
+0000120e <__divmodhi4>:
+    120e:	97 fb       	bst	r25, 7
+    1210:	07 2e       	mov	r0, r23
+    1212:	16 f4       	brtc	.+4      	; 0x1218 <__divmodhi4+0xa>
+    1214:	00 94       	com	r0
+    1216:	06 d0       	rcall	.+12     	; 0x1224 <__divmodhi4_neg1>
+    1218:	77 fd       	sbrc	r23, 7
+    121a:	08 d0       	rcall	.+16     	; 0x122c <__divmodhi4_neg2>
+    121c:	27 d0       	rcall	.+78     	; 0x126c <__udivmodhi4>
+    121e:	07 fc       	sbrc	r0, 7
+    1220:	05 d0       	rcall	.+10     	; 0x122c <__divmodhi4_neg2>
+    1222:	3e f4       	brtc	.+14     	; 0x1232 <__divmodhi4_exit>
 
-00001352 <__udivmodsi4_ep>:
-    1352:	66 1f       	adc	r22, r22
-    1354:	77 1f       	adc	r23, r23
-    1356:	88 1f       	adc	r24, r24
-    1358:	99 1f       	adc	r25, r25
-    135a:	1a 94       	dec	r1
-    135c:	69 f7       	brne	.-38     	; 0x1338 <__udivmodsi4_loop>
-    135e:	60 95       	com	r22
-    1360:	70 95       	com	r23
-    1362:	80 95       	com	r24
-    1364:	90 95       	com	r25
-    1366:	9b 01       	movw	r18, r22
-    1368:	ac 01       	movw	r20, r24
-    136a:	bd 01       	movw	r22, r26
-    136c:	cf 01       	movw	r24, r30
-    136e:	08 95       	ret
+00001224 <__divmodhi4_neg1>:
+    1224:	90 95       	com	r25
+    1226:	81 95       	neg	r24
+    1228:	9f 4f       	sbci	r25, 0xFF	; 255
+    122a:	08 95       	ret
 
-00001370 <_exit>:
-    1370:	f8 94       	cli
+0000122c <__divmodhi4_neg2>:
+    122c:	70 95       	com	r23
+    122e:	61 95       	neg	r22
+    1230:	7f 4f       	sbci	r23, 0xFF	; 255
 
-00001372 <__stop_program>:
-    1372:	ff cf       	rjmp	.-2      	; 0x1372 <__stop_program>
+00001232 <__divmodhi4_exit>:
+    1232:	08 95       	ret
+
+00001234 <__divmodsi4>:
+    1234:	05 2e       	mov	r0, r21
+    1236:	97 fb       	bst	r25, 7
+    1238:	16 f4       	brtc	.+4      	; 0x123e <__divmodsi4+0xa>
+    123a:	00 94       	com	r0
+    123c:	0f d0       	rcall	.+30     	; 0x125c <__negsi2>
+    123e:	57 fd       	sbrc	r21, 7
+    1240:	05 d0       	rcall	.+10     	; 0x124c <__divmodsi4_neg2>
+    1242:	28 d0       	rcall	.+80     	; 0x1294 <__udivmodsi4>
+    1244:	07 fc       	sbrc	r0, 7
+    1246:	02 d0       	rcall	.+4      	; 0x124c <__divmodsi4_neg2>
+    1248:	46 f4       	brtc	.+16     	; 0x125a <__divmodsi4_exit>
+    124a:	08 c0       	rjmp	.+16     	; 0x125c <__negsi2>
+
+0000124c <__divmodsi4_neg2>:
+    124c:	50 95       	com	r21
+    124e:	40 95       	com	r20
+    1250:	30 95       	com	r19
+    1252:	21 95       	neg	r18
+    1254:	3f 4f       	sbci	r19, 0xFF	; 255
+    1256:	4f 4f       	sbci	r20, 0xFF	; 255
+    1258:	5f 4f       	sbci	r21, 0xFF	; 255
+
+0000125a <__divmodsi4_exit>:
+    125a:	08 95       	ret
+
+0000125c <__negsi2>:
+    125c:	90 95       	com	r25
+    125e:	80 95       	com	r24
+    1260:	70 95       	com	r23
+    1262:	61 95       	neg	r22
+    1264:	7f 4f       	sbci	r23, 0xFF	; 255
+    1266:	8f 4f       	sbci	r24, 0xFF	; 255
+    1268:	9f 4f       	sbci	r25, 0xFF	; 255
+    126a:	08 95       	ret
+
+0000126c <__udivmodhi4>:
+    126c:	aa 1b       	sub	r26, r26
+    126e:	bb 1b       	sub	r27, r27
+    1270:	51 e1       	ldi	r21, 0x11	; 17
+    1272:	07 c0       	rjmp	.+14     	; 0x1282 <__udivmodhi4_ep>
+
+00001274 <__udivmodhi4_loop>:
+    1274:	aa 1f       	adc	r26, r26
+    1276:	bb 1f       	adc	r27, r27
+    1278:	a6 17       	cp	r26, r22
+    127a:	b7 07       	cpc	r27, r23
+    127c:	10 f0       	brcs	.+4      	; 0x1282 <__udivmodhi4_ep>
+    127e:	a6 1b       	sub	r26, r22
+    1280:	b7 0b       	sbc	r27, r23
+
+00001282 <__udivmodhi4_ep>:
+    1282:	88 1f       	adc	r24, r24
+    1284:	99 1f       	adc	r25, r25
+    1286:	5a 95       	dec	r21
+    1288:	a9 f7       	brne	.-22     	; 0x1274 <__udivmodhi4_loop>
+    128a:	80 95       	com	r24
+    128c:	90 95       	com	r25
+    128e:	bc 01       	movw	r22, r24
+    1290:	cd 01       	movw	r24, r26
+    1292:	08 95       	ret
+
+00001294 <__udivmodsi4>:
+    1294:	a1 e2       	ldi	r26, 0x21	; 33
+    1296:	1a 2e       	mov	r1, r26
+    1298:	aa 1b       	sub	r26, r26
+    129a:	bb 1b       	sub	r27, r27
+    129c:	fd 01       	movw	r30, r26
+    129e:	0d c0       	rjmp	.+26     	; 0x12ba <__udivmodsi4_ep>
+
+000012a0 <__udivmodsi4_loop>:
+    12a0:	aa 1f       	adc	r26, r26
+    12a2:	bb 1f       	adc	r27, r27
+    12a4:	ee 1f       	adc	r30, r30
+    12a6:	ff 1f       	adc	r31, r31
+    12a8:	a2 17       	cp	r26, r18
+    12aa:	b3 07       	cpc	r27, r19
+    12ac:	e4 07       	cpc	r30, r20
+    12ae:	f5 07       	cpc	r31, r21
+    12b0:	20 f0       	brcs	.+8      	; 0x12ba <__udivmodsi4_ep>
+    12b2:	a2 1b       	sub	r26, r18
+    12b4:	b3 0b       	sbc	r27, r19
+    12b6:	e4 0b       	sbc	r30, r20
+    12b8:	f5 0b       	sbc	r31, r21
+
+000012ba <__udivmodsi4_ep>:
+    12ba:	66 1f       	adc	r22, r22
+    12bc:	77 1f       	adc	r23, r23
+    12be:	88 1f       	adc	r24, r24
+    12c0:	99 1f       	adc	r25, r25
+    12c2:	1a 94       	dec	r1
+    12c4:	69 f7       	brne	.-38     	; 0x12a0 <__udivmodsi4_loop>
+    12c6:	60 95       	com	r22
+    12c8:	70 95       	com	r23
+    12ca:	80 95       	com	r24
+    12cc:	90 95       	com	r25
+    12ce:	9b 01       	movw	r18, r22
+    12d0:	ac 01       	movw	r20, r24
+    12d2:	bd 01       	movw	r22, r26
+    12d4:	cf 01       	movw	r24, r30
+    12d6:	08 95       	ret
+
+000012d8 <_exit>:
+    12d8:	f8 94       	cli
+
+000012da <__stop_program>:
+    12da:	ff cf       	rjmp	.-2      	; 0x12da <__stop_program>
