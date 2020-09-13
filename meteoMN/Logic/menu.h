@@ -1,0 +1,10 @@
+#define MENU_CLOCK 10
+#define MENU_CLOCK_SET_HOUR 20
+#define MENU_CLOCK_SET_MINUTE 21
+#define MENU_TIMER 30
+#define MENU_TIMER_SET_HOUR 40
+#define MENU_TIMER_SET_MINUTE 41
+#define MENU_TEMPEREATURE 50
+#define MENU_DASHBOARD 60
+
+//void switch_menu();

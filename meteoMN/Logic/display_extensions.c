@@ -1,6 +1,6 @@
 #include <stdbool.h> 
-#include "fonts.h"
-#include "display.h"
+#include "../External/fonts.h"
+#include "../External/display.h"
 #include "display_extensions.h"
 
 

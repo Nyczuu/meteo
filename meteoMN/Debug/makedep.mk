@@ -2,15 +2,19 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-display.c
+External\display.c
 
-display_extensions.c
+External\I2C.c
 
-I2C.c
+Logic\display_extensions.c
+
+Logic\menu.c
+
+Logic\time.c
 
 main.c
 
-SSD1306.c
+Views\clock.c
 
-time.c
+Views\timer.c
 

@@ -7,10 +7,12 @@
 #include <stdio.h>
 #include <string.h>
 #include "avr/interrupt.h"
-#include "I2C.h"
+#include "External/I2C.h"
 #include "stdint.h"
-#include "time.h"
-#include "display_extensions.h"
+#include "Logic/time.h"
+#include "Logic/display_extensions.h"
+#include "Logic/menu.h"
+#include "Views/clock.h"
 
 #define LED1_PORT PORTD
 #define LED2_PORT PORTB
@@ -32,18 +34,6 @@
 #define BUTTON_3_PRESSED !(PINB & BUTTON_3)
 #define BUTTON_4_PRESSED !(PINB & BUTTON_4)
 
-#define MENU_CLOCK 1
-#define MENU_CLOCK_SET_HOUR 20
-#define MENU_CLOCK_SET_MINUTE 21
-#define MENU_TIMER 30
-#define MENU_TIMER_SET_HOUR 40
-#define MENU_TIMER_SET_MINUTE 41
-#define MENU_TEMPEREATURE 50
-#define MENU_DASHBOARD 60
-
-volatile uint8_t hour = 12;
-volatile uint8_t minute = 0;
-volatile uint8_t second = 0;
 
 volatile uint8_t selected_hour = 12;
 volatile uint8_t selected_minute = 0;
@@ -81,19 +71,13 @@ void display_clock_set()
 	draw_clock(0,2, selected_hour, selected_minute, displayHour,displayMinute);
 }
 
-void display_clock() 
-{
-	draw_clock(0,0, hour, minute, displayHour, displayMinute);
-	draw_number(60,4,second);
-}
-
 void run()
 {	
 	if(selected_menu == MENU_DASHBOARD) display_dashboard();
 	else if(selected_menu == MENU_TEMPEREATURE) display_temperature();
 	else if(selected_menu == MENU_TIMER) display_timer();
 	else if(selected_menu == MENU_TIMER_SET_HOUR || selected_menu == MENU_TIMER_SET_MINUTE) display_timer_set();
-	else if(selected_menu == MENU_CLOCK) display_clock();
+	else if(selected_menu == MENU_CLOCK) display_clock(1,1);
 	else if(selected_menu == MENU_CLOCK_SET_HOUR || selected_menu == MENU_CLOCK_SET_MINUTE) display_clock_set();
 }
 
@@ -106,9 +90,6 @@ void switch_menu(int number)
 
 void port_init()
 {
-	//DDRD |= LED1;
-	//DDRB |= LED2;
-	
 	DDRC &= ~(BUTTON_2 | BUTTON_1);
 	DDRB &= ~(BUTTON_4 | BUTTON_3);
 	
@@ -132,7 +113,6 @@ int main(void)
 
 	while (1)
 	{
-		
 		if(selected_menu == MENU_CLOCK || selected_menu == MENU_TIMER || selected_menu == MENU_TEMPEREATURE || selected_menu == MENU_DASHBOARD)
 		{
 			if(BUTTON_1_PRESSED && selected_menu == MENU_CLOCK) switch_menu(MENU_CLOCK_SET_HOUR);
@@ -156,7 +136,11 @@ int main(void)
 			}
 			else if(BUTTON_3_PRESSED)
 			{
-				switch_menu(MENU_CLOCK_SET_MINUTE);
+				if(selected_menu == MENU_CLOCK_SET_HOUR)
+					switch_menu(MENU_CLOCK_SET_MINUTE);
+				else if(selected_menu == MENU_TIMER_SET_HOUR)
+					switch_menu(MENU_TIMER_SET_MINUTE);
+						
 				_delay_ms(200);
 			}
 			else if(BUTTON_4_PRESSED) 
@@ -165,7 +149,7 @@ int main(void)
 				_delay_ms(200);
 			};
 		}
-		else if(selected_menu == MENU_CLOCK_SET_MINUTE) 
+		else if(selected_menu == MENU_CLOCK_SET_MINUTE || selected_menu == MENU_TIMER_SET_MINUTE) 
 		{
 			if(BUTTON_1_PRESSED)
 			{
@@ -179,9 +163,9 @@ int main(void)
 			}
 			else if(BUTTON_3_PRESSED)
 			{
-				hour = selected_hour;
-				minute = selected_minute;
-				second, selected_hour, selected_minute = 0;
+				//hour = selected_hour;
+				//minute = selected_minute;
+				//second, selected_hour, selected_minute = 0;
 				switch_menu(MENU_CLOCK);
 				_delay_ms(200);
 			}
@@ -198,15 +182,5 @@ int main(void)
 
 ISR (TIMER1_COMPA_vect)
 {
-	int previous = second;
-	second = add_second(second);
-	
-	if(previous == 59 && second == 0)
-	{
-		previous = minute;
-		minute = add_minute(minute);
-	}
-	
-	if(previous == 59 && minute == 0)
-		hour = add_hour(hour);
+	trigger();
 }

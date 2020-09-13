@@ -21,7 +21,8 @@ main.d main.o: .././main.c \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdarg.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\string.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
- .././I2C.h .././time.h .././display_extensions.h
+ .././External/I2C.h .././Logic/time.h .././Logic/display_extensions.h \
+ .././Logic/menu.h .././Views/clock.h
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h:
 
@@ -67,8 +68,12 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h:
 
-.././I2C.h:
+.././External/I2C.h:
 
-.././time.h:
+.././Logic/time.h:
 
-.././display_extensions.h:
+.././Logic/display_extensions.h:
+
+.././Logic/menu.h:
+
+.././Views/clock.h:
