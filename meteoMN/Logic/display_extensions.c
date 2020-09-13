@@ -57,7 +57,7 @@ void draw_number(int xstart, int ystart, int number)
 	draw_digit(xstart+ 24,ystart, second);
 }
 
-void draw_string(int xstart, int ystart, char* str, int stringLenght)
+void draw_string(int xstart, int ystart, char* str)
 {
 	ssd1306tx_stringxy(ssd1306xled_font8x16data, xstart, ystart, str);
 }
@@ -69,7 +69,7 @@ void draw_clock(int xstart, int ystart, int hours, int minutes, bool displayHour
 		draw_number(xstart,ystart, hours);
 	}
 	
-	draw_string(xstart +48, ystart +1, ":",1);
+	draw_string(xstart +48, ystart +1, ":");
 	
 	if(displayMinute == 1)
 	{	
