@@ -64,14 +64,14 @@ void draw_string(int xstart, int ystart, char* str, int stringLenght)
 
 void draw_clock(int xstart, int ystart, int hours, int minutes, bool displayHour, bool displayMinute)
 {
-	if(displayHour)
+	if(displayHour == 1)
 	{
 		draw_number(xstart,ystart, hours);
 	}
 	
 	draw_string(xstart +48, ystart +1, ":",1);
 	
-	if(displayMinute)
+	if(displayMinute == 1)
 	{	
 		draw_number(xstart + 60, ystart, minutes);
 	}

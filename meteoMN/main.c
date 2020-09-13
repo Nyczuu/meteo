@@ -39,7 +39,7 @@
 #define MENU_TIMER_SET_HOUR 40
 #define MENU_TIMER_SET_MINUTE 41
 #define MENU_TEMPEREATURE 50
-#define MENU_HUMIDITY 60
+#define MENU_DASHBOARD 60
 
 volatile uint8_t hour = 12;
 volatile uint8_t minute = 0;
@@ -48,20 +48,19 @@ volatile uint8_t second = 0;
 volatile uint8_t selected_hour = 12;
 volatile uint8_t selected_minute = 0;
 
-bool clockChangedFlag = 0;
 bool displayHour = true;
 bool displayMinute = true;
+bool minuteChanged = false;
+bool hourChanged = false;
 
 volatile uint8_t selected_menu = MENU_CLOCK;
 
-void display_air_humidity()
+void display_dashboard()
 {
-	//ssd1306_draw_bmp(0,0, 24,4, number3);
 }
 
 void display_temperature()
 {
-	//ssd1306_draw_bmp(0,0, 24,4, number2);
 }
 
 void display_timer_set() 
@@ -90,7 +89,7 @@ void display_clock()
 
 void run()
 {	
-	if(selected_menu == MENU_HUMIDITY) display_air_humidity();
+	if(selected_menu == MENU_DASHBOARD) display_dashboard();
 	else if(selected_menu == MENU_TEMPEREATURE) display_temperature();
 	else if(selected_menu == MENU_TIMER) display_timer();
 	else if(selected_menu == MENU_TIMER_SET_HOUR || selected_menu == MENU_TIMER_SET_MINUTE) display_timer_set();
@@ -121,8 +120,8 @@ void port_init()
 
 void refreshBools()
 {
-	displayMinute = !(selected_menu == MENU_CLOCK_SET_HOUR);
-	displayHour = !(selected_menu == MENU_CLOCK_SET_MINUTE);
+	displayMinute = (selected_menu != MENU_CLOCK_SET_HOUR && selected_menu != MENU_TIMER_SET_HOUR);
+	displayHour = (selected_menu != MENU_CLOCK_SET_MINUTE && selected_menu != MENU_TIMER_SET_MINUTE);
 }
 
 int main(void)
@@ -133,15 +132,15 @@ int main(void)
 
 	while (1)
 	{
-		refreshBools();
-		if(selected_menu == MENU_CLOCK || selected_menu == MENU_TIMER || selected_menu == MENU_TEMPEREATURE || selected_menu == MENU_HUMIDITY)
+		
+		if(selected_menu == MENU_CLOCK || selected_menu == MENU_TIMER || selected_menu == MENU_TEMPEREATURE || selected_menu == MENU_DASHBOARD)
 		{
 			if(BUTTON_1_PRESSED && selected_menu == MENU_CLOCK) switch_menu(MENU_CLOCK_SET_HOUR);
 			else if(BUTTON_1_PRESSED) switch_menu(MENU_CLOCK);
 			else if(BUTTON_2_PRESSED && selected_menu == MENU_TIMER) switch_menu(MENU_TIMER_SET_HOUR);
 			else if(BUTTON_2_PRESSED) switch_menu(MENU_TIMER);
 			else if(BUTTON_3_PRESSED) switch_menu(MENU_TEMPEREATURE);
-			else if(BUTTON_4_PRESSED) switch_menu(MENU_HUMIDITY);
+			else if(BUTTON_4_PRESSED) switch_menu(MENU_DASHBOARD);
 		}
 		else if(selected_menu == MENU_CLOCK_SET_HOUR || selected_menu == MENU_TIMER_SET_HOUR)
 		{				
@@ -192,28 +191,22 @@ int main(void)
 				_delay_ms(200);
 			};
 		}
-			
+		refreshBools();	
 		run();
 	}
 }
 
 ISR (TIMER1_COMPA_vect)
 {
-	second++;
-	if (second > 59)
+	int previous = second;
+	second = add_second(second);
+	
+	if(previous == 59 && second == 0)
 	{
-		second = 0;
-		minute++;
-		if (minute > 59)
-		{
-			minute = 0;
-			hour++;
-			if (hour > 23)
-			{
-				hour = 0;
-			}
-			
-		}
-		clockChangedFlag = 1;
+		previous = minute;
+		minute = add_minute(minute);
 	}
+	
+	if(previous == 59 && minute == 0)
+		hour = add_hour(hour);
 }
