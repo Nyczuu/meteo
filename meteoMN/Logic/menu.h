@@ -1,4 +1,3 @@
-#include <util/delay.h>
 #include "avr/interrupt.h"
 
 #include "../Views/clock.h"

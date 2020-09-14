@@ -1,4 +1,6 @@
+#include <util/delay.h>
 #include "../Logic/display_extensions.h"
+#include "../Logic/time.h"
 #include "timer.h"
 #include "clock.h"
 
@@ -8,6 +10,9 @@ int timerSelectedMinute = 0;
 int timerExpectedHour = 0;
 int timerExpectedMinute = 0;
 int timerExpectedSecond = 0;
+
+int timerMinutesElapsed = 0;
+int timerHoursElapsed = 0;
 
 bool isRunning = 0;
 bool isReady = 0;
@@ -38,6 +43,8 @@ void timer_reset()
 	timerExpectedHour = 0;
 	timerExpectedMinute = 0;
 	timerExpectedSecond = 0;
+	timerMinutesElapsed = 0;
+	timerHoursElapsed = 0;
 }
 
 void timer_add_hour()
@@ -97,25 +104,64 @@ void display_timer(bool displayHour, bool displayMinute, bool displaySecond)
 	}
 	else if(isRunning == 1 && isReady == 0)
 	{
-		draw_clock(0,2, timerExpectedHour - get_current_hour(), timerExpectedMinute - get_current_minute(),
-		timer_get_second(), displayHour, displayMinute,displaySecond);
+		draw_running_timer(displayHour, displayMinute, displaySecond);
 	}
 	else
 	{
-		draw_new_string(2,12,"IT IS TIME!!!");
+		draw_string(2,12,"IT IS TIME!!!");
 	}
+}
+
+void draw_running_timer(bool displayHour, bool displayMinute, bool displaySecond)
+{
+	int hour = timer_get_hour();
+	int minute = timer_get_minute();
+	int second = timer_get_second();
+	
+	if(second == (SECONDS_IN_MINUTE - 1))
+	{
+		timerMinutesElapsed++;
+		_delay_ms(1000);
+	}
+	
+	if(minute == (MINUTES_IN_HOUR - 1))
+	{
+		timerHoursElapsed++;
+		_delay_ms(1000);
+	}
+	
+	draw_clock(0,2, hour, minute, second, displayHour, displayMinute, displaySecond);
 }
 
 int timer_get_second()
 {
-	int currentSecond = get_current_second();
-	int second = timerExpectedSecond - currentSecond;
-	if(second > 0)
-	{
-		return second;
-	}
+	return get_difference(get_current_second(),timerExpectedSecond, SECONDS_IN_MINUTE, 0);
+}
+
+int timer_get_minute()
+{
+	return get_difference(get_current_minute(),timerExpectedMinute, MINUTES_IN_HOUR, timerMinutesElapsed);
+}
+
+int timer_get_hour()
+{
+	return get_difference(get_current_hour(),timerExpectedHour, HOURS_IN_DAY, timerHoursElapsed);
+}
+
+int get_difference(int currentValue, int expectedValue, int maxValue, int elapsedValue)
+{
+	int result = 0;
+	int distinction = currentValue - expectedValue;
+	
+	if(distinction < 0)
+	result = abs(distinction);
 	else
-	{
-		return currentSecond - timerExpectedSecond; 
-	}
+	result = maxValue - distinction;
+	
+	result = result - elapsedValue;
+	
+	if(result == maxValue)
+	result = 0;
+	
+	return result;
 }

@@ -1,3 +1,4 @@
+#include <util/delay.h>
 #include "menu.h"
 
 int selectedMenu = MENU_CLOCK;

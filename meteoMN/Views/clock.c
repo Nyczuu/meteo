@@ -1,4 +1,5 @@
 #include "../Logic/display_extensions.h"
+#include "../Logic/time.h"
 #include "clock.h"
 
  int hour = 12;
@@ -12,13 +13,13 @@ void trigger()
 	int previous = second;
 	second = add_second(second);
 	
-	if(previous == 59 && second == 0)
+	if(previous == (SECONDS_IN_MINUTE - 1) && second == 0)
 	{
 		previous = minute;
 		minute = add_minute(minute);
 	}
 	
-	if(previous == 59 && minute == 0)
+	if(previous == (MINUTES_IN_HOUR - 1) && minute == 0)
 	hour = add_hour(hour);
 }
 
