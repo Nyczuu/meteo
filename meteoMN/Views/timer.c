@@ -11,8 +11,8 @@ int timerExpectedHour = 0;
 int timerExpectedMinute = 0;
 int timerExpectedSecond = 0;
 
-int timerMinutesElapsed = 0;
-int timerHoursElapsed = 0;
+bool timerMinutesElapsed = 0;
+bool timerHoursElapsed = 0;
 
 bool isRunning = 0;
 bool isReady = 0;
@@ -120,17 +120,36 @@ void draw_running_timer(bool displayHour, bool displayMinute, bool displaySecond
 	
 	if(second == (SECONDS_IN_MINUTE - 1))
 	{
-		timerMinutesElapsed++;
+		timerMinutesElapsed = 1;
 		_delay_ms(1000);
 	}
 	
 	if(minute == (MINUTES_IN_HOUR - 1))
 	{
-		timerHoursElapsed++;
+		timerHoursElapsed = 1;
 		_delay_ms(1000);
 	}
 	
 	draw_clock(0,2, hour, minute, second, displayHour, displayMinute, displaySecond);
+}
+
+int get_difference(int currentValue, int expectedValue, int maxValue, bool elapsedValue)
+{
+	int result = 0;
+	int distinction = currentValue - expectedValue;
+	
+	if(distinction < 0)
+	result = abs(distinction);
+	else
+	result = maxValue - distinction;
+	
+	if(elapsedValue == 1)
+	result = result - 1;
+	
+	if(result == maxValue)
+	result = 0;
+	
+	return result;
 }
 
 int timer_get_second()
@@ -146,22 +165,4 @@ int timer_get_minute()
 int timer_get_hour()
 {
 	return get_difference(get_current_hour(),timerExpectedHour, HOURS_IN_DAY, timerHoursElapsed);
-}
-
-int get_difference(int currentValue, int expectedValue, int maxValue, int elapsedValue)
-{
-	int result = 0;
-	int distinction = currentValue - expectedValue;
-	
-	if(distinction < 0)
-	result = abs(distinction);
-	else
-	result = maxValue - distinction;
-	
-	result = result - elapsedValue;
-	
-	if(result == maxValue)
-	result = 0;
-	
-	return result;
 }
