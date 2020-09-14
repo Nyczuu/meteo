@@ -49,30 +49,40 @@ void clock_save()
 	minute = clockSelectedMinute;
 }
 
+int get_current_hour()
+{
+	return hour;
+}
+
+int get_current_minute()
+{
+	return minute;	
+}
+
+int get_current_second()
+{
+	return second;
+}
+
 void display_clock_view()
 {
 	draw_string(0, 0, "CLOCK");
-	display_clock(hour, minute, 1,1,1);
+	display_clock(hour, minute,second, 1,1,1);
 }
 
 void display_clock_hour_set_view()
 {
 	draw_string(0, 0, "CLOCK SET H");
-	display_clock(clockSelectedHour, clockSelectedMinute, 1,0,0);
+	display_clock(clockSelectedHour, clockSelectedMinute, 0,1,0,0);
 }
 
 void display_clock_minute_set_view()
 {
 	draw_string(0, 0, "CLOCK SET M");
-	display_clock(clockSelectedHour, clockSelectedMinute, 0,1,0);
+	display_clock(clockSelectedHour, clockSelectedMinute, 0, 0, 1, 0);
 }
 
-void display_clock(int hour, int minute, bool displayHour, bool displayMinute, bool displaySeconds)
+void display_clock(int hour, int minute, int second, bool displayHour, bool displayMinute, bool displaySeconds)
 {
-	draw_clock(0,2, hour, minute, displayHour, displayMinute);
-	char seconds[2];
-	sprintf(seconds, "%d", second);
-	
-	if(displaySeconds == 1)
-	draw_string(110,12,seconds);
+	draw_clock(0,2, hour, minute, second, displayHour, displayMinute, displaySeconds);
 }

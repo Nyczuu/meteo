@@ -8,6 +8,7 @@ void timer_subtract_minute();
 void timer_run();
 
 bool timer_is_running();
+bool timer_is_ready();
 
 void display_timer_view();
 void display_timer_hour_set_view();

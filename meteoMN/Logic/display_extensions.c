@@ -62,7 +62,13 @@ void draw_string(int xstart, int ystart, char* str)
 	ssd1306tx_stringxy(ssd1306xled_font8x16data, xstart, ystart, str);
 }
 
-void draw_clock(int xstart, int ystart, int hours, int minutes, bool displayHour, bool displayMinute)
+void draw_new_string(int xstart, int ystart, char* str)
+{
+	ssd1306_clear_display();
+	draw_string(xstart,ystart,str);
+}
+
+void draw_clock(int xstart, int ystart, int hours, int minutes, int seconds, bool displayHour, bool displayMinute, bool displaySecond)
 {
 	if(displayHour == 1)
 	{
@@ -74,5 +80,18 @@ void draw_clock(int xstart, int ystart, int hours, int minutes, bool displayHour
 	if(displayMinute == 1)
 	{	
 		draw_number(xstart + 60, ystart, minutes);
+	}
+	
+	if(displaySecond == 1)
+	{
+		char seconds_as_char[2];
+		
+		if(seconds < 10)
+		sprintf(seconds_as_char, "0%d", seconds);
+		else
+		sprintf(seconds_as_char, "%d", seconds);
+		
+		if(displaySecond == 1)
+		draw_string(xstart + 110, ystart + 8,seconds_as_char);
 	}
 }

@@ -12,6 +12,7 @@
 #define LED2_PORT PORTB
 #define LED1 (1<<PD7)
 #define LED2 (1<<PB0)
+#define BUZZER (1<<PD5)
 
 void port_init()
 {
@@ -32,6 +33,9 @@ int main(void)
 
 	while (1)
 	{
+		if(timer_is_running() == 1 && timer_is_ready() == 1)
+		DDRD |= LED1;
+		
 		if(BUTTON_PRESSED)
 			on_button_pressed();
 		
