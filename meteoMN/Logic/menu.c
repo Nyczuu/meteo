@@ -69,7 +69,10 @@ void switch_menu()
 	
 	//Timer
 	else if (BUTTON_2_PRESSED && selectedMenu == MENU_TIMER)
-	timer_set_hour();
+	{
+		timer_reset();
+		timer_set_hour();
+	}
 	
 	//Timer set hour
 	else if (BUTTON_1_PRESSED && selectedMenu == MENU_TIMER_SET_HOUR)
