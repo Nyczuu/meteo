@@ -45,5 +45,6 @@ int main(void)
 
 ISR (TIMER1_COMPA_vect)
 {
-	trigger();
+	clock_trigger();
+	timer_trigger();
 }

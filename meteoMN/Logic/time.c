@@ -32,6 +32,11 @@ int subtract_minute(int number)
 	return subtract_number(number, MINUTES_IN_HOUR - 1);
 }
 
+int subtract_second(int number)
+{
+	return subtract_number(number, SECONDS_IN_MINUTE - 1);
+}
+
 int add_number(int number, int max)
 {
 	number++;

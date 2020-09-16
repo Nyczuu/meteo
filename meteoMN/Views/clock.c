@@ -8,7 +8,7 @@
  int clockSelectedMinute= 0;
  int second = 0;
 
-void trigger()
+void clock_trigger()
 {
 	int previous = second;
 	second = add_second(second);

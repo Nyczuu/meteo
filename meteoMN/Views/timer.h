@@ -1,11 +1,13 @@
 #include <stdbool.h> 
 
 void timer_reset();
+void timer_run();
+void timer_trigger();
+
 void timer_add_hour();
 void timer_add_minute();
 void timer_subtract_hour();
 void timer_subtract_minute();
-void timer_run();
 
 bool timer_is_running();
 bool timer_is_ready();

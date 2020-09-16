@@ -5,5 +5,7 @@
 int add_hour(int number);
 int add_minute(int number);
 int add_second(int number);
+
 int subtract_hour(int number);
 int subtract_minute(int number);
+int subtract_second(int number);
