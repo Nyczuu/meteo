@@ -42,11 +42,14 @@ SUBDIRS :=  \
 C_SRCS +=  \
 ../External/display.c \
 ../External/I2C.c \
+../Logic/buzzer.c \
 ../Logic/display_extensions.c \
 ../Logic/menu.c \
 ../Logic/time.c \
 ../main.c \
+../Views/alarm.c \
 ../Views/clock.c \
+../Views/temperature.c \
 ../Views/timer.c
 
 
@@ -59,41 +62,53 @@ ASM_SRCS +=
 OBJS +=  \
 External/display.o \
 External/I2C.o \
+Logic/buzzer.o \
 Logic/display_extensions.o \
 Logic/menu.o \
 Logic/time.o \
 main.o \
+Views/alarm.o \
 Views/clock.o \
+Views/temperature.o \
 Views/timer.o
 
 OBJS_AS_ARGS +=  \
 External/display.o \
 External/I2C.o \
+Logic/buzzer.o \
 Logic/display_extensions.o \
 Logic/menu.o \
 Logic/time.o \
 main.o \
+Views/alarm.o \
 Views/clock.o \
+Views/temperature.o \
 Views/timer.o
 
 C_DEPS +=  \
 External/display.d \
 External/I2C.d \
+Logic/buzzer.d \
 Logic/display_extensions.d \
 Logic/menu.d \
 Logic/time.d \
 main.d \
+Views/alarm.d \
 Views/clock.d \
+Views/temperature.d \
 Views/timer.d
 
 C_DEPS_AS_ARGS +=  \
 External/display.d \
 External/I2C.d \
+Logic/buzzer.d \
 Logic/display_extensions.d \
 Logic/menu.d \
 Logic/time.d \
 main.d \
+Views/alarm.d \
 Views/clock.d \
+Views/temperature.d \
 Views/timer.d
 
 OUTPUT_FILE_PATH +=meteoMN.elf
@@ -118,6 +133,13 @@ External/display.o: ../External/display.c
 	
 
 External/I2C.o: ../External/I2C.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=8000000  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega88p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega88p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Logic/buzzer.o: ../Logic/buzzer.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=8000000  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega88p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega88p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -152,7 +174,21 @@ Logic/time.o: ../Logic/time.c
 	@echo Finished building: $<
 	
 
+Views/alarm.o: ../Views/alarm.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=8000000  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega88p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega88p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 Views/clock.o: ../Views/clock.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=8000000  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega88p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega88p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Views/temperature.o: ../Views/temperature.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=8000000  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega88p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega88p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

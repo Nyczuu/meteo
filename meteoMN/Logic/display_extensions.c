@@ -1,4 +1,4 @@
-#include <stdbool.h> 
+#include <stdbool.h>
 #include "../External/fonts.h"
 #include "../External/display.h"
 #include "display_extensions.h"
@@ -38,7 +38,7 @@ void draw_number(int xstart, int ystart, int number)
 {
 	int first, second;
 	
-	if (number > 99) 
+	if (number > 99)
 	{
 		return;
 	}
@@ -78,7 +78,7 @@ void draw_clock(int xstart, int ystart, int hours, int minutes, int seconds, boo
 	draw_string(xstart +48, ystart +1, ":");
 	
 	if(displayMinute == 1)
-	{	
+	{
 		draw_number(xstart + 60, ystart, minutes);
 	}
 	
@@ -94,4 +94,11 @@ void draw_clock(int xstart, int ystart, int hours, int minutes, int seconds, boo
 		if(displaySecond == 1)
 		draw_string(xstart + 110, ystart + 8,seconds_as_char);
 	}
+}
+
+void draw_its_time()
+{
+	draw_string(2,2,"IT IS TIME!!!");
+	draw_string(2,4,"IT IS TIME!!!");
+	draw_string(2,6,"IT IS TIME!!!");
 }

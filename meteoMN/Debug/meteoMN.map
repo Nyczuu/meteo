@@ -60,43 +60,34 @@ Discarded input sections
  .bss           0x00000000        0x0 External/I2C.o
  .text.I2C_read
                 0x00000000       0x1e External/I2C.o
+ .text          0x00000000        0x0 Logic/buzzer.o
+ .data          0x00000000        0x0 Logic/buzzer.o
+ .bss           0x00000000        0x0 Logic/buzzer.o
+ .text.play_alarm_sound
+                0x00000000       0x1c Logic/buzzer.o
+ .text.play_timer_sound
+                0x00000000       0x4c Logic/buzzer.o
+ .debug_info    0x00000000      0x1c4 Logic/buzzer.o
+ .debug_abbrev  0x00000000       0xde Logic/buzzer.o
+ .debug_loc     0x00000000      0x120 Logic/buzzer.o
+ .debug_aranges
+                0x00000000       0x28 Logic/buzzer.o
+ .debug_ranges  0x00000000       0x18 Logic/buzzer.o
+ .debug_line    0x00000000      0x157 Logic/buzzer.o
+ .debug_str     0x00000000      0x1c2 Logic/buzzer.o
+ .comment       0x00000000       0x31 Logic/buzzer.o
+ .debug_frame   0x00000000       0x34 Logic/buzzer.o
  .text          0x00000000        0x0 Logic/display_extensions.o
  .data          0x00000000        0x0 Logic/display_extensions.o
  .bss           0x00000000        0x0 Logic/display_extensions.o
  .text.draw_new_string
                 0x00000000       0x2a Logic/display_extensions.o
- .progmem.data.ssd1306xled_font6x8data
-                0x00000000      0x228 Logic/display_extensions.o
  .text          0x00000000        0x0 Logic/menu.o
  .data          0x00000000        0x0 Logic/menu.o
  .bss           0x00000000        0x0 Logic/menu.o
  .text.welcome  0x00000000        0xe Logic/menu.o
- .text.clock_view
+ .text.temperature_view
                 0x00000000        0xe Logic/menu.o
- .text.clock_set_hour
-                0x00000000        0xe Logic/menu.o
- .text.clock_set_hour_add
-                0x00000000        0x4 Logic/menu.o
- .text.clock_set_hour_subtract
-                0x00000000        0x4 Logic/menu.o
- .text.clock_set_hour_confirm
-                0x00000000        0xe Logic/menu.o
- .text.clock_set_minute_add
-                0x00000000        0x4 Logic/menu.o
- .text.clock_set_minute_subtract
-                0x00000000        0x4 Logic/menu.o
- .text.timer_set_hour
-                0x00000000        0xe Logic/menu.o
- .text.timer_set_hour_add
-                0x00000000        0x4 Logic/menu.o
- .text.timer_set_hour_subtract
-                0x00000000        0x4 Logic/menu.o
- .text.timer_set_hour_confirm
-                0x00000000        0xe Logic/menu.o
- .text.timer_set_minute_add
-                0x00000000        0x4 Logic/menu.o
- .text.timer_set_minute_subtract
-                0x00000000        0x4 Logic/menu.o
  .text          0x00000000        0x0 Logic/time.o
  .data          0x00000000        0x0 Logic/time.o
  .bss           0x00000000        0x0 Logic/time.o
@@ -109,15 +100,15 @@ Discarded input sections
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
+ .text          0x00000000        0x0 Views/alarm.o
+ .data          0x00000000        0x0 Views/alarm.o
+ .bss           0x00000000        0x0 Views/alarm.o
  .text          0x00000000        0x0 Views/clock.o
  .data          0x00000000        0x0 Views/clock.o
  .bss           0x00000000        0x0 Views/clock.o
- .text.get_current_hour
-                0x00000000        0xa Views/clock.o
- .text.get_current_minute
-                0x00000000        0xa Views/clock.o
- .text.get_current_second
-                0x00000000        0xa Views/clock.o
+ .text          0x00000000        0x0 Views/temperature.o
+ .data          0x00000000        0x0 Views/temperature.o
+ .bss           0x00000000        0x0 Views/temperature.o
  .text          0x00000000        0x0 Views/timer.o
  .data          0x00000000        0x0 Views/timer.o
  .bss           0x00000000        0x0 Views/timer.o
@@ -304,11 +295,14 @@ Address of section .data set to 0x800100
 LOAD C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega88p/avr4/crtatmega88p.o
 LOAD External/display.o
 LOAD External/I2C.o
+LOAD Logic/buzzer.o
 LOAD Logic/display_extensions.o
 LOAD Logic/menu.o
 LOAD Logic/time.o
 LOAD main.o
+LOAD Views/alarm.o
 LOAD Views/clock.o
+LOAD Views/temperature.o
 LOAD Views/timer.o
 START GROUP
 LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libm.a
@@ -419,7 +413,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x1d14
+.text           0x00000000     0x1e2e
  *(.vectors)
  .vectors       0x00000000       0x34 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega88p/avr4/crtatmega88p.o
                 0x00000000                __vector_default
@@ -469,37 +463,37 @@ END GROUP
                 0x000003b4       0x60 Logic/display_extensions.o
                 0x000003b4                number0
  .progmem.data.ssd1306xled_font8x16data
-                0x00000414      0x5f0 Logic/display_extensions.o
+                0x00000414      0x3b0 Logic/display_extensions.o
                 0x00000414                ssd1306xled_font8x16data
-                0x00000a04                . = ALIGN (0x2)
+                0x000007c4                . = ALIGN (0x2)
  *(.jumptables)
  *(.jumptables*)
  *(.lowtext)
  *(.lowtext*)
-                0x00000a04                __ctors_start = .
+                0x000007c4                __ctors_start = .
  *(.ctors)
-                0x00000a04                __ctors_end = .
-                0x00000a04                __dtors_start = .
+                0x000007c4                __ctors_end = .
+                0x000007c4                __dtors_start = .
  *(.dtors)
-                0x00000a04                __dtors_end = .
+                0x000007c4                __dtors_end = .
  SORT(*)(.ctors)
  SORT(*)(.dtors)
  *(.init0)
- .init0         0x00000a04        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega88p/avr4/crtatmega88p.o
-                0x00000a04                __init
+ .init0         0x000007c4        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega88p/avr4/crtatmega88p.o
+                0x000007c4                __init
  *(.init0)
  *(.init1)
  *(.init1)
  *(.init2)
- .init2         0x00000a04        0xc C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega88p/avr4/crtatmega88p.o
+ .init2         0x000007c4        0xc C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega88p/avr4/crtatmega88p.o
  *(.init2)
  *(.init3)
  *(.init3)
  *(.init4)
- .init4         0x00000a10       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_copy_data.o)
-                0x00000a10                __do_copy_data
- .init4         0x00000a26       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_clear_bss.o)
-                0x00000a26                __do_clear_bss
+ .init4         0x000007d0       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_copy_data.o)
+                0x000007d0                __do_copy_data
+ .init4         0x000007e6       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_clear_bss.o)
+                0x000007e6                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
@@ -510,255 +504,315 @@ END GROUP
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x00000a36        0x4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega88p/avr4/crtatmega88p.o
+ .init9         0x000007f6        0x4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega88p/avr4/crtatmega88p.o
  *(.init9)
  *(.text)
- .text          0x00000a3a        0x2 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega88p/avr4/crtatmega88p.o
-                0x00000a3a                __vector_22
-                0x00000a3a                __vector_1
-                0x00000a3a                __vector_24
-                0x00000a3a                __vector_12
-                0x00000a3a                __bad_interrupt
-                0x00000a3a                __vector_6
-                0x00000a3a                __vector_3
-                0x00000a3a                __vector_23
-                0x00000a3a                __vector_25
-                0x00000a3a                __vector_13
-                0x00000a3a                __vector_17
-                0x00000a3a                __vector_19
-                0x00000a3a                __vector_7
-                0x00000a3a                __vector_5
-                0x00000a3a                __vector_4
-                0x00000a3a                __vector_9
-                0x00000a3a                __vector_2
-                0x00000a3a                __vector_21
-                0x00000a3a                __vector_15
-                0x00000a3a                __vector_8
-                0x00000a3a                __vector_14
-                0x00000a3a                __vector_10
-                0x00000a3a                __vector_16
-                0x00000a3a                __vector_18
-                0x00000a3a                __vector_20
-                0x00000a3c                . = ALIGN (0x2)
+ .text          0x000007fa        0x2 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega88p/avr4/crtatmega88p.o
+                0x000007fa                __vector_22
+                0x000007fa                __vector_1
+                0x000007fa                __vector_24
+                0x000007fa                __vector_12
+                0x000007fa                __bad_interrupt
+                0x000007fa                __vector_6
+                0x000007fa                __vector_3
+                0x000007fa                __vector_23
+                0x000007fa                __vector_25
+                0x000007fa                __vector_13
+                0x000007fa                __vector_17
+                0x000007fa                __vector_19
+                0x000007fa                __vector_7
+                0x000007fa                __vector_5
+                0x000007fa                __vector_4
+                0x000007fa                __vector_9
+                0x000007fa                __vector_2
+                0x000007fa                __vector_21
+                0x000007fa                __vector_15
+                0x000007fa                __vector_8
+                0x000007fa                __vector_14
+                0x000007fa                __vector_10
+                0x000007fa                __vector_16
+                0x000007fa                __vector_18
+                0x000007fa                __vector_20
+                0x000007fc                . = ALIGN (0x2)
  *(.text.*)
  .text.ssd1306_start_command
-                0x00000a3c       0x10 External/display.o
-                0x00000a3c                ssd1306_start_command
+                0x000007fc       0x10 External/display.o
+                0x000007fc                ssd1306_start_command
  .text.ssd1306_start_data
-                0x00000a4c       0x10 External/display.o
-                0x00000a4c                ssd1306_start_data
+                0x0000080c       0x10 External/display.o
+                0x0000080c                ssd1306_start_data
  .text.ssd1306_init
-                0x00000a5c       0x2e External/display.o
-                0x00000a5c                ssd1306_init
+                0x0000081c       0x2e External/display.o
+                0x0000081c                ssd1306_init
  .text.ssd1306_setpos
-                0x00000a8a       0x30 External/display.o
-                0x00000a8a                ssd1306_setpos
+                0x0000084a       0x30 External/display.o
+                0x0000084a                ssd1306_setpos
  .text.ssd1306_stop
-                0x00000aba        0x4 External/display.o
-                0x00000aba                ssd1306_stop
+                0x0000087a        0x4 External/display.o
+                0x0000087a                ssd1306_stop
  .text.ssd1306_draw_bmp
-                0x00000abe       0x8c External/display.o
-                0x00000abe                ssd1306_draw_bmp
+                0x0000087e       0x8c External/display.o
+                0x0000087e                ssd1306_draw_bmp
  .text.ssd1306_clear_display
-                0x00000b4a       0x26 External/display.o
-                0x00000b4a                ssd1306_clear_display
+                0x0000090a       0x26 External/display.o
+                0x0000090a                ssd1306_clear_display
  .text.ssd1306tx_init
-                0x00000b70        0xe External/display.o
-                0x00000b70                ssd1306tx_init
+                0x00000930        0xe External/display.o
+                0x00000930                ssd1306tx_init
  .text.ssd1306tx_stringxy
-                0x00000b7e       0xca External/display.o
-                0x00000b7e                ssd1306tx_stringxy
+                0x0000093e       0xca External/display.o
+                0x0000093e                ssd1306tx_stringxy
  .text.I2C_Initialize
-                0x00000c48       0x2e External/I2C.o
-                0x00000c48                I2C_Initialize
+                0x00000a08       0x2e External/I2C.o
+                0x00000a08                I2C_Initialize
  .text.I2C_start
-                0x00000c76       0x12 External/I2C.o
-                0x00000c76                I2C_start
+                0x00000a36       0x12 External/I2C.o
+                0x00000a36                I2C_start
  .text.I2C_stop
-                0x00000c88       0x12 External/I2C.o
-                0x00000c88                I2C_stop
+                0x00000a48       0x12 External/I2C.o
+                0x00000a48                I2C_stop
  .text.I2C_write
-                0x00000c9a       0x16 External/I2C.o
-                0x00000c9a                I2C_write
+                0x00000a5a       0x16 External/I2C.o
+                0x00000a5a                I2C_write
  .text.display_init
-                0x00000cb0       0x1e Logic/display_extensions.o
-                0x00000cb0                display_init
+                0x00000a70       0x1e Logic/display_extensions.o
+                0x00000a70                display_init
  .text.numberToCharArray
-                0x00000cce       0x7a Logic/display_extensions.o
-                0x00000cce                numberToCharArray
+                0x00000a8e       0x7a Logic/display_extensions.o
+                0x00000a8e                numberToCharArray
  .text.draw_digit
-                0x00000d48       0x2a Logic/display_extensions.o
-                0x00000d48                draw_digit
+                0x00000b08       0x2a Logic/display_extensions.o
+                0x00000b08                draw_digit
  .text.draw_number
-                0x00000d72       0x4e Logic/display_extensions.o
-                0x00000d72                draw_number
+                0x00000b32       0x4e Logic/display_extensions.o
+                0x00000b32                draw_number
  .text.draw_string
-                0x00000dc0        0xe Logic/display_extensions.o
-                0x00000dc0                draw_string
+                0x00000b80        0xe Logic/display_extensions.o
+                0x00000b80                draw_string
  .text.draw_clock
-                0x00000dce       0xcc Logic/display_extensions.o
-                0x00000dce                draw_clock
- .text.clock_set_minute_confirm
-                0x00000e9a       0x10 Logic/menu.o
-                0x00000e9a                clock_set_minute_confirm
- .text.timer_view
-                0x00000eaa       0x16 Logic/menu.o
-                0x00000eaa                timer_view
- .text.timer_set_minute_confirm
-                0x00000ec0        0x6 Logic/menu.o
-                0x00000ec0                timer_set_minute_confirm
- .text.temperature_view
-                0x00000ec6       0x1c Logic/menu.o
-                0x00000ec6                temperature_view
- .text.dashboard_view
-                0x00000ee2       0x1c Logic/menu.o
-                0x00000ee2                dashboard_view
+                0x00000b8e       0xcc Logic/display_extensions.o
+                0x00000b8e                draw_clock
+ .text.draw_its_time
+                0x00000c5a       0x2c Logic/display_extensions.o
+                0x00000c5a                draw_its_time
  .text.refresh_screen
-                0x00000efe       0x56 Logic/menu.o
-                0x00000efe                refresh_screen
+                0x00000c86       0x6a Logic/menu.o
+                0x00000c86                refresh_screen
+ .text.clock_set_minute_confirm
+                0x00000cf0       0x10 Logic/menu.o
+                0x00000cf0                clock_set_minute_confirm
+ .text.timer_view
+                0x00000d00       0x16 Logic/menu.o
+                0x00000d00                timer_view
+ .text.timer_set_hour
+                0x00000d16       0x1a Logic/menu.o
+                0x00000d16                timer_set_hour
+ .text.timer_set_minute_confirm
+                0x00000d30        0x6 Logic/menu.o
+                0x00000d30                timer_set_minute_confirm
+ .text.alarm_view
+                0x00000d36       0x16 Logic/menu.o
+                0x00000d36                alarm_view
+ .text.alarm_set_hour
+                0x00000d4c       0x1c Logic/menu.o
+                0x00000d4c                alarm_set_hour
+ .text.alarm_set_minute_confirm
+                0x00000d68        0x6 Logic/menu.o
+                0x00000d68                alarm_set_minute_confirm
  .text.switch_menu
-                0x00000f54      0x212 Logic/menu.o
-                0x00000f54                switch_menu
+                0x00000d6e      0x2e0 Logic/menu.o
+                0x00000d6e                switch_menu
  .text.on_button_pressed
-                0x00001166       0x18 Logic/menu.o
-                0x00001166                on_button_pressed
+                0x0000104e       0x18 Logic/menu.o
+                0x0000104e                on_button_pressed
  .text.add_hour
-                0x0000117e        0xe Logic/time.o
-                0x0000117e                add_hour
+                0x00001066        0xe Logic/time.o
+                0x00001066                add_hour
  .text.add_minute
-                0x0000118c        0xe Logic/time.o
-                0x0000118c                add_minute
+                0x00001074        0xe Logic/time.o
+                0x00001074                add_minute
  .text.add_second
-                0x0000119a        0xe Logic/time.o
-                0x0000119a                add_second
+                0x00001082        0xe Logic/time.o
+                0x00001082                add_second
  .text.subtract_hour
-                0x000011a8        0xa Logic/time.o
-                0x000011a8                subtract_hour
+                0x00001090        0xa Logic/time.o
+                0x00001090                subtract_hour
  .text.subtract_minute
-                0x000011b2        0xa Logic/time.o
-                0x000011b2                subtract_minute
+                0x0000109a        0xa Logic/time.o
+                0x0000109a                subtract_minute
  .text.port_init
-                0x000011bc       0x2a main.o
-                0x000011bc                port_init
- .text.main     0x000011e6       0x26 main.o
-                0x000011e6                main
+                0x000010a4       0x32 main.o
+                0x000010a4                port_init
+ .text.main     0x000010d6       0x1a main.o
+                0x000010d6                main
  .text.__vector_11
-                0x0000120c       0x48 main.o
-                0x0000120c                __vector_11
+                0x000010f0       0x4a main.o
+                0x000010f0                __vector_11
+ .text.alarm_reset
+                0x0000113a       0x32 Views/alarm.o
+                0x0000113a                alarm_reset
+ .text.alarm_run
+                0x0000116c       0x38 Views/alarm.o
+                0x0000116c                alarm_run
+ .text.alarm_trigger
+                0x000011a4       0x48 Views/alarm.o
+                0x000011a4                alarm_trigger
+ .text.alarm_add_hour
+                0x000011ec       0x14 Views/alarm.o
+                0x000011ec                alarm_add_hour
+ .text.alarm_add_minute
+                0x00001200       0x14 Views/alarm.o
+                0x00001200                alarm_add_minute
+ .text.alarm_subtract_hour
+                0x00001214       0x14 Views/alarm.o
+                0x00001214                alarm_subtract_hour
+ .text.alarm_subtract_minute
+                0x00001228       0x14 Views/alarm.o
+                0x00001228                alarm_subtract_minute
+ .text.alarm_is_running
+                0x0000123c        0x6 Views/alarm.o
+                0x0000123c                alarm_is_running
+ .text.alarm_is_ready
+                0x00001242        0x6 Views/alarm.o
+                0x00001242                alarm_is_ready
+ .text.display_alarm
+                0x00001248       0x5a Views/alarm.o
+                0x00001248                display_alarm
+ .text.display_alarm_view
+                0x000012a2       0x42 Views/alarm.o
+                0x000012a2                display_alarm_view
+ .text.display_alarm_hour_set_view
+                0x000012e4       0x42 Views/alarm.o
+                0x000012e4                display_alarm_hour_set_view
+ .text.display_alarm_minute_set_view
+                0x00001326       0x42 Views/alarm.o
+                0x00001326                display_alarm_minute_set_view
  .text.clock_trigger
-                0x00001254       0x5c Views/clock.o
-                0x00001254                clock_trigger
+                0x00001368       0x5c Views/clock.o
+                0x00001368                clock_trigger
  .text.clock_add_hour
-                0x000012b0       0x14 Views/clock.o
-                0x000012b0                clock_add_hour
+                0x000013c4       0x14 Views/clock.o
+                0x000013c4                clock_add_hour
  .text.clock_add_minute
-                0x000012c4       0x14 Views/clock.o
-                0x000012c4                clock_add_minute
+                0x000013d8       0x14 Views/clock.o
+                0x000013d8                clock_add_minute
  .text.clock_subtract_hour
-                0x000012d8       0x14 Views/clock.o
-                0x000012d8                clock_subtract_hour
+                0x000013ec       0x14 Views/clock.o
+                0x000013ec                clock_subtract_hour
  .text.clock_subtract_minute
-                0x000012ec       0x14 Views/clock.o
-                0x000012ec                clock_subtract_minute
+                0x00001400       0x14 Views/clock.o
+                0x00001400                clock_subtract_minute
  .text.clock_save
-                0x00001300       0x2a Views/clock.o
-                0x00001300                clock_save
+                0x00001414       0x2a Views/clock.o
+                0x00001414                clock_save
+ .text.get_current_hour
+                0x0000143e        0xa Views/clock.o
+                0x0000143e                get_current_hour
+ .text.get_current_minute
+                0x00001448        0xa Views/clock.o
+                0x00001448                get_current_minute
+ .text.get_current_second
+                0x00001452        0xa Views/clock.o
+                0x00001452                get_current_second
  .text.display_clock
-                0x0000132a       0x2c Views/clock.o
-                0x0000132a                display_clock
+                0x0000145c       0x2c Views/clock.o
+                0x0000145c                display_clock
  .text.display_clock_view
-                0x00001356       0x48 Views/clock.o
-                0x00001356                display_clock_view
+                0x00001488       0x48 Views/clock.o
+                0x00001488                display_clock_view
  .text.display_clock_hour_set_view
-                0x0000139e       0x42 Views/clock.o
-                0x0000139e                display_clock_hour_set_view
+                0x000014d0       0x42 Views/clock.o
+                0x000014d0                display_clock_hour_set_view
  .text.display_clock_minute_set_view
-                0x000013e0       0x42 Views/clock.o
-                0x000013e0                display_clock_minute_set_view
+                0x00001512       0x42 Views/clock.o
+                0x00001512                display_clock_minute_set_view
+ .text.display_temperature_view
+                0x00001554       0x10 Views/temperature.o
+                0x00001554                display_temperature_view
  .text.timer_is_ready
-                0x00001422        0x6 Views/timer.o
-                0x00001422                timer_is_ready
+                0x00001564        0x6 Views/timer.o
+                0x00001564                timer_is_ready
  .text.timer_is_running
-                0x00001428        0x6 Views/timer.o
-                0x00001428                timer_is_running
+                0x0000156a        0x6 Views/timer.o
+                0x0000156a                timer_is_running
  .text.timer_reset
-                0x0000142e       0x32 Views/timer.o
-                0x0000142e                timer_reset
+                0x00001570       0x32 Views/timer.o
+                0x00001570                timer_reset
  .text.timer_run
-                0x00001460       0x38 Views/timer.o
-                0x00001460                timer_run
+                0x000015a2       0x38 Views/timer.o
+                0x000015a2                timer_run
  .text.timer_trigger
-                0x00001498       0xb0 Views/timer.o
-                0x00001498                timer_trigger
+                0x000015da       0xb0 Views/timer.o
+                0x000015da                timer_trigger
  .text.timer_add_hour
-                0x00001548       0x14 Views/timer.o
-                0x00001548                timer_add_hour
+                0x0000168a       0x14 Views/timer.o
+                0x0000168a                timer_add_hour
  .text.timer_add_minute
-                0x0000155c       0x14 Views/timer.o
-                0x0000155c                timer_add_minute
+                0x0000169e       0x14 Views/timer.o
+                0x0000169e                timer_add_minute
  .text.timer_subtract_hour
-                0x00001570       0x14 Views/timer.o
-                0x00001570                timer_subtract_hour
+                0x000016b2       0x14 Views/timer.o
+                0x000016b2                timer_subtract_hour
  .text.timer_subtract_minute
-                0x00001584       0x14 Views/timer.o
-                0x00001584                timer_subtract_minute
+                0x000016c6       0x14 Views/timer.o
+                0x000016c6                timer_subtract_minute
  .text.display_timer
-                0x00001598       0xa4 Views/timer.o
-                0x00001598                display_timer
+                0x000016da       0x7c Views/timer.o
+                0x000016da                display_timer
  .text.display_timer_view
-                0x0000163c       0x1e Views/timer.o
-                0x0000163c                display_timer_view
+                0x00001756       0x1e Views/timer.o
+                0x00001756                display_timer_view
  .text.display_timer_hour_set_view
-                0x0000165a       0x1e Views/timer.o
-                0x0000165a                display_timer_hour_set_view
+                0x00001774       0x1e Views/timer.o
+                0x00001774                display_timer_hour_set_view
  .text.display_timer_minute_set_view
-                0x00001678       0x1e Views/timer.o
-                0x00001678                display_timer_minute_set_view
+                0x00001792       0x1e Views/timer.o
+                0x00001792                display_timer_minute_set_view
  .text.libgcc.div
-                0x00001696       0x26 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_divmodhi4.o)
-                0x00001696                _div
-                0x00001696                __divmodhi4
+                0x000017b0       0x26 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_divmodhi4.o)
+                0x000017b0                _div
+                0x000017b0                __divmodhi4
  .text.libgcc.div
-                0x000016bc       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_divmodsi4.o)
-                0x000016bc                __divmodsi4
+                0x000017d6       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_divmodsi4.o)
+                0x000017d6                __divmodsi4
  .text.libgcc.div
-                0x000016e4       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_negsi2.o)
-                0x000016e4                __negsi2
+                0x000017fe       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_negsi2.o)
+                0x000017fe                __negsi2
  .text.libgcc.div
-                0x000016f4       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_udivmodhi4.o)
-                0x000016f4                __udivmodhi4
+                0x0000180e       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_udivmodhi4.o)
+                0x0000180e                __udivmodhi4
  .text.libgcc.div
-                0x0000171c       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_udivmodsi4.o)
-                0x0000171c                __udivmodsi4
+                0x00001836       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_udivmodsi4.o)
+                0x00001836                __udivmodsi4
  .text.avr-libc
-                0x00001760       0x3e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(sprintf.o)
-                0x00001760                sprintf
+                0x0000187a       0x3e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(sprintf.o)
+                0x0000187a                sprintf
  .text.avr-libc
-                0x0000179e      0x3a4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(vfprintf_std.o)
-                0x0000179e                vfprintf
+                0x000018b8      0x3a4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(vfprintf_std.o)
+                0x000018b8                vfprintf
  .text.avr-libc
-                0x00001b42       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(strnlen_P.o)
-                0x00001b42                strnlen_P
+                0x00001c5c       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(strnlen_P.o)
+                0x00001c5c                strnlen_P
  .text.avr-libc
-                0x00001b58       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(strnlen.o)
-                0x00001b58                strnlen
+                0x00001c72       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(strnlen.o)
+                0x00001c72                strnlen
  .text.avr-libc
-                0x00001b6e       0x78 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(fputc.o)
-                0x00001b6e                fputc
+                0x00001c88       0x78 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(fputc.o)
+                0x00001c88                fputc
  .text.avr-libc
-                0x00001be6       0xbc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(ultoa_invert.o)
-                0x00001be6                __ultoa_invert
+                0x00001d00       0xbc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(ultoa_invert.o)
+                0x00001d00                __ultoa_invert
  .text.libgcc.prologue
-                0x00001ca2       0x38 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_prologue.o)
-                0x00001ca2                __prologue_saves__
+                0x00001dbc       0x38 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_prologue.o)
+                0x00001dbc                __prologue_saves__
  .text.libgcc.prologue
-                0x00001cda       0x36 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_epilogue.o)
-                0x00001cda                __epilogue_restores__
-                0x00001d10                . = ALIGN (0x2)
+                0x00001df4       0x36 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_epilogue.o)
+                0x00001df4                __epilogue_restores__
+                0x00001e2a                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00001d10        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
-                0x00001d10                _exit
-                0x00001d10                exit
+ .fini9         0x00001e2a        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
+                0x00001e2a                _exit
+                0x00001e2a                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -777,11 +831,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00001d10        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
+ .fini0         0x00001e2a        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
  *(.fini0)
-                0x00001d14                _etext = .
+                0x00001e2e                _etext = .
 
-.data           0x00800100       0x6c load address 0x00001d14
+.data           0x00800100       0x68 load address 0x00001e2e
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -797,63 +851,88 @@ END GROUP
  *(.rodata)
  *(.rodata*)
  .rodata.str1.1
-                0x00800106        0x6 Logic/display_extensions.o
-                                  0x9 (size before relaxing)
+                0x00800106       0x14 Logic/display_extensions.o
+                                 0x17 (size before relaxing)
  .rodata.str1.1
-                0x0080010c       0x16 Logic/menu.o
+                0x0080011a       0x1e Views/alarm.o
  .rodata.str1.1
-                0x00800122       0x1e Views/clock.o
+                0x00800138       0x1e Views/clock.o
  .rodata.str1.1
-                0x00800140       0x2c Views/timer.o
+                0x00800156        0xc Views/temperature.o
+ .rodata.str1.1
+                0x00800162        0x6 Views/timer.o
+                                 0x1e (size before relaxing)
  *(.gnu.linkonce.r*)
-                0x0080016c                . = ALIGN (0x2)
-                0x0080016c                _edata = .
-                0x0080016c                PROVIDE (__data_end, .)
+                0x00800168                . = ALIGN (0x2)
+                0x00800168                _edata = .
+                0x00800168                PROVIDE (__data_end, .)
 
-.bss            0x0080016c       0x15
-                0x0080016c                PROVIDE (__bss_start, .)
+.bss            0x00800168       0x21
+                0x00800168                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.second    0x0080016c        0x2 Views/clock.o
-                0x0080016c                second
+ .bss.alarmExpectedSecond
+                0x00800168        0x2 Views/alarm.o
+                0x00800168                alarmExpectedSecond
+ .bss.alarmExpectedMinute
+                0x0080016a        0x2 Views/alarm.o
+                0x0080016a                alarmExpectedMinute
+ .bss.alarmExpectedHour
+                0x0080016c        0x2 Views/alarm.o
+                0x0080016c                alarmExpectedHour
+ .bss.alarmSelectedMinute
+                0x0080016e        0x2 Views/alarm.o
+                0x0080016e                alarmSelectedMinute
+ .bss.alarmSelectedHour
+                0x00800170        0x2 Views/alarm.o
+                0x00800170                alarmSelectedHour
+ .bss.alarmIsRunning
+                0x00800172        0x1 Views/alarm.o
+                0x00800172                alarmIsRunning
+ .bss.alarmIsReady
+                0x00800173        0x1 Views/alarm.o
+                0x00800173                alarmIsReady
+ .bss.second    0x00800174        0x2 Views/clock.o
+                0x00800174                second
  .bss.clockSelectedMinute
-                0x0080016e        0x2 Views/clock.o
-                0x0080016e                clockSelectedMinute
- .bss.minute    0x00800170        0x2 Views/clock.o
-                0x00800170                minute
+                0x00800176        0x2 Views/clock.o
+                0x00800176                clockSelectedMinute
+ .bss.minute    0x00800178        0x2 Views/clock.o
+                0x00800178                minute
  .bss.timerExpectedSecond
-                0x00800172        0x2 Views/timer.o
-                0x00800172                timerExpectedSecond
- .bss.timerExpectedMinute
-                0x00800174        0x2 Views/timer.o
-                0x00800174                timerExpectedMinute
- .bss.timerExpectedHour
-                0x00800176        0x2 Views/timer.o
-                0x00800176                timerExpectedHour
- .bss.timerSelectedMinute
-                0x00800178        0x2 Views/timer.o
-                0x00800178                timerSelectedMinute
- .bss.timerSelectedHour
                 0x0080017a        0x2 Views/timer.o
-                0x0080017a                timerSelectedHour
- .bss.isReady   0x0080017c        0x1 Views/timer.o
-                0x0080017c                isReady
- .bss.isRunning
-                0x0080017d        0x1 Views/timer.o
-                0x0080017d                isRunning
+                0x0080017a                timerExpectedSecond
+ .bss.timerExpectedMinute
+                0x0080017c        0x2 Views/timer.o
+                0x0080017c                timerExpectedMinute
+ .bss.timerExpectedHour
+                0x0080017e        0x2 Views/timer.o
+                0x0080017e                timerExpectedHour
+ .bss.timerSelectedMinute
+                0x00800180        0x2 Views/timer.o
+                0x00800180                timerSelectedMinute
+ .bss.timerSelectedHour
+                0x00800182        0x2 Views/timer.o
+                0x00800182                timerSelectedHour
+ .bss.timerIsReady
+                0x00800184        0x1 Views/timer.o
+                0x00800184                timerIsReady
+ .bss.timerIsRunning
+                0x00800185        0x1 Views/timer.o
+                0x00800185                timerIsRunning
  *(COMMON)
- COMMON         0x0080017e        0x3 External/display.o
-                0x0080017e                ssd1306tx_font_char_base
-                0x0080017f                ssd1306tx_font_src
-                0x00800181                PROVIDE (__bss_end, .)
-                0x00001d14                __data_load_start = LOADADDR (.data)
-                0x00001d80                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800186        0x3 External/display.o
+                0x00800186                ssd1306tx_font_char_base
+                0x00800187                ssd1306tx_font_src
+                0x00800189                PROVIDE (__bss_end, .)
+                0x00001e2e                __data_load_start = LOADADDR (.data)
+                0x00001e96                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800181        0x0
+.noinit         0x00800189        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800181                _end = .
+                0x00800189                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -902,7 +981,9 @@ END GROUP
  .comment       0x00000030       0x31 Logic/menu.o
  .comment       0x00000030       0x31 Logic/time.o
  .comment       0x00000030       0x31 main.o
+ .comment       0x00000030       0x31 Views/alarm.o
  .comment       0x00000030       0x31 Views/clock.o
+ .comment       0x00000030       0x31 Views/temperature.o
  .comment       0x00000030       0x31 Views/timer.o
  .comment       0x00000030       0x31 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(sprintf.o)
  .comment       0x00000030       0x2c c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(vfprintf_std.o)
@@ -929,96 +1010,112 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x360
+.debug_aranges  0x00000000      0x3b8
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x80 External/display.o
  .debug_aranges
                 0x00000080       0x40 External/I2C.o
  .debug_aranges
-                0x000000c0       0x50 Logic/display_extensions.o
+                0x000000c0       0x58 Logic/display_extensions.o
  .debug_aranges
-                0x00000110       0xc8 Logic/menu.o
+                0x00000118       0x78 Logic/menu.o
  .debug_aranges
-                0x000001d8       0x58 Logic/time.o
+                0x00000190       0x58 Logic/time.o
  .debug_aranges
-                0x00000230       0x30 main.o
+                0x000001e8       0x30 main.o
  .debug_aranges
-                0x00000260       0x80 Views/clock.o
+                0x00000218       0x80 Views/alarm.o
  .debug_aranges
-                0x000002e0       0x80 Views/timer.o
+                0x00000298       0x80 Views/clock.o
+ .debug_aranges
+                0x00000318       0x20 Views/temperature.o
+ .debug_aranges
+                0x00000338       0x80 Views/timer.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x314b
+.debug_info     0x00000000     0x35a0
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x5f4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega88p/avr4/crtatmega88p.o
  .debug_info    0x000005f4      0xa21 External/display.o
  .debug_info    0x00001015      0x131 External/I2C.o
- .debug_info    0x00001146      0x75f Logic/display_extensions.o
- .debug_info    0x000018a5      0xaaf Logic/menu.o
- .debug_info    0x00002354      0x2b7 Logic/time.o
- .debug_info    0x0000260b      0x17a main.o
- .debug_info    0x00002785      0x4b2 Views/clock.o
- .debug_info    0x00002c37      0x514 Views/timer.o
+ .debug_info    0x00001146      0x7d7 Logic/display_extensions.o
+ .debug_info    0x0000191d      0x904 Logic/menu.o
+ .debug_info    0x00002221      0x2b7 Logic/time.o
+ .debug_info    0x000024d8      0x177 main.o
+ .debug_info    0x0000264f      0x56a Views/alarm.o
+ .debug_info    0x00002bb9      0x4b2 Views/clock.o
+ .debug_info    0x0000306b       0x97 Views/temperature.o
+ .debug_info    0x00003102      0x49e Views/timer.o
 
-.debug_abbrev   0x00000000      0xf07
+.debug_abbrev   0x00000000     0x106b
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x5a2 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega88p/avr4/crtatmega88p.o
  .debug_abbrev  0x000005a2      0x1ed External/display.o
  .debug_abbrev  0x0000078f       0xb2 External/I2C.o
- .debug_abbrev  0x00000841      0x1aa Logic/display_extensions.o
- .debug_abbrev  0x000009eb      0x170 Logic/menu.o
- .debug_abbrev  0x00000b5b       0xbe Logic/time.o
- .debug_abbrev  0x00000c19       0xbd main.o
- .debug_abbrev  0x00000cd6      0x12c Views/clock.o
- .debug_abbrev  0x00000e02      0x105 Views/timer.o
+ .debug_abbrev  0x00000841      0x199 Logic/display_extensions.o
+ .debug_abbrev  0x000009da      0x14e Logic/menu.o
+ .debug_abbrev  0x00000b28       0xbe Logic/time.o
+ .debug_abbrev  0x00000be6       0xbd main.o
+ .debug_abbrev  0x00000ca3      0x11d Views/alarm.o
+ .debug_abbrev  0x00000dc0      0x12c Views/clock.o
+ .debug_abbrev  0x00000eec       0x7a Views/temperature.o
+ .debug_abbrev  0x00000f66      0x105 Views/timer.o
 
-.debug_line     0x00000000     0x162d
+.debug_line     0x00000000     0x18f2
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x133 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega88p/avr4/crtatmega88p.o
  .debug_line    0x00000133      0x3af External/display.o
  .debug_line    0x000004e2      0x17b External/I2C.o
- .debug_line    0x0000065d      0x286 Logic/display_extensions.o
- .debug_line    0x000008e3      0x5cf Logic/menu.o
- .debug_line    0x00000eb2      0x16d Logic/time.o
- .debug_line    0x0000101f      0x192 main.o
- .debug_line    0x000011b1      0x1fc Views/clock.o
- .debug_line    0x000013ad      0x280 Views/timer.o
+ .debug_line    0x0000065d      0x2a9 Logic/display_extensions.o
+ .debug_line    0x00000906      0x608 Logic/menu.o
+ .debug_line    0x00000f0e      0x16d Logic/time.o
+ .debug_line    0x0000107b      0x18c main.o
+ .debug_line    0x00001207      0x233 Views/alarm.o
+ .debug_line    0x0000143a      0x1fc Views/clock.o
+ .debug_line    0x00001636       0x48 Views/temperature.o
+ .debug_line    0x0000167e      0x274 Views/timer.o
 
-.debug_frame    0x00000000      0x848
+.debug_frame    0x00000000      0x918
  *(.debug_frame)
  .debug_frame   0x00000000      0x1e8 External/display.o
  .debug_frame   0x000001e8       0x64 External/I2C.o
- .debug_frame   0x0000024c      0x120 Logic/display_extensions.o
- .debug_frame   0x0000036c      0x174 Logic/menu.o
- .debug_frame   0x000004e0       0x94 Logic/time.o
- .debug_frame   0x00000574       0x8c main.o
- .debug_frame   0x00000600      0x148 Views/clock.o
- .debug_frame   0x00000748      0x100 Views/timer.o
+ .debug_frame   0x0000024c      0x130 Logic/display_extensions.o
+ .debug_frame   0x0000037c       0xd4 Logic/menu.o
+ .debug_frame   0x00000450       0x94 Logic/time.o
+ .debug_frame   0x000004e4       0x8c main.o
+ .debug_frame   0x00000570      0x13c Views/alarm.o
+ .debug_frame   0x000006ac      0x148 Views/clock.o
+ .debug_frame   0x000007f4       0x24 Views/temperature.o
+ .debug_frame   0x00000818      0x100 Views/timer.o
 
-.debug_str      0x00000000      0xb5a
+.debug_str      0x00000000      0xc17
  *(.debug_str)
  .debug_str     0x00000000      0x208 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega88p/avr4/crtatmega88p.o
  .debug_str     0x00000208      0x293 External/display.o
                                 0x2de (size before relaxing)
  .debug_str     0x0000049b       0x47 External/I2C.o
                                 0x1b0 (size before relaxing)
- .debug_str     0x000004e2      0x16c Logic/display_extensions.o
-                                0x363 (size before relaxing)
- .debug_str     0x0000064e      0x34f Logic/menu.o
-                                0x4ca (size before relaxing)
- .debug_str     0x0000099d       0x46 Logic/time.o
+ .debug_str     0x000004e2      0x162 Logic/display_extensions.o
+                                0x359 (size before relaxing)
+ .debug_str     0x00000644      0x35b Logic/menu.o
+                                0x4db (size before relaxing)
+ .debug_str     0x0000099f       0x46 Logic/time.o
                                 0x153 (size before relaxing)
- .debug_str     0x000009e3       0x52 main.o
-                                0x1d9 (size before relaxing)
- .debug_str     0x00000a35       0x94 Views/clock.o
+ .debug_str     0x000009e5       0x51 main.o
+                                0x1c7 (size before relaxing)
+ .debug_str     0x00000a36       0xe1 Views/alarm.o
+                                0x381 (size before relaxing)
+ .debug_str     0x00000b17       0x4e Views/clock.o
                                 0x29f (size before relaxing)
- .debug_str     0x00000ac9       0x91 Views/timer.o
-                                0x31e (size before relaxing)
+ .debug_str     0x00000b65       0x17 Views/temperature.o
+                                0x110 (size before relaxing)
+ .debug_str     0x00000b7c       0x9b Views/timer.o
+                                0x336 (size before relaxing)
 
-.debug_loc      0x00000000     0x1881
+.debug_loc      0x00000000     0x1c1b
  *(.debug_loc)
  .debug_loc     0x00000000      0xa1b External/display.o
  .debug_loc     0x00000a1b       0x9d External/I2C.o
@@ -1026,8 +1123,9 @@ END GROUP
  .debug_loc     0x000010d8       0x48 Logic/menu.o
  .debug_loc     0x00001120      0x2ae Logic/time.o
  .debug_loc     0x000013ce       0xcb main.o
- .debug_loc     0x00001499      0x2ab Views/clock.o
- .debug_loc     0x00001744      0x13d Views/timer.o
+ .debug_loc     0x00001499      0x39a Views/alarm.o
+ .debug_loc     0x00001833      0x2ab Views/clock.o
+ .debug_loc     0x00001ade      0x13d Views/timer.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -1047,16 +1145,18 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x2e0
+.debug_ranges   0x00000000      0x318
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x70 External/display.o
  .debug_ranges  0x00000070       0x30 External/I2C.o
- .debug_ranges  0x000000a0       0x40 Logic/display_extensions.o
- .debug_ranges  0x000000e0       0xb8 Logic/menu.o
- .debug_ranges  0x00000198       0x48 Logic/time.o
- .debug_ranges  0x000001e0       0x20 main.o
- .debug_ranges  0x00000200       0x70 Views/clock.o
- .debug_ranges  0x00000270       0x70 Views/timer.o
+ .debug_ranges  0x000000a0       0x48 Logic/display_extensions.o
+ .debug_ranges  0x000000e8       0x68 Logic/menu.o
+ .debug_ranges  0x00000150       0x48 Logic/time.o
+ .debug_ranges  0x00000198       0x20 main.o
+ .debug_ranges  0x000001b8       0x70 Views/alarm.o
+ .debug_ranges  0x00000228       0x70 Views/clock.o
+ .debug_ranges  0x00000298       0x10 Views/temperature.o
+ .debug_ranges  0x000002a8       0x70 Views/timer.o
 
 .debug_macro
  *(.debug_macro)

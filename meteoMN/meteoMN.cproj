@@ -149,6 +149,12 @@
     <Compile Include="External\I2C.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Logic\buzzer.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Logic\buzzer.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Logic\display_extensions.c">
       <SubType>compile</SubType>
     </Compile>
@@ -170,10 +176,22 @@
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Views\alarm.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Views\alarm.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Views\clock.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Views\clock.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Views\temperature.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Views\tempertature.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Views\timer.c">
