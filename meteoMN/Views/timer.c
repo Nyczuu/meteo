@@ -4,34 +4,17 @@
 #include "timer.h"
 #include "clock.h"
 
-bool timerIsRunning = 0;
-bool timerIsReady = 0;
-
-int timerSelectedHour = 0;
-int timerSelectedMinute = 0;
-
-int timerExpectedHour = 0;
-int timerExpectedMinute = 0;
-int timerExpectedSecond = 0;
-
-bool timer_is_ready()
-{
-	return timerIsReady;
-}
-
-bool timer_is_running()
-{
-	return timerIsRunning;
-}
+int8_t timerExpectedHour = 0;
+int8_t timerExpectedMinute = 0;
+int8_t timerExpectedSecond = 0;
 
 void timer_reset()
 {
+	reset();
+	
 	timerIsReady = 0;
 	timerIsRunning = 0;
 	
-	timerSelectedHour = 0;
-	timerSelectedMinute = 0;
-
 	timerExpectedHour = 0;
 	timerExpectedMinute = 0;
 	timerExpectedSecond = 0;
@@ -42,8 +25,8 @@ void timer_run()
 	if(timerIsRunning == 0)
 	{
 		timerExpectedSecond = 0;
-		timerExpectedHour = timerSelectedHour;
-		timerExpectedMinute = timerSelectedMinute;
+		timerExpectedHour = selectedHour;
+		timerExpectedMinute = selectedMinute;
 		timerIsRunning = 1;
 	}
 }
@@ -75,26 +58,6 @@ void timer_trigger()
 	}
 }
 
-void timer_add_hour()
-{
-	timerSelectedHour = add_hour(timerSelectedHour);
-}
-
-void timer_add_minute()
-{
-	timerSelectedMinute = add_minute(timerSelectedMinute);
-}
-
-void timer_subtract_hour()
-{
-	timerSelectedHour = subtract_hour(timerSelectedHour);
-}
-
-void timer_subtract_minute()
-{
-	timerSelectedMinute = subtract_minute(timerSelectedMinute);
-}
-
 void display_timer_view()
 {
 	draw_string(0, 0, "TIMER");
@@ -117,7 +80,7 @@ void display_timer(bool displayHour, bool displayMinute, bool displaySecond)
 {
 	if(timerIsRunning == 0)
 	{
-		draw_clock(0,2, timerSelectedHour, timerSelectedMinute,0, displayHour, displayMinute, displaySecond);
+		draw_clock(0,2, selectedHour, selectedMinute,0, displayHour, displayMinute, displaySecond);
 	}
 	else if(timerIsRunning == 1 && timerIsReady == 0)
 	{

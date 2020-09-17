@@ -1,5 +1,6 @@
+#ifndef MENU_H
+#define MENU_H
 #include "avr/interrupt.h"
-
 #include "../Views/clock.h"
 #include "../Views/timer.h"
 
@@ -33,3 +34,4 @@
 
 void refresh_screen();
 void on_button_pressed();
+#endif

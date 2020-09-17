@@ -2,6 +2,8 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
+External\DHT\DHT.c
+
 External\display.c
 
 External\I2C.c

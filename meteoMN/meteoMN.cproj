@@ -134,6 +134,18 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="External\DHT\DHT.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="External\DHT\DHT.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="External\DHT\DHT_Settings.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="External\DHT\IO_Macros.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="External\display.c">
       <SubType>compile</SubType>
     </Compile>
@@ -203,8 +215,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="External" />
+    <Folder Include="External\DHT" />
     <Folder Include="Logic" />
     <Folder Include="Views" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="External\DHT\LICENSE">
+      <SubType>compile</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

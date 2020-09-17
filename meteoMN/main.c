@@ -1,8 +1,3 @@
-#include <util/twi.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <string.h>
 #include "avr/interrupt.h"
 #include "External/I2C.h"
 #include "stdint.h"
@@ -32,11 +27,10 @@ int main(void)
 	sei();
 	port_init();
 	display_init();
+	DHT_Setup();
 
 	while (1)
 	{
-		//play_timer_sound();
-		
 		if(BUTTON_PRESSED)
 			on_button_pressed();
 		

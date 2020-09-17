@@ -1,10 +1,14 @@
-#include <stdbool.h> 
+#ifndef DISP_EXT_H
+#include <stdint.h>
+#include <stdbool.h>
 
 void display_init();
-void draw_digit(int xstart, int ystart, int digit);
-void draw_number(int xstart, int ystart, int number);
-void draw_string(int xstart, int ystart, char* str);
-void draw_new_string(int xstart, int ystart, char* str);
+void draw_digit(uint8_t xstart, uint8_t ystart, uint8_t digit);
+void draw_number(uint8_t xstart, uint8_t ystart, uint8_t number);
+void draw_string(uint8_t xstart, uint8_t ystart, char* str);
+void draw_new_string(uint8_t xstart, uint8_t ystart, char* str);
 void draw_its_time();
-void draw_clock(int xstart, int ystart, int hours, int minutes, int seconds,
- bool displayHour, bool displayMinute, bool displaySecond);
+void draw_clock(uint8_t xstart, uint8_t ystart, uint8_t hours, uint8_t minutes, uint8_t seconds,
+bool displayHour, bool displayMinute, bool displaySecond);
+
+#endif

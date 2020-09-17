@@ -1,7 +1,11 @@
 #include <util/delay.h>
 #include "menu.h"
+#include "../Views/timer.h"
+#include "../Views/alarm.h"
+#include "../Views/clock.h"
 
-int selectedMenu = MENU_CLOCK;
+
+uint8_t selectedMenu = MENU_CLOCK;
 
 void welcome()
 {
@@ -45,10 +49,10 @@ void switch_menu()
 	selectedMenu = MENU_CLOCK_SET_HOUR;
 
 	else if (BUTTON_1_PRESSED && selectedMenu == MENU_CLOCK_SET_HOUR)
-	clock_add_hour();
+	add_hour();
 	
 	else if (BUTTON_2_PRESSED && selectedMenu == MENU_CLOCK_SET_HOUR)
-	clock_subtract_hour();
+	subtract_hour();
 	
 	else if(BUTTON_3_PRESSED && selectedMenu == MENU_CLOCK_SET_HOUR)
 	selectedMenu = MENU_CLOCK_SET_MINUTE;
@@ -57,10 +61,10 @@ void switch_menu()
 	selectedMenu = MENU_CLOCK;
 
 	else if (BUTTON_1_PRESSED && selectedMenu == MENU_CLOCK_SET_MINUTE)
-	clock_add_minute();
+	add_minute();
 	
 	else if (BUTTON_2_PRESSED && selectedMenu == MENU_CLOCK_SET_MINUTE)
-	clock_subtract_minute();
+	subtract_minute();
 
 	else if(BUTTON_3_PRESSED && selectedMenu == MENU_CLOCK_SET_MINUTE)
 	clock_set_minute_confirm();
@@ -72,10 +76,10 @@ void switch_menu()
 	timer_set_hour();
 	
 	else if (BUTTON_1_PRESSED && selectedMenu == MENU_TIMER_SET_HOUR)
-	timer_add_hour();
+	add_hour();
 	
 	else if (BUTTON_2_PRESSED && selectedMenu == MENU_TIMER_SET_HOUR)
-	timer_subtract_hour();
+	subtract_hour();
 
 	else if(BUTTON_3_PRESSED && selectedMenu == MENU_TIMER_SET_HOUR)
 	selectedMenu = MENU_TIMER_SET_MINUTE;
@@ -84,10 +88,10 @@ void switch_menu()
 	timer_view();
 
 	else if (BUTTON_1_PRESSED && selectedMenu == MENU_TIMER_SET_MINUTE)
-	timer_add_minute();
+	add_minute();
 	
 	else if (BUTTON_2_PRESSED && selectedMenu == MENU_TIMER_SET_MINUTE)
-	timer_subtract_minute();
+	subtract_minute();
 
 	else if(BUTTON_3_PRESSED && selectedMenu == MENU_TIMER_SET_MINUTE)
 	timer_set_minute_confirm();
@@ -99,10 +103,10 @@ void switch_menu()
 	alarm_set_hour();
 	
 	else if (BUTTON_1_PRESSED && selectedMenu == MENU_ALARM_SET_HOUR)
-	alarm_add_hour();
+	add_hour();
 	
 	else if (BUTTON_2_PRESSED && selectedMenu == MENU_ALARM_SET_HOUR)
-	alarm_subtract_hour();
+	subtract_hour();
 
 	else if(BUTTON_3_PRESSED && selectedMenu == MENU_ALARM_SET_HOUR)
 	selectedMenu = MENU_ALARM_SET_MINUTE;
@@ -111,10 +115,10 @@ void switch_menu()
 	alarm_view();
 
 	else if (BUTTON_1_PRESSED && selectedMenu == MENU_ALARM_SET_MINUTE)
-	alarm_add_minute();
+	add_minute();
 	
 	else if (BUTTON_2_PRESSED && selectedMenu == MENU_ALARM_SET_MINUTE)
-	alarm_subtract_minute();
+	subtract_minute();
 
 	else if(BUTTON_3_PRESSED && selectedMenu == MENU_ALARM_SET_MINUTE)
 	alarm_set_minute_confirm();
@@ -143,7 +147,7 @@ void clock_set_minute_confirm()
 
 void timer_view()
 {
-	if(timer_is_running() == 0)
+	if(timerIsRunning == 0)
 	timer_reset();
 	
 	selectedMenu = MENU_TIMER;
@@ -151,7 +155,7 @@ void timer_view()
 
 void timer_set_hour()
 {
-	if(timer_is_running() == 1 && timer_is_ready() == 1)
+	if(timerIsRunning == 1 && timerIsReady == 1)
 	timer_reset();
 
 	selectedMenu = MENU_TIMER_SET_HOUR;
@@ -165,7 +169,7 @@ void timer_set_minute_confirm()
 
 void alarm_view()
 {
-	if(alarm_is_running() == 0)
+	//if(alarmIsRunning == 0)
 	alarm_reset();
 	
 	selectedMenu = MENU_ALARM;
@@ -173,7 +177,7 @@ void alarm_view()
 
 void alarm_set_hour()
 {
-	if(alarm_is_running() == 1 && alarm_is_ready() == 1)
+	//if(alarmIsRunning == 1 && alarmIsReady == 1)
 	alarm_reset();
 
 	selectedMenu = MENU_ALARM_SET_HOUR;

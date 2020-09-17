@@ -34,12 +34,14 @@ LINKER_SCRIPT_DEP:=
 # Every subdirectory with source files must be described here
 SUBDIRS :=  \
 ../External \
+../External/DHT \
 ../Logic \
 ../Views
 
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../External/DHT/DHT.c \
 ../External/display.c \
 ../External/I2C.c \
 ../Logic/buzzer.c \
@@ -60,6 +62,7 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+External/DHT/DHT.o \
 External/display.o \
 External/I2C.o \
 Logic/buzzer.o \
@@ -73,6 +76,7 @@ Views/temperature.o \
 Views/timer.o
 
 OBJS_AS_ARGS +=  \
+External/DHT/DHT.o \
 External/display.o \
 External/I2C.o \
 Logic/buzzer.o \
@@ -86,6 +90,7 @@ Views/temperature.o \
 Views/timer.o
 
 C_DEPS +=  \
+External/DHT/DHT.d \
 External/display.d \
 External/I2C.d \
 Logic/buzzer.d \
@@ -99,6 +104,7 @@ Views/temperature.d \
 Views/timer.d
 
 C_DEPS_AS_ARGS +=  \
+External/DHT/DHT.d \
 External/display.d \
 External/I2C.d \
 Logic/buzzer.d \
@@ -125,6 +131,13 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+External/DHT/DHT.o: ../External/DHT/DHT.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=8000000  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega88p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega88p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 External/display.o: ../External/display.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
