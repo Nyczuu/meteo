@@ -17,6 +17,7 @@ bool timer_is_running(){ return timerIsRunning;}
 
 void timer_reset()
 {
+	PORTD |= LED1;
 	PORTD &= ~BUZZER;
 	
 	reset();

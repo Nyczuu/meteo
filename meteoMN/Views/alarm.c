@@ -16,6 +16,7 @@ bool alarm_is_running() {return alarmRunning;}
 
 void alarm_reset()
 {
+	PORTD |= LED1;
 	PORTD &= ~BUZZER;
 	reset();
 	

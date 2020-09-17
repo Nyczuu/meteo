@@ -13,7 +13,7 @@ void clock_trigger()
 		current_minute = add_safe_minute(current_minute);
 	}
 	
-	if(previous == (MINUTES_IN_HOUR - 1) && current_hour == 0)
+	if(previous == (MINUTES_IN_HOUR - 1) && current_minute == 0)
 	current_hour = add_safe_hour(current_hour);
 }
 
