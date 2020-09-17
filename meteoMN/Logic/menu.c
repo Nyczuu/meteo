@@ -136,7 +136,8 @@ void switch_menu()
 	alarm_view();
 	
 	else if (BUTTON_4_PRESSED)
-	temperature_view();
+	selectedMenu = MENU_TEMPEREATURE;
+
 }
 
 void clock_set_minute_confirm()
@@ -155,7 +156,7 @@ void timer_view()
 
 void timer_set_hour()
 {
-	if(timerIsRunning == 1 && timerIsReady == 1)
+	if(timerIsRunning == 1)
 	timer_reset();
 
 	selectedMenu = MENU_TIMER_SET_HOUR;
@@ -169,7 +170,7 @@ void timer_set_minute_confirm()
 
 void alarm_view()
 {
-	//if(alarmIsRunning == 0)
+	if(alarmIsRunning == 0)
 	alarm_reset();
 	
 	selectedMenu = MENU_ALARM;
@@ -177,7 +178,7 @@ void alarm_view()
 
 void alarm_set_hour()
 {
-	//if(alarmIsRunning == 1 && alarmIsReady == 1)
+	if(alarmIsRunning == 1)
 	alarm_reset();
 
 	selectedMenu = MENU_ALARM_SET_HOUR;
@@ -187,9 +188,4 @@ void alarm_set_minute_confirm()
 {
 	alarm_run();
 	alarm_view();
-}
-
-void temperature_view()
-{
-	selectedMenu = MENU_TEMPEREATURE;
 }

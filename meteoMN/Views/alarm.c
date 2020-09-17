@@ -3,9 +3,6 @@
 #include "alarm.h"
 #include "clock.h"
 
-bool alarmIsReady = 0;
-bool alarmIsRunning = 0;
-
 uint8_t alarmExpectedHour = 0;
 uint8_t alarmExpectedMinute = 0;
 uint8_t alarmExpectedSecond = 0;
