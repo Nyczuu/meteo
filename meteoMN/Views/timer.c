@@ -12,6 +12,7 @@ int8_t timerExpectedSecond = 0;
 void timer_reset()
 {
 	PORTD &= ~BUZZER;
+	
 	reset();
 	
 	timerIsReady = 0;
@@ -90,6 +91,7 @@ void display_timer(bool displayHour, bool displayMinute, bool displaySecond)
 	}
 	else
 	{
+		PORTB ^= LED1;
 		draw_its_time();
 		play_timer_sound();
 	}

@@ -4,11 +4,6 @@
 #include "Logic/menu.h"
 #include "Logic/buzzer.h"
 
-#define LED1_PORT PORTD
-#define LED2_PORT PORTB
-#define LED1 (1<<PD7)
-#define LED2 (1<<PB0)
-
 void port_init()
 {
 	DDRC &= ~(BUTTON_2 | BUTTON_1);

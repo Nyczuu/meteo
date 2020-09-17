@@ -170,7 +170,7 @@ void timer_set_minute_confirm()
 
 void alarm_view()
 {
-	if(alarmIsRunning == 0)
+	if(alarmRunning == 0)
 	alarm_reset();
 	
 	selectedMenu = MENU_ALARM;
@@ -178,7 +178,7 @@ void alarm_view()
 
 void alarm_set_hour()
 {
-	if(alarmIsRunning == 1)
+	if(alarmRunning == 1)
 	alarm_reset();
 
 	selectedMenu = MENU_ALARM_SET_HOUR;

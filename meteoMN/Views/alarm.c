@@ -11,8 +11,8 @@ void alarm_reset()
 {
 	reset();
 	
-	alarmIsReady = 0;
-	alarmIsRunning = 0;
+	alarmReady = 0;
+	alarmRunning = 0;
 	
 	alarmExpectedHour = 0;
 	alarmExpectedMinute = 0;
@@ -21,24 +21,24 @@ void alarm_reset()
 
 void alarm_run()
 {
-	if(alarmIsRunning == 0)
+	if(alarmRunning == 0)
 	{
 		alarmExpectedSecond = 0;
 		alarmExpectedHour = selectedHour;
 		alarmExpectedMinute = selectedMinute;
-		alarmIsRunning = 1;
+		alarmRunning = 1;
 	}
 }
 
 void alarm_trigger()
 {
-	if(alarmIsRunning == 1 
-	&& alarmIsReady == 0
+	if(alarmRunning == 1 
+	&& alarmReady == 0
 	&& current_hour == alarmExpectedHour 
 	&& current_minute == alarmExpectedMinute 
 	&& current_second == alarmExpectedSecond)
 	{
-		alarmIsReady = 1;	
+		alarmReady = 1;	
 	}
 }
 
@@ -62,11 +62,11 @@ void display_alarm_minute_set_view()
 
 void display_alarm(uint8_t hour, uint8_t minute, uint8_t second, bool displayHour, bool displayMinute, bool displaySeconds)
 {
-	if(alarmIsRunning == 0)
+	if(alarmRunning == 0)
 	{
 		draw_clock(0,2, hour, minute,second, displayHour, displayMinute, displaySeconds);
 	}
-	else if(alarmIsRunning == 1 && alarmIsReady == 0)
+	else if(alarmRunning == 1 && alarmReady == 0)
 	{
 		draw_clock(0,2, hour, minute, second, displayHour, displayMinute, displaySeconds);
 	}

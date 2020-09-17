@@ -3,8 +3,6 @@
 #define LED5 (1<<PB0)
 void I2C_Initialize(uint16_t bitRate_kHz)
 {
-	//TWSR |= 0x00; // Set prescaler to 1
-
 	uint8_t bitrate_div;
 
 	bitrate_div = ((F_CPU/1000l)/bitRate_kHz);
