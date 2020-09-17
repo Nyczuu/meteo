@@ -6,7 +6,7 @@ float humidity[1];
 
 void display_temperature_view()
 {
-	draw_string(0, 0, "WEATHER");
+	draw_header("WEATHER",timer_is_running(),alarm_is_running());
 	
 	char tempAsChar[5];
 	char humAsChar[5];

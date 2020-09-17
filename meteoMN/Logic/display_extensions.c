@@ -106,3 +106,17 @@ void draw_its_time()
 	draw_string(2,4,"IT IS TIME");
 	draw_string(2,6,"IT IS TIME");
 }
+
+draw_header(char* header, bool timer, bool alarm)
+{
+	draw_string(0,0,header);
+	if(timer == 1)
+	{
+		draw_string(110, 0, "-T");
+	}
+	
+	if(alarm == 1)
+	{
+		draw_string(90, 0, "-A");	
+	}
+}

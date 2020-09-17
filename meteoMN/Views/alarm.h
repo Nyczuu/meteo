@@ -2,8 +2,8 @@
 #define ALARM_H
 #include <stdbool.h> 
 
-bool alarmReady = 0;
-bool alarmRunning = 0;
+bool alarm_is_ready();
+bool alarm_is_running();
 
 void alarm_reset();
 void alarm_run();

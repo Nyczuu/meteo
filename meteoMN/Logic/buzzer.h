@@ -7,3 +7,4 @@
 #define BUZZER (1<<PD5)
 
 void play_alarm_sound();
+void play_timer_sound();

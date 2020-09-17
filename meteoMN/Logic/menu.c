@@ -1,5 +1,7 @@
 #include <util/delay.h>
 #include "menu.h"
+#include "buzzer.h"
+#include "display_extensions.h"
 #include "../Views/timer.h"
 #include "../Views/alarm.h"
 #include "../Views/clock.h"
@@ -21,7 +23,11 @@ void on_button_pressed()
 
 void refresh_screen()
 {
-	if(selectedMenu == MENU_CLOCK)
+	if(timer_is_ready() == 1)
+	display_timer_view();
+	else if (alarm_is_ready() == 1)
+	display_alarm_view();
+	else if(selectedMenu == MENU_CLOCK)
 	display_clock_view();
 	else if (selectedMenu == MENU_CLOCK_SET_HOUR)
 	display_clock_hour_set_view();
@@ -148,7 +154,7 @@ void clock_set_minute_confirm()
 
 void timer_view()
 {
-	if(timerIsRunning == 0)
+	if(timer_is_running() == 0)
 	timer_reset();
 	
 	selectedMenu = MENU_TIMER;
@@ -156,7 +162,7 @@ void timer_view()
 
 void timer_set_hour()
 {
-	if(timerIsRunning == 1)
+	if(timer_is_running() == 1)
 	timer_reset();
 
 	selectedMenu = MENU_TIMER_SET_HOUR;
@@ -170,7 +176,7 @@ void timer_set_minute_confirm()
 
 void alarm_view()
 {
-	if(alarmRunning == 0)
+	if(alarm_is_running() == 0)
 	alarm_reset();
 	
 	selectedMenu = MENU_ALARM;
@@ -178,7 +184,7 @@ void alarm_view()
 
 void alarm_set_hour()
 {
-	if(alarmRunning == 1)
+	if(alarm_is_running() == 1)
 	alarm_reset();
 
 	selectedMenu = MENU_ALARM_SET_HOUR;

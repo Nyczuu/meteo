@@ -11,6 +11,9 @@ void port_init()
 	DDRB |= LED2;
 	DDRD |= BUZZER | LED1;
 	
+	PORTD |= LED1;
+	PORTB &= ~LED2;
+	
 	TCCR1B = (1<<CS12) | (1<<WGM12);
 	OCR1AH = 0x7A;
 	OCR1AL = 0x12;

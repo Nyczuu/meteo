@@ -5,9 +5,15 @@
 #include "timer.h"
 #include "clock.h"
 
+bool timerIsRunning;
+bool timerIsReady;
+
 int8_t timerExpectedHour = 0;
 int8_t timerExpectedMinute = 0;
 int8_t timerExpectedSecond = 0;
+
+bool timer_is_ready(){ return timerIsReady;}
+bool timer_is_running(){ return timerIsRunning;}
 
 void timer_reset()
 {
@@ -63,19 +69,19 @@ void timer_trigger()
 
 void display_timer_view()
 {
-	draw_string(0, 0, "TIMER");
+	draw_header("TIMER",timer_is_running(),alarm_is_running());
 	display_timer(1,1,1);
 }
 
 void display_timer_hour_set_view()
 {
-	draw_string(0, 0, "TIMER SET H");
+	draw_header("TIMER SET H",timer_is_running(),alarm_is_running());
 	display_timer(1,0,0);
 }
 
 void display_timer_minute_set_view()
 {
-	draw_string(0, 0, "TIMER SET M");
+	draw_header("TIMER SET M",timer_is_running(),alarm_is_running());
 	display_timer(0,1,0);
 }
 
@@ -91,7 +97,6 @@ void display_timer(bool displayHour, bool displayMinute, bool displaySecond)
 	}
 	else
 	{
-		PORTB ^= LED1;
 		draw_its_time();
 		play_timer_sound();
 	}

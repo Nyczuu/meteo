@@ -9,10 +9,6 @@ void play_alarm_sound()
 
 void play_timer_sound()
 {
-	PORTD ^= BUZZER;
+	PORTD ^= (BUZZER|LED1);
 	_delay_ms(100);
-	PORTD ^= BUZZER;
-	_delay_ms(100);
-	PORTD ^= BUZZER;
-	_delay_ms(200);
 }

@@ -26,19 +26,19 @@ void clock_save()
 
 void display_clock_view()
 {
-	draw_string(0, 0, "CLOCK");
+	draw_header("CLOCK",timer_is_running(),alarm_is_running());
 	display_clock(current_hour, current_minute,current_second, 1,1,1);
 }
 
 void display_clock_hour_set_view()
 {
-	draw_string(0, 0, "CLOCK SET H");
+	draw_header("CLOCK SET H",timer_is_running(),alarm_is_running());
 	display_clock(selectedHour, selectedMinute, 0,1,0,0);
 }
 
 void display_clock_minute_set_view()
 {
-	draw_string(0, 0, "CLOCK SET M");
+	draw_header("CLOCK SET M",timer_is_running(),alarm_is_running());
 	display_clock(selectedHour, selectedMinute, 0, 0, 1, 0);
 }
 

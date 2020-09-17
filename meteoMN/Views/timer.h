@@ -1,8 +1,9 @@
 #ifndef TIMER_H
 #define TIMER_H
-#include <stdbool.h> 
-bool timerIsRunning;
-bool timerIsReady;
+#include <stdbool.h>
+
+bool timer_is_ready();
+bool timer_is_running();
 
 void timer_reset();
 void timer_run();

@@ -1,5 +1,6 @@
 #ifndef CLOCK_H
 #define CLOCK_H
+
 void clock_add_hour();
 void clock_add_minute();
 void clock_subtract_hour();
