@@ -1,6 +1,7 @@
 #include <util/delay.h>
 #include "../Logic/display_extensions.h"
 #include "../Logic/time.h"
+#include "../Logic/buzzer.h"
 #include "timer.h"
 #include "clock.h"
 
@@ -10,6 +11,7 @@ int8_t timerExpectedSecond = 0;
 
 void timer_reset()
 {
+	PORTD &= ~BUZZER;
 	reset();
 	
 	timerIsReady = 0;
@@ -89,5 +91,6 @@ void display_timer(bool displayHour, bool displayMinute, bool displaySecond)
 	else
 	{
 		draw_its_time();
+		play_timer_sound();
 	}
 }
